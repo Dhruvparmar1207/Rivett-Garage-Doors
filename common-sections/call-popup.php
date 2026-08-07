@@ -5,7 +5,7 @@
 
       <div class="call-popup-dialog">
         <button type="button" class="call-popup-close" data-call-popup-close aria-label="Close">
-          <img src="./src/images/close-icon.svg" alt="" width="20" height="20" class="img-fluid" aria-hidden="true">
+          <img src="./src/images/popup-close-icon.webp" alt="" width="20" height="20" class="img-fluid" aria-hidden="true">
         </button>
 
         <h2 class="call-popup-title" id="callPopupTitle">Choose Your Location</h2>

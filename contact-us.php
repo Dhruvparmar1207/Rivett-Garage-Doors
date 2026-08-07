@@ -46,12 +46,12 @@
                                 <p class="main-time">
                                     <span class="new-day-time">
                                         <span class="day">Mon – Thu</span>
-                                        <span class="jem">:</span>
+                                        <!-- <span class="jem">:</span> -->
                                         <span class="time">8:00 AM – 5:00 PM</span>
                                     </span>
                                     <span class="new-day-time">
                                         <span class="day">Friday</span>
-                                        <span class="jem">:</span>
+                                        <!-- <span class="jem">:</span> -->
                                         <span class="time">8:00 AM – 1:00 PM</span>
                                     </span>
                                 </p>
