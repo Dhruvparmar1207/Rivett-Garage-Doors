@@ -99,7 +99,7 @@
                                             <small id="errorPhone"></small>
                                         </div>
                                         <div class="contact-us-form-row fourth-block">
-                                            <select class="contact_input" id="service_type" name="service_type" data-parsley-errors-container="#errorservice_type" required="" data-parsley-required-message="Please Select  Inquiry Type">
+                                            <select class="contact_input custom-select" id="service_type" name="service_type" data-parsley-errors-container="#errorservice_type" required="" data-parsley-required-message="Please Select  Inquiry Type">
                                                 <option value="">
                                                     Select Service
                                                 </option>

@@ -219,11 +219,7 @@
 .contact-page-form textarea{resize: none;max-height: 120px;}
 .contact-page-form .contact-us-form-row:not(:last-child){margin-bottom: 10px;}
 
-
 .contact-page-form button.cmn-btn{width: 100%;margin-top: 40px;}
-
-
-
 
 .contact-page-form input:focus, 
 .contact-page-form textarea:focus,
