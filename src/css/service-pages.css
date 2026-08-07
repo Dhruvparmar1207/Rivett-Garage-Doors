@@ -1,0 +1,215 @@
+/* =========================================================
+   SERVICE PAGE — HERO BANNER SLIDER
+   Full-bleed Owl slider used by the service templates.
+   Every rule is scoped to .sevice-page-banner. This file loads
+   after home.css in header.php, so these declarations override
+   the home-page .banner-sec treatment without editing it.
+   ========================================================= */
+
+.sevice-page-banner{position:relative;overflow:hidden;text-align:center;color:#fff;}
+.sevice-page-banner .banner-item{position:relative;}
+.sevice-page-banner .cover-img{position:relative;height:764px;}
+.sevice-page-banner .cover-img img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.sevice-page-banner .banner-overlay{position:absolute;inset:0;background:#00000073;}
+.sevice-page-banner .content-sec{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;z-index:2;}
+.sevice-page-banner .banner-text{max-width:780px;}
+.sevice-page-banner .banner-text .cmn-btn{margin-top:40px;}
+
+
+.sevice-page-banner .owl-carousel .owl-dots{position:absolute;left:0;bottom:30px;width:100%;display:flex;justify-content:center;align-items:center;gap:8px;line-height:0;}
+.sevice-page-banner .owl-carousel .owl-dots .owl-dot{display:inline-flex;align-items:center;padding:7px 4px;background:transparent;border:0;}
+.sevice-page-banner .owl-carousel .owl-dots .owl-dot span{display:block;width:14px;height:14px;margin:0;border-radius:30px;background-color:#ffffff5d;;transition:width .25s ease,opacity .25s ease;}
+.sevice-page-banner .owl-carousel .owl-dots .owl-dot.active span,
+.sevice-page-banner .owl-carousel .owl-dots .owl-dot:hover span{width:24px;background-color:#fff;opacity:1;}
+.sevice-page-banner .owl-carousel .owl-dots .owl-dot:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:30px;}
+
+
+
+
+
+.all-garage-doors-card-sec .row{justify-content: center}
+.all-garage-doors-card-sec .card-list-row-grid{row-gap:50px;justify-content: center;}
+.all-garage-doors-card-sec .garage-card {height:100%;display:flex;flex-direction:column;}
+.all-garage-doors-card-sec .garage-card .garage-card-content{display:flex;flex-direction:column;background: #F9F9F9;height:100%;border-bottom: 4px solid #EF444C;padding:40px}
+.all-garage-doors-card-sec .garage-card .garage-card-content h3{font-family: 'Prompt',sans-serif; font-weight: 600; font-size: 32px; line-height: 30px; letter-spacing: 0;color: #000000; margin-bottom: 20px;}
+.all-garage-doors-card-sec .garage-card .garage-card-content ul{list-style:none;padding:0;margin:0 0 30px;}
+.all-garage-doors-card-sec .garage-card .garage-card-content ul li{color:#333333;font-family:"DM Sans",sans-serif;font-size: 22px; line-height: 24px;font-weight: 400;margin-bottom: 20px;display:flex;align-items:center;gap: 10px;}
+.all-garage-doors-card-sec .garage-card .garage-card-content ul li i{font-size: 15px;color: #EE3A43;}
+.all-garage-doors-card-sec .garage-card .garage-card-content ul li:last-child{margin-bottom:0}
+.all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow{margin-top:auto;width:max-content}
+.all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow i{font-size: 20px;}
+
+.all-garage-doors-card-sec.bg-grey-light{background-color: #F9F9F9;}
+.all-garage-doors-card-sec.bg-grey-light .garage-card .garage-card-content{background:#fff;}
+
+
+.grey-row-garage-doors-card-sec.all-garage-doors-card-sec .card-list-row-grid.bg-grey-light{background: #f9f9f9;padding: 50px;align-items: center;}
+.grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content{background-color: unset;border: 0;padding: 0;}
+.grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content p{margin-bottom: 30px;}
+.grey-row-garage-doors-card-sec.all-garage-doors-card-sec .right-side{padding-left: 50px; padding-right: 0;}
+.grey-row-garage-doors-card-sec.all-garage-doors-card-sec .left-side{padding: 0;}
+
+.big-iframe-sec{padding-top: 0;}
+.big-iframe-sec iframe{width: 100%;height: 900px;}
+
+
+@media (prefers-reduced-motion:reduce){
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot span{transition:none;}
+}
+
+
+/* =========================================================
+   1401px - 1800px
+   ========================================================= */
+@media (min-width:1401px) and (max-width:1800px){
+  .sevice-page-banner .cover-img{height:700px;}
+  .sevice-page-banner .banner-text{max-width:850px;}
+
+
+  /* --- Garage door cards --- */
+  .all-garage-doors-card-sec .card-list-row-grid{row-gap:44px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content{padding:35px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content h3{font-size:28px;line-height:34px;margin-bottom:18px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul{margin-bottom:26px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li{font-size:20px;line-height:28px;margin-bottom:18px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li i{font-size:14px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow i{font-size:18px;}
+
+
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-img img{height: 500px;object-fit: cover;} 
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content p{margin-bottom:26px;}
+  .big-iframe-sec iframe{height: 800px;}
+}
+
+
+/* =========================================================
+   1200px - 1399.99px
+   ========================================================= */
+@media (min-width:1200px) and (max-width:1399.99px){
+  .sevice-page-banner .cover-img{height:620px;}
+  .sevice-page-banner .banner-text{max-width:800px;}
+  .sevice-page-banner .banner-text .banner-cta{margin-top:30px;}
+
+
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot.active span, 
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot:hover span{width:20px}
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot span{width:10px;height:10px}
+
+  /* --- Garage door cards --- */
+  .all-garage-doors-card-sec .card-list-row-grid{row-gap:40px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content{padding:30px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content h3{font-size:26px;line-height:32px;margin-bottom:16px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul{margin-bottom:24px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li{font-size:18px;line-height:26px;margin-bottom:16px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li i{font-size:13px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow{font-size:17px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow i{font-size:17px;}
+
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-img img{height: 500px;object-fit: cover;} 
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .right-side{padding-left: 40px;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content p{margin-bottom:24px;}
+  .big-iframe-sec iframe{height: 680px;}
+}
+
+
+/* =========================================================
+   992px - 1199.98px
+   ========================================================= */
+@media (min-width:992px) and (max-width:1199.98px){
+  .sevice-page-banner .cover-img{height:560px;}
+  .sevice-page-banner .banner-text{max-width:750px;}
+  .sevice-page-banner .banner-text .banner-cta{margin-top:24px;}
+
+
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot.active span, 
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot:hover span{width:20px}
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot span{width:10px;height:10px}
+
+  /* --- Garage door cards --- */
+  .all-garage-doors-card-sec .card-list-row-grid{row-gap:35px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content{padding:26px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content h3{font-size:24px;line-height:30px;margin-bottom:15px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul{margin-bottom:22px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li{font-size:17px;line-height:25px;margin-bottom:14px;align-items:flex-start;gap:8px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li i{font-size:12px;margin-top:7px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow{font-size:16px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow i{font-size:16px;}
+
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-img img{height: 500px;object-fit: cover;} 
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .right-side{padding-left: 30px;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content p{margin-bottom:22px;}
+  .big-iframe-sec iframe{height: 700px;}
+}
+
+
+/* =========================================================
+   768px - 991.98px
+   ========================================================= */
+@media (min-width:768px) and (max-width:991.98px){
+  .sevice-page-banner .cover-img{height:500px;}
+  .sevice-page-banner .banner-text{max-width:700px;}
+  .sevice-page-banner .banner-text .banner-cta{margin-top:25px;}
+
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot.active span, 
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot:hover span{width:20px}
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot span{width:10px;height:10px}
+
+  /* --- Garage door cards --- */
+  .all-garage-doors-card-sec .card-list-row-grid{row-gap:30px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content{padding:22px;border-bottom-width:3px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content h3{font-size:22px;line-height:28px;margin-bottom:14px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul{margin-bottom:20px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li{font-size:16px;line-height:24px;margin-bottom:12px;align-items:flex-start;gap:8px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li i{font-size:12px;margin-top:6px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow{font-size:16px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow i{font-size:15px;}
+
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .card-list-row-grid.bg-grey-light{padding: 0;gap: 0;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .right-side{padding: 0;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content{padding: 30px;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content p{margin-bottom:20px;}
+  .big-iframe-sec iframe{height: 400px;}
+}
+
+
+/* =========================================================
+   Up to 767.98px
+   ========================================================= */
+@media (max-width:767.98px){
+  .sevice-page-banner .cover-img{height:480px;}
+  .sevice-page-banner .banner-text{width:100%;max-width:100%;text-align:center;}
+  .sevice-page-banner .banner-text .banner-eyebrow{justify-content:center;color:#fff;font-size:12px;margin-bottom:10px}
+  .sevice-page-banner .banner-text h1,
+  .sevice-page-banner .banner-text p{color:#fff;text-align:center;}
+  .sevice-page-banner .banner-text .banner-cta{margin-top:22px;}
+
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot.active span, 
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot:hover span{width:16px}
+  .sevice-page-banner .owl-carousel .owl-dots .owl-dot span{width:8px;height:8px}
+
+  /* --- Garage door cards --- */
+  .all-garage-doors-card-sec .card-list-row-grid{row-gap:25px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content{padding:20px;border-bottom-width:3px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content h3{font-size:18px;line-height:24px;margin-bottom:12px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul{margin-bottom:20px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li{font-size:14px;line-height:22px;margin-bottom:10px;align-items:flex-start;gap:8px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content ul li i{font-size:11px;margin-top:6px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow{font-size:15px;line-height:20px;}
+  .all-garage-doors-card-sec .garage-card .garage-card-content .link-arrow i{font-size:14px;}
+
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .card-list-row-grid.bg-grey-light{padding: 0 20px;gap: 0;background-color: unset;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .right-side{padding: 0;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content{padding: 20px;background-color: #f9f9f9;}
+  .grey-row-garage-doors-card-sec.all-garage-doors-card-sec .garage-card .garage-card-content p{margin-bottom:20px;}
+  .big-iframe-sec iframe{height: 450px;}
+}
+
+
+@media (max-width:400px){
+  .sevice-page-banner .cover-img{height:440px;}
+
+  /* --- Garage door cards --- */
+  .all-garage-doors-card-sec .garage-card .garage-card-content{padding:16px;}
+
+  .big-iframe-sec iframe{height: 350px;}
+}

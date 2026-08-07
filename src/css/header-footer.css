@@ -1,0 +1,605 @@
+.header .righ-side-btn-sec .cmn-btn:hover{color: #EE3A43;}
+
+/* ---------------- HEADER ---------------- */
+
+.site-header{position:sticky;top:0;z-index:1000;background:#fff;;padding: 27px 0;}
+
+.site-header .row.align-items-end{    justify-content: space-between;}
+.site-header .row.align-items-end .col-lg-2, .site-header .row.align-items-end .col-lg-8{    width: auto;}
+
+/* .header .header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0;} 
+
+ .header  .header-logo img{height:52px;width:auto;display:block;} */
+
+.main-nav{display:flex;align-items:center;gap:40px;flex:1;justify-content:center;margin-bottom: 14px;}
+
+.header .main-nav-list{display:flex;align-items:center;gap:48px;list-style:none;flex-wrap:wrap;justify-content:center;}
+
+.header .main-nav-list a{font-family: 'DM Sans',sans-serif; font-weight: 500; font-style: Medium; font-size: 17px; line-height: normal; letter-spacing: 0%;color:#333;}
+
+.header .main-nav-list > li{position: relative;text-decoration: none;}
+.header .main-nav-list li:hover > a{text-decoration: none;color: #EE3A43;}
+.header .main-nav-list > li::after{content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background-color: #EE3A43; transition: width 0.3s ease;}
+/* .header .main-nav-list li a::after{content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background-color: #EE3A43; transition: width 0.3s ease;} */
+
+.header .main-nav-list li:hover::after{width:100%;}
+
+.header .righ-side-btn-sec{display: flex;flex-direction: column;gap: 10px;}
+
+.header .main-nav-cta{display:flex;align-items:center;gap:20px;}
+
+.header .nav-plain{font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; white-space: nowrap; color: #333333;    line-height: normal;}
+
+.header .nav-plain.nav-call{border-left: 1px solid #00000033;padding-left: 20px;}
+
+.header .nav-call i{color:#000000;margin-right:4px;}
+
+.header .righ-side-btn-sec .cmn-btn{width: 200px;margin-left: 0 !important;line-height: 22px;}
+
+.header .nav-toggle{display:none;align-items:center;gap:14px;background:none;border:0;cursor:pointer;}
+
+
+.header .mobile-header { display: none !important; } 
+
+.header.headerHide { transform: translateY(-100%); opacity: 0; } 
+.header { transition: transform 0.5s ease, opacity 0.8s ease; }
+
+
+
+
+/* =====================================================================
+   DESKTOP  NAVIGATION  )
+
+   Depth-agnostic: any `li.has-sub` reveals its own `> ul.nav-submenu`, so the same rules serve level 2, 3, 4... without new selectors.
+
+   Positioning relies on the panels themselves being the containing blocks: only `.main-nav-list > li` is positioned, the inner `li`s stay static, so each `.nav-submenu` 
+   resolves left/top/height against the panel that encloses it — that is what keeps a fly-out flush with, and as tall as, its parent panel at every depth.
+
+   The reveal is pure CSS (:hover / :focus-within) so the menu still works with JS disabled; custom.js layers on the close delay, viewport edge 
+   flipping, Escape and touch handling via .is-open / .flip-x.
+   ===================================================================== */
+
+ /* Invisible bridge across the gap between a top-level link and its panel, so a diagonal pointer path never crosses dead space. */ 
+ .header .main-nav-list > li.has-sub > a::before { content: ""; position: absolute; left: -20px; right: -20px; top: 100%; height: 22px; } 
+ .header .main-nav-list .nav-submenu { position: absolute; z-index: 120; margin: 0; padding: 18px 0; list-style: none; background: #F8F8F8; border: 1px solid #E9E9E9; border-radius: 5px; box-shadow: -4px 4px 15px 0 #0000001A; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s; } 
+
+ /* Level 1 — drops below the header bar. */ 
+ .header .main-nav-list > li.has-sub > .nav-submenu { top: calc(100% + 20px); left: -20px; width: 280px;text-wrap-style: pretty; } 
+
+ /* Second half of the bridge. The link's covers the walk down into the panel; this one covers the panel's own width, which matters once .flip-x has moved it out from under the link. */ 
+ .header .main-nav-list > li.has-sub > .nav-submenu::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 20px; }
+
+ /* Level 2 and deeper — flies out flush against its parent panel and matches that panel's height (the +2px covers both 1px borders). */ 
+ .header .main-nav-list .nav-submenu .nav-submenu { top: -1px; left: 100%; width: max-content; min-width: 240px; max-width: 300px; min-height: calc(100% + 2px); background: #fff; border-radius: 0 5px 5px 0; box-shadow: 6px 4px 15px 0 #0000001A; transform: translateX(-8px); } 
+
+ /* ---- Reveal ---------------------------------------------------- */ 
+
+ /* .header .main-nav-list li.has-sub:focus-within > .nav-submenu, */
+  .header .main-nav-list li.has-sub:hover > .nav-submenu,
+ .header .main-nav-list li.has-sub.is-open > .nav-submenu { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
+
+
+  /* Escape closes a panel while focus stays on its trigger, which would otherwise keep :focus-within true and re-open it immediately. */
+ .header .main-nav-list li.has-sub.is-dismissed > .nav-submenu { opacity: 0; visibility: hidden; pointer-events: none; } 
+
+ /* ---- Rows ------------------------------------------------------- */ 
+ .header .main-nav-list .nav-submenu a { display: block; padding: 9px 25px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; line-height: 22px; color: #333; text-align: left; transition: color .2s ease, background-color .2s ease; }
+
+  .header .main-nav-list .nav-submenu a:hover,
+  .header .main-nav-list .nav-submenu li.has-sub:hover > a,
+  .header .main-nav-list .nav-submenu li.has-sub:focus-within > a,
+  .header .main-nav-list .nav-submenu li.has-sub.is-open > a {
+    color: var(--rv-red);
+    background-color: #0000000A;
+  }
+
+  /* A dismissed branch must not keep its row lit. */
+  .header .main-nav-list .nav-submenu li.has-sub.is-dismissed > a {background-color: transparent;}
+
+  /* Panel title, e.g. "By Series" repeated at the head of its fly-out.
+     text-decoration rather than a border so the rule sits under the
+     words only, as on the reference menu, whatever the panel is wide. */
+  .header .main-nav-list .nav-submenu .submenu-heading { margin-bottom: 4px; }
+  .header .main-nav-list .nav-submenu .submenu-heading > a,
+  .header .main-nav-list .nav-submenu .submenu-heading > a:hover {
+    font-weight: 700;
+    color: var(--rv-dark);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    background-color: transparent;
+  }
+
+  .header .main-nav-list .nav-submenu .submenu-heading > a:hover { color: var(--rv-red); }
+
+  /* ---- "has children" chevron ------------------------------------- */
+  /* ::before rather than ::after: the shared rule
+     `.main-nav-list li a:hover::after{width:100%}` drives the red
+     underline and would stretch a chevron built on ::after. */
+  .header .main-nav-list .nav-submenu .has-sub > a { padding-right: 44px;position: relative; }
+  .header .main-nav-list .nav-submenu .has-sub > a::before { content: ""; position: absolute; right: 25px; top: 50%; width: 7px; height: 7px; margin-top: -4px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); transition: transform .2s ease; }
+
+  /* ---- Viewport edge flipping (set by custom.js) ------------------- */
+  .header .main-nav-list > li.has-sub.flip-x > .nav-submenu { left: auto; right: -20px; } 
+  .header .main-nav-list .nav-submenu li.has-sub.flip-x > .nav-submenu { left: auto; right: 100%; border-radius: 5px 0 0 5px; box-shadow: -6px 4px 15px 0 #0000001A; } 
+  .header .main-nav-list .nav-submenu li.has-sub.flip-x > a { padding: 9px 25px 9px 44px; } 
+  .header .main-nav-list .nav-submenu li.has-sub.flip-x > a::before { right: auto; left: 25px; transform: rotate(135deg); }
+
+
+
+/* ---------------- FOOTER ---------------- */
+
+.site-footer{background:#000000;padding:80px 0 30px;}
+.site-footer .row{justify-content: space-between;}
+.site-footer .footer-h{font-family:'Prompt',sans-serif;font-weight:600;font-size:20px;line-height: normal;color:#fff;margin-bottom:16px;}
+.site-footer .footer-links{list-style:none;margin:0;padding:0;}
+.site-footer .footer-links li{margin-bottom:11px;}
+.site-footer .footer-links a{font-family:'DM Sans',sans-serif;font-size:18px;line-height: 26px;color:#DDDDDDB2;font-weight: 400;}
+.site-footer .footer-links a:hover{color:#fff;}
+.site-footer .footer-brand{display:flex;flex-direction:column;align-items:center;gap: 40px;padding-top: 50px;}
+.site-footer .footer-social{list-style:none;display:flex;gap:14px;margin:0;padding:0;}
+.site-footer .footer-social a{border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.site-footer .footer-social a:hover{background:var(--rv-red);border-color:var(--rv-red);}
+
+
+
+.copy-right-sec {background-color: #000000;}
+.copy-right-sec .row{padding: 23px 0;border-top: 1px solid #FFFFFF4D;background-color: #000000;}
+.copy-right-sec p{font-family: 'DM Sans',sans-serif; font-weight: 400; font-size: 18px;line-height: 26px;text-align: center;color: #fff;}
+
+
+
+.site-footer .quick-links{width: 12%;}
+.site-footer .resi-doors-links{width: 17%;}
+.site-footer .como-doors-links{width: 19%;}
+.site-footer .loding-dock-links{width: 17%;}
+.site-footer .security-shutters-links{width: 12%;}
+.site-footer .doors-hardware-links{width: 16%;}
+
+.mfp-image-holder .mfp-close, .mfp-iframe-holder .mfp-close {  cursor: pointer !important; background: transparent; width: 40px; height: 40px; padding: 0; color: #fff; display: flex; align-items: center; justify-content: center; opacity: 1; top: 0px; right: -20px; font-size: 60px;}
+.mfp-counter{display: none;}
+
+
+/* =====================================================================
+   CALL POPUP  ("Choose Your Location")
+   Shared component, injected from footer.php on every page.
+   Reuses existing tokens: .cmn-btn / .cmn-btn.white, the striped black
+   panel + inset white rule from .start-banner, #000000B2 overlay,
+   close-icon.svg, and the Prompt / DM Sans type scale.
+   ===================================================================== */
+
+html.call-popup-open,
+html.call-popup-open body{overflow:hidden;}
+
+.call-popup{ position:fixed; inset:0; z-index:1100; display:flex; align-items:center; justify-content:center; padding:30px 15px; opacity:0; visibility:hidden; 
+/* visibility flips instantly on open (so focus() can land on the close button) and is held back until the fade-out has run on close. */ transition:opacity .25s ease,visibility 0s linear .25s; } 
+/* display:flex above outranks the UA [hidden] rule, so restate it here. */ 
+.call-popup[hidden]{display:none;} 
+.call-popup.is-open{ opacity:1; visibility:visible; transition:opacity .25s ease,visibility 0s linear 0s; } 
+.call-popup-overlay{position:absolute;inset:0;background:#000000B2;} 
+.call-popup-dialog{ position:relative; width:100%; max-width:960px;height:auto; overflow-y:auto; overscroll-behavior:contain; background:#fff; padding:60px 115px; text-align:center; transform:translateY(24px); transition:transform .3s ease; } 
+.call-popup.is-open 
+.call-popup-dialog{transform:none;} 
+.call-popup-close{ position:absolute; top:30px; right:30px; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; padding:0; background:none; border:0; cursor:pointer; opacity:1; transition:opacity .2s ease; } 
+.call-popup-close:hover, .call-popup-close:focus-visible{opacity:.6;} 
+.call-popup-close img{width:26px;height:26px;} 
+/* Focus moves to the close button on open, so the UA ring would show for mouse users too. :focus-visible keeps it for keyboard users only. */ 
+.call-popup-close:focus{outline:none;} 
+.call-popup-close:focus-visible, .call-popup .call-location-num:focus-visible{outline:2px solid var(--rv-red);outline-offset:3px;} 
+.call-popup-emergency .cmn-btn:focus-visible{outline-color:#fff;} 
+.call-popup .call-popup-title{ font-family:'Prompt',sans-serif; font-weight:600; font-size:30px; line-height:40px; color:#000; margin:0 0 50px; } 
+.call-popup-locations{ list-style:none; display:grid; grid-template-columns:repeat(2,1fr); gap:40px 70px; margin:0 0 40px; padding:0; } 
+/* Column layout + margin-top:auto on the button keeps both numbers on one baseline when a note wraps to a different number of lines. */ 
+.call-popup .call-location{display:flex;flex-direction:column;} 
+.call-popup .call-location-name{ font-family:'Prompt',sans-serif; font-weight:600; font-size:22px; line-height:32px; color:#000; margin:0 0 10px; } 
+.call-popup .call-location-note{ font-family:'DM Sans',sans-serif; font-size:15px; line-height:20px; color:#333333CC; margin:0 0 20px; } 
+.call-popup .call-location-num{ display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; } 
+.call-popup .call-location .call-location-num{width:100%;margin-top:auto;} 
+/* Striped black panel with the inset white rule, as used by .start-banner */ 
+.call-popup-emergency{ background:var(--rv-dark) url(../images/middle-cta-bg-black.webp) center/cover no-repeat; padding:19px; } 
+.call-popup-emergency-inner{border:2px solid #fff;padding:30px;}
+.call-popup-emergency h3{ font-family:'Prompt',sans-serif; font-weight:600; font-size:22px; line-height:30px; color:#fff; margin:0 0 10px; } 
+.call-popup-emergency p{ font-family:'DM Sans',sans-serif; font-size:14px; line-height:20px; color:#FFFFFFCC; margin:0 0 20px; } 
+.call-popup-emergency .cmn-btn{min-width:300px;}
+
+
+
+
+
+
+
+
+@media (min-width: 1401px) and (max-width: 1800px) {
+    
+
+  /* Header */
+
+  .header .header-inner { gap: 20px; } 
+  .header .main-nav-list { gap: 18px; } 
+  .main-nav {gap: 20px;} 
+  .header .main-nav-list a{ font-size: 15px;} 
+  .header .righ-side-btn-sec .cmn-btn{    width: 200px;} 
+  .header .header-logo img{    width: 210px;}
+
+}
+
+@media (min-width: 1200px) and (max-width: 1399.99px) {
+
+
+  /* Header */
+
+  .header .righ-side-btn-sec .cmn-btn{    width: 180px;} 
+  .header .header-inner { gap: 16px; } 
+  .header .header-logo img { height: 48px; } 
+  .header .main-nav-list { gap: 15px; } 
+  .header .main-nav-list a, .header .nav-plain { font-size: 13px; } 
+  .main-nav { gap: 15px; } 
+  .header .main-nav-cta { gap: 12px; }
+  .header .main-nav-cta .cmn-btn { padding: 10px 18px; font-size: 14px; } 
+
+
+  .header .main-nav-list > li.has-sub > .nav-submenu{ width:230px; left:-16px; padding:16px 0; } 
+  .header .main-nav-list > li.has-sub > a::before{ left:-16px; right:-16px; } 
+  .header .main-nav-list .nav-submenu .nav-submenu{ min-width:230px; max-width:270px; } 
+  .header .main-nav-list .nav-submenu a{ padding:9px 22px; font-size:14px; line-height:22px; } 
+  .header .main-nav-list .nav-submenu .has-sub > a{ padding-right:40px; } 
+  .header .main-nav-list .nav-submenu .has-sub > a::before{ right:22px; }
+
+
+  .site-footer .quick-links { width: 13%; }
+
+
+
+  .call-popup-dialog{max-width:860px;padding:50px 80px;}
+  .call-popup-locations{gap:35px 50px;;}
+  .call-popup-emergency .cmn-btn{min-width:260px;}
+
+
+}
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+
+    
+  /* ---------------- HEADER ---------------- */
+
+  .header .header-inner { gap: 15px; } 
+  .header .righ-side-btn-sec .cmn-btn{ font-size: 14px; line-height: 14px; } 
+  .header .header-logo img { height: 40px; } 
+  .header .main-nav-list { gap: 12px; } 
+  .main-nav { gap: 12px; } 
+  .header .righ-side-btn-sec .cmn-btn{    width: 100%;} 
+  .header .main-nav-list a, .header .nav-plain { font-size: 11px; } 
+  .header .main-nav-cta { gap: 10px; } .header .main-nav-cta .cmn-btn { padding: 9px 15px; font-size: 13px; }
+
+
+  .header .main-nav-list > li.has-sub > .nav-submenu{ width:230px; left:-12px; top:calc(100% + 16px); padding:14px 0; } 
+  .header .main-nav-list > li.has-sub > a::before{ left:-12px; right:-12px; height:18px; } 
+  .header .main-nav-list > li.has-sub > .nav-submenu::before{ height:16px; } 
+  .header .main-nav-list .nav-submenu .nav-submenu{ min-width:210px; max-width:240px; } 
+  .header .main-nav-list .nav-submenu a{ padding:8px 18px; font-size:14px; line-height:20px; } 
+  .header .main-nav-list .nav-submenu .has-sub > a{ padding-right:36px; } 
+  .header .main-nav-list .nav-submenu .has-sub > a::before{ right:18px; width:6px; height:6px; } 
+  .header .main-nav-list > li.has-sub.flip-x > .nav-submenu{ right:-12px; } 
+  .header .main-nav-list .nav-submenu li.has-sub.flip-x > a{ padding-left:36px; } 
+  .header .main-nav-list .nav-submenu li.has-sub.flip-x > a::before{ left:18px; }
+
+
+  .site-footer .footer-h{    font-size: 18px;}
+  .site-footer .footer-links a{font-size: 14px; line-height: 22px;}
+
+  .call-popup-dialog{max-width:800px;padding:50px 70px;}
+  .call-popup-close{top:30px;right:30px;}
+  .call-popup .call-popup-title{font-size:30px;margin-bottom:36px;}
+  .call-popup-locations{gap:32px 40px;margin-bottom:32px;}
+  .call-popup .call-location-name{font-size:21px;}
+  .call-popup-emergency h3{font-size:21px;}
+  .call-popup-emergency .cmn-btn{min-width:250px;}
+
+
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+
+  /* ---------------- HEADER ---------------- */
+
+
+
+ 
+.header .mobile-header{display: block !important;}
+.site-header .desktop-header{display: none !important;}
+
+.header .nav-toggle-call {width: 40px; height: 40px;}
+.header .nav-toggle-call img,
+.header .mobile-header .mobile-col .navbar-toggler img{width:100%}
+.header .nav-toggle-burger{    gap: 7px;}
+.header .nav-toggle-burger span { width: 34px;}
+
+
+.site-header.header{padding: 25px 0;border-bottom: 1px solid #E9E9E9}
+.header .header-menu ul li a{font-size: 20px;line-height: 24px;margin: 0;font-family:"Prompt",sans-serif;font-weight:400}
+.header::after{margin-top: 20px;}
+.header .mobile-header .mobile-col { display: flex; align-items: center; justify-content: space-between; } 
+.header .mobile-header .mobile-col .menu-toggle { display: flex; align-items: center; justify-content: space-between; } 
+.header .mobile-header .mobile-col .navbar-toggler { margin-left: 15px; width:40px; height: 40px; }
+.header .header-logo img{height:46px;width:auto;}
+
+
+.header-menu.mobile-header-menu .mobile-navigation-menu{padding-top: 20px;padding-bottom: 50px;}
+.header-menu.mobile-header-menu .mobile-col{padding: 25px 30px;background-color: #fff;border-bottom: 1px solid #E9E9E9;}
+.header-menu.mobile-header-menu{padding-left: 0 !important; position: fixed !important; left: 0; top: 0; bottom: 0; background-color: #fff; transform: translateX(-101%); transition: all .5s ease; width: 100%; z-index: 99; overflow-x: hidden; padding-right: 0; display: flex ; flex-direction: column;}
+.header-menu.mobile-header-menu.show { transition: all .5s ease; transform: translateX(0); top: 0; }
+.header-menu.mobile-header-menu ul{display: block;}
+.header ul li span, .header ul li a{display: flex ; width: 100%; padding: 0 20px 30px !important; justify-content: space-between; align-items: center;}
+.header ul li span a{padding: 0 !important;}
+.header .header-btn-section{text-align: center !important;width: 90%;margin:auto auto 50px;position: fixed; bottom: 0;left: 0;right: 0;z-index: 1111;}
+.header-btn-section .cmn-btn{justify-content: center;width: 100%;}
+
+.mobile-navigation-menu{display: flex;flex-direction: column;height: 100%;}
+.header .mobile-header  .header-btn.mobile-btn-nav{padding: 0 20px;margin-top: auto;position: relative;z-index: 1111;}
+.header .mobile-header  .header-btn.mobile-btn-nav a {font-weight: 500; font-size: 18px; line-height: 22px; text-align: center; color: #fff; background-color: #000; border: 1.5px solid #000; padding: 10px 22px; width: 100%;display:block;}
+
+
+/* ==================== mobile-Navigations css ====================== */
+.header ul li.mobile-drop-list::after{display: none;}
+.header-menu.mobile-header-menu ul li.mobile-drop-list > span::after{content: ''; background-image: url(../images/mobile-menu-arrow-icon.webp) !important; display: inline-block !important; width: 8px !important; height: 13px !important;}
+.header ul li.mobile-drop-list:hover .sub-menu { display: none; }
+.header ul li.mobile-drop-list .sub-menu{padding-left: 0 !important; position: fixed !important; left: 0; top: 0; bottom: 0; background-color: #fff; transform: translateX(101%); transition: all .5s ease !important; width: 100%; z-index: 99; overflow-x: hidden; padding-right: 0; display: block !important; flex-direction: column; margin-left: 0 !important;}
+.header ul li.mobile-drop-list.active .sub-menu.active{transition: all .5s ease; transform: translateX(0); top: 0;}
+.header ul li.mobile-drop-list{position: unset;}
+.header-menu.mobile-header-menu div.nav-back-item a::before { content: ''; background-image: url(../images/back.webp); width: 12px; height: 20px; display: inline-block; margin-right: 18px;background-repeat: no-repeat; }
+
+
+.header-menu.mobile-header-menu .sub-header-inner{padding:28px 20px  ;border-bottom:1px solid #E9E9E9;position: sticky; background-color: #fff; top: 0;align-items: center;display: flex; }
+.header-menu.mobile-header-menu .nav-item .nav-back-link{ margin-bottom: 0;font-size: 25px; line-height: 21px; font-weight: 400; color: #333333 !important;padding: 0 !important;justify-content: start; align-items: center}
+.header ul li.mobile-drop-list .main-inner-sub-menu li.menu-title-tag a{font-size: 20px;line-height: 26px;margin: 0;color: #EE3A43;padding-top: 24px !important;padding-bottom: 20px !important;font-weight: 600;}
+.header ul li.mobile-drop-list .main-inner-sub-menu a{color: #333;font-size: 18px;line-height: 22px;}
+.header ul li.mobile-drop-list .main-inner-sub-menu a.active,.header ul li.mobile-drop-list .main-inner-sub-menu a:hover{color: #EE3A43   ;}
+.header ul li span a{padding: 0 !important;}
+
+
+.header ul li:hover a{text-decoration: none !important;}
+.mobile-header img.close-icon{width: 30px;height: auto;}
+
+
+.header .mobile-header  .menu-toggle { display: flex; align-items: center; justify-content: space-between; } 
+
+.header .mobile-header .menu-toggle img.mobile-tel{width:40px;height: 40px;}
+.header .mobile-header .mobile-col .menu-toggle img.close-icon{width:30px;height:auto;}
+.header .mobile-header  .navbar-toggler { margin-left: 18px;width:40px;height: 40px; }
+.header .mobile-header  .navbar-toggler a{all:unset}
+.header .mobile-header  .menu-toggle a.sub-header-inner-close{padding: 0 !important; display: block; width:max-content}
+.header .mobile-header  .menu-toggle a.sub-header-inner-close::before{display: none !important;}
+
+
+
+.header .mobile-header .header-btn.mobile-btn-nav a:hover{ background-color: transparent;color:#000;border-color:#000}
+
+
+
+
+
+.site-footer .quick-links{width: 50%;}
+.site-footer .resi-doors-links{width: 50%;}
+.site-footer .como-doors-links{width: 50%;}
+.site-footer .loding-dock-links{width: 50%;}
+.site-footer .security-shutters-links{width: 50%;}
+.site-footer .doors-hardware-links{width: 50%;}
+.site-footer .row{row-gap: 30px;}
+
+
+
+
+  .call-popup{padding:25px 15px;}
+  .call-popup-dialog{max-width:680px;padding:45px 50px;}
+  .call-popup-close{top:26px;right:26px;width:30px;height:30px;}
+  .call-popup-close img{width:22px;height:22px;}
+  .call-popup .call-popup-title{font-size:28px;margin-bottom:32px;}
+  .call-popup-locations{gap:30px;margin-bottom:30px;}
+  .call-popup .call-location-name{font-size:20px;}
+  .call-popup .call-location-note{font-size:15px;line-height:22px;margin-bottom:18px;}
+  .call-popup-emergency{padding:15px;}
+  .call-popup-emergency-inner{padding:24px 18px;}
+  .call-popup-emergency h3{font-size:20px;}
+  .call-popup-emergency p{font-size:15px;line-height:22px;margin-bottom:20px;}
+  .call-popup-emergency .cmn-btn{min-width:240px;}
+
+
+
+
+
+
+
+
+}
+
+
+
+
+@media (max-width: 767.98px) {
+    
+
+
+
+
+
+
+
+  /* ---------------- HEADER ---------------- */
+
+  .header .desktop-header { display: none; }
+  .header .mobile-header { display: block !important; } 
+   
+  .header{border-bottom: 1px solid #E9E9E9;}
+
+  .header .header-inner { padding: 13px 0; gap: 12px; } 
+  .header .header-logo img { height: 36px; max-width: 100%; } 
+  .header .nav-toggle { gap: 16px; } 
+  .header .nav-toggle-call { width: 34px; height: 34px; font-size: 15px; } 
+  .header .nav-toggle-burger { gap: 6px; } 
+  .header .nav-toggle-burger span { width: 34px; height: 4px; background: #333; }
+
+  
+
+
+
+  .header .mobile-header .mobile-col { display: flex; align-items: center; justify-content: space-between; } 
+  .header .mobile-header .mobile-col .menu-toggle { display: flex; align-items: center; justify-content: space-between; } 
+  .header .mobile-header .mobile-col .navbar-toggler { margin-left: 18px;width:34px;height: 34px; }
+  .header .mobile-header .mobile-col img.header-logo{height: 36px; max-width: 100%;width: auto;}
+
+  .mobile-navigation-menu{display: flex;flex-direction: column;height: 100%;}
+  .header .mobile-header  .header-btn.mobile-btn-nav{padding: 0 20px;margin-top: auto;position: relative;z-index: 111;}
+  .header .mobile-header  .header-btn.mobile-btn-nav a {font-weight: 700; font-size: 14px; line-height: 18px; text-align: center; color: #fff; background-color: #000; border: 1px solid #000; padding: 10px 22px; border-radius: 0;width: 100%;display:block;font-family: "DM Sans";}
+
+  .header-menu.mobile-header-menu .mobile-navigation-menu{padding: 30px 0;}
+  .header-menu.mobile-header-menu .mobile-navigation-menu ul li a{font-family: 'Prompt', sans-serif; font-weight: 400; font-size: 18px; line-height: normal; color: #333333;line-height: 18px;}
+  .header-menu.mobile-header-menu .mobile-col{padding:14px 20px !important ;background-color: #fff;border-bottom: 1px solid #E9E9E9;}
+  .header-menu.mobile-header-menu{padding-left: 0 !important; position: fixed !important; left: 0; top: 0; bottom: 0; background-color: #fff; transform: translateX(-101%); transition: all .5s ease; width: 100%; z-index: 99; overflow-x: hidden; padding-right: 0; display: flex ; flex-direction: column;}
+  .header-menu.mobile-header-menu.show { transition: all .5s ease; transform: translateX(0); top: 0; }
+  .header-menu.mobile-header-menu ul{display: block;}
+  .header ul li span, .header ul li a{display: flex ; width: 100%; padding: 0 20px 26px !important; justify-content: space-between; align-items: center;}
+  .header ul li span a{padding: 0 !important;}
+
+
+   /* ==================== mobile-Navigations css ====================== */
+
+  .header .mobile-header  .menu-toggle
+  .header ul li.mobile-drop-list::after{display: none;}
+  .header-menu.mobile-header-menu ul li.mobile-drop-list > span::after{content: ''; background-image: url(../images/mobile-menu-arrow-icon.webp) !important; display: inline-block !important; width: 8px !important; height: 13px !important;}
+  .header ul li.mobile-drop-list:hover .sub-menu { display: none; }
+  .header ul li.mobile-drop-list .sub-menu{padding-left: 0 !important; position: fixed !important; left: 0; top: 0; bottom: 0; background-color: #fff; transform: translateX(101%); transition: all .5s ease !important; width: 100%; z-index: 99; overflow-x: hidden; padding-right: 0; display: block !important; flex-direction: column; margin-left: 0 !important;}
+  .header ul li.mobile-drop-list.active .sub-menu.active{transition: all .5s ease; transform: translateX(0); top: 0;}
+  .header ul li.mobile-drop-list{position: unset;}
+  .header-menu.mobile-header-menu div.nav-back-item a::before { content: ''; background-image: url(../images/back.webp); width: 12px; height: 20px; display: inline-block; margin-right: 18px;background-repeat: no-repeat; }
+
+
+  .header-menu.mobile-header-menu .sub-header-inner{padding: 19px 20px;border-bottom:1px solid #E9E9E9;position: sticky;background-color: #fff;top: 0;align-items: center;display: flex;}
+  .header-menu.mobile-header-menu .nav-item .nav-back-link{margin-bottom: 0;font-size: 22px;line-height: 26px;font-weight: 400;color: #333333 !important;padding: 0 !important;justify-content: start;align-items: center}
+  .header ul li.mobile-drop-list .main-inner-sub-menu li.menu-title-tag a{font-size: 18px;line-height: 20px;margin: 0;color: #EE3A43;padding-top: 30px !important;padding-bottom: 25px !important;font-weight: 600;}
+  .header ul li.mobile-drop-list .main-inner-sub-menu a{color: #333;font-size: 15px;line-height: 12px;padding-bottom: 20px !important;}
+  .header ul li.mobile-drop-list .main-inner-sub-menu a.active,.header ul li.mobile-drop-list .main-inner-sub-menu a:hover{color: #EE3A43   ;}
+  .header ul li span a{padding: 0 !important;}
+
+
+  .header ul li:hover a{text-decoration: none !important;}
+  .mobile-header img.close-icon{width: 24px;height: auto;}
+  .site-header{    padding: 14px 0;}
+
+
+  .header .mobile-header  .menu-toggle { display: flex; align-items: center; justify-content: space-between; } 
+  .header .mobile-header  .navbar-toggler { margin-left: 18px;width:34px;height: 34px; }
+  .header .mobile-header  .navbar-toggler a{all:unset}
+  .header .mobile-header  .menu-toggle a.sub-header-inner-close{padding: 0 !important; display: block; width:max-content}
+  .header .mobile-header  .menu-toggle a.sub-header-inner-close::before{display: none !important;}
+
+  .header .mobile-header .header-btn.mobile-btn-nav a:hover{ background-color: transparent;color:#000;border-color:#000}
+
+
+
+  /* ---------------- FOOTER ---------------- */
+
+  .site-footer .footer-cols > div { width: 100%; margin-bottom: 23px; } 
+  .site-footer .footer-cols > div:last-child { margin-bottom: 0; } 
+  .site-footer .footer-h { font-size: 16px; margin-bottom: 12px; } 
+  .site-footer .footer-links a { font-size: 14px; line-height: 20px; } 
+  .site-footer .footer-links li { margin-bottom: 7px; } 
+  .site-footer .footer-brand { gap: 24px; padding: 30px 0 10px; } 
+  .site-footer .footer-brand > img { height: auto; max-width: 210px; } 
+  .site-footer .footer-social { gap: 10px; } 
+  .site-footer .footer-social img { width: 30px; height: 30px; } 
+  .copy-right-sec .row { padding: 10px 0; } 
+  .copy-right-sec p { font-size: 11px; line-height: 20px; color: #fff; }
+  .cta-start-banner .start-banner p{font-size: 14px; line-height: 22px;}
+  
+
+
+
+  /* ---------------- FOOTER ---------------- */
+
+
+
+ .site-footer { padding: 45px 0 22px; } 
+ .footer-brand { padding: 35px 0 25px; } 
+ .footer-brand > img { height: 50px; max-width: 200px; } 
+ .footer-copy { font-size: 13px; line-height: 20px; }
+
+
+
+
+.call-popup{padding:20px 15px;}
+
+  .call-popup-dialog{
+    max-width:100%;
+    /* max-height:calc(100vh - 40px); */
+            height: auto;
+    padding:30px 20px;
+  }
+
+  .call-popup-close{top:16px;right:16px;width:16px;height:16px}
+  .call-popup-close img{width:16px;height:16px;}
+
+  .call-popup .call-popup-title{font-size:20px;line-height:30px;margin-bottom:25px;}
+
+  .call-popup-locations{grid-template-columns:1fr;gap:25px;margin-bottom:25px;}
+
+  .call-popup .call-location-name{font-size:18px;line-height:26px;margin-bottom:8px;}
+  .call-popup .call-location-note{font-size:13px;line-height:22px;margin-bottom:15px;}
+
+  .call-popup-emergency{padding:20px;}
+  .call-popup-emergency-inner{border-width:0;padding:0;}
+  .call-popup-emergency h3{font-size:18px;line-height:26px;}
+  .call-popup-emergency p{font-size:12px;line-height:18px;margin-bottom:18px;}
+
+  /* .cmn-btn is already width:100% below 768px */
+  .call-popup-emergency .cmn-btn{min-width:0;}
+
+
+
+
+
+
+}
+
+
+@media (max-width: 350px) {
+
+      .call-popup .call-location-num{font-size:13px;}
+
+}
+
+
+
+@media (prefers-reduced-motion:reduce){
+  .call-popup,
+  .call-popup.is-open,
+  .call-popup-dialog{transition:none;}
+  .call-popup-dialog{transform:none;}
+
+  .header .main-nav-list .nav-submenu,
+  .header .main-nav-list .nav-submenu a,
+  .header .main-nav-list .nav-submenu .has-sub > a::before { transition: none; }
+  .header .main-nav-list .nav-submenu { transform: none; }
+}
+
+
+@media (hover: hover) {
+   .header .main-nav-list li.has-sub:hover > .nav-submenu { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
+  }
+
+
+  @media (orientation: landscape) {
+
+
+.header-menu.mobile-header-menu .mobile-navigation-menu { padding:  0 ; } 
+.header-menu.mobile-header-menu .nav-item.nav-back-item{position: sticky;top: 0;} 
+ ul.main-inner-sub-menu { padding: 10px 0 20px; height: 100% !important; } 
+.header-menu.mobile-header-menu ul { display: block; height: 200px; overflow-y: auto; } 
+.header .mobile-header .header-btn.mobile-btn-nav{margin-bottom: auto;z-index: 111;} 
+div.sub-menu.active.active-sub{padding: 0;height: 100%;}
+.header-menu.mobile-header-menu  ul.main-inner-sub-menu{height: 220px !important;}
+
+}
