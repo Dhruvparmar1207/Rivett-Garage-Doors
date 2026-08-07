@@ -781,3 +781,159 @@ $(document).ready(function () {
   });
 
 });
+
+
+// ===================================================================//
+
+// Product page banner gallery
+//
+// One selected index drives three things at once: the stage image, the
+// page thumbnail strip and the Magnific inline popup (which carries its
+// own copy of the strip). Because they share the index, the popup always
+// opens on the photo the visitor was already looking at, and picking a
+// thumbnail inside the popup is reflected on the page after it closes.
+//
+// Deliberately no arrows and no dots: the strip scrolls and swipes, and
+// the active thumbnail is scrolled into view whenever it overflows.
+
+// ===================================================================//
+
+$(function () {
+
+  var $gallery = $("#productGallery");
+  if (!$gallery.length) return;
+
+  var $popup = $("#productGalleryPopup");
+  var $openLink = $gallery.find(".js-product-gallery-open");
+  var $stageImg = $gallery.find(".js-product-gallery-image");
+  var $popupImg = $popup.find(".js-product-popup-image");
+  var $thumbs = $gallery.find(".product-thumb").add($popup.find(".product-thumb"));
+
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var current = 0;
+
+  // Centre a thumbnail in its strip, but only when the strip actually
+  // overflows ??? otherwise this would scroll the page on some browsers.
+  function revealThumb(thumb) {
+    var strip = thumb.parentNode;
+    if (!strip || strip.scrollWidth <= strip.clientWidth) return;
+
+    var left = thumb.offsetLeft - (strip.clientWidth - thumb.offsetWidth) / 2;
+
+    if (typeof strip.scrollTo === "function") {
+      strip.scrollTo({ left: left, behavior: reduceMotion ? "auto" : "smooth" });
+    } else {
+      strip.scrollLeft = left;
+    }
+  }
+
+  function select(index) {
+    var $matches = $thumbs.filter('[data-gallery-index="' + index + '"]');
+    if (!$matches.length) return;
+
+    var src = $matches.first().attr("data-gallery-src");
+    var alt = $matches.first().attr("data-gallery-alt") || "";
+
+    current = index;
+
+    $stageImg.attr({ src: src, alt: alt });
+    $popupImg.attr({ src: src, alt: alt });
+    // The stage is a real link to the photo, so keep its href honest for
+    // no-JS visitors, middle-clicks and "open image in new tab".
+    $openLink.attr("href", src);
+
+    $thumbs.removeClass("is-active").attr("aria-current", "false");
+    $matches.addClass("is-active").attr("aria-current", "true").each(function () {
+      revealThumb(this);
+    });
+  }
+
+  $thumbs.on("click", function () {
+    select(parseInt(this.getAttribute("data-gallery-index"), 10));
+  });
+
+  // Without the plugin the stage stays a plain link to the full photo.
+  if (!$.fn.magnificPopup || !$popup.length) return;
+
+  $openLink.magnificPopup({
+    items: { src: "#productGalleryPopup" },
+    type: "inline",
+    midClick: true,
+    mainClass: "product-gallery-mfp",
+    removalDelay: 250,
+    focus: ".product-popup-thumbs .product-thumb.is-active",
+    callbacks: {
+      // The popup strip had no width while it was hidden, so re-run the
+      // selection now that it is laid out to centre the active thumbnail.
+      open: function () {
+        select(current);
+      }
+    }
+  });
+
+});
+
+
+// ===================================================================//
+
+// Product page "Door Options" tabs
+//
+// Panel switching is already handled by the shared .rv-tabs click
+// handler further up this file, so this only adds the keyboard model a
+// tablist is expected to have: a roving tabindex plus arrow/Home/End
+// navigation. Scoped to .door-options-tabs so the homepage gallery tabs
+// keep their existing behaviour untouched.
+
+// ===================================================================//
+
+$(function () {
+
+  var $tablist = $(".door-options-tabs");
+  if (!$tablist.length) return;
+
+  var $tabs = $tablist.find(".rv-tab");
+  if ($tabs.length < 2) return;
+
+  function focusTab($tab) {
+    $tabs.attr("tabindex", "-1");
+    $tab.attr("tabindex", "0");
+  }
+
+  // A pointer user can also move the roving tabindex, so tabbing back
+  // into the list lands on whatever is actually selected.
+  $tablist.on("click", ".rv-tab", function () {
+    focusTab($(this));
+  });
+
+  $tablist.on("keydown", ".rv-tab", function (e) {
+    var index = $tabs.index(this);
+    var next;
+
+    switch (e.key) {
+      case "ArrowDown":
+      case "ArrowRight":
+        next = (index + 1) % $tabs.length;
+        break;
+      case "ArrowUp":
+      case "ArrowLeft":
+        next = (index - 1 + $tabs.length) % $tabs.length;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = $tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+
+    // Click drives the shared handler, so selection stays in one place.
+    $tabs.eq(next).trigger("click").trigger("focus");
+  });
+
+});

@@ -1,0 +1,289 @@
+/* =========================================================
+   PRODUCT PAGE
+   Styles for the single-product template (Product-page.php).
+   Loads after common.css / service-pages.css in header.php, so the
+   rules here override the shared .rivett-cmn typography without
+   editing it. Everything is scoped to .product-page-banner,
+   .product-gallery or .door-options-sec and is inert elsewhere.
+   ========================================================= */
+
+
+/* =========================================================
+   SHARED - red chevron list
+   Used by the banner copy and by the Door Options panels, so the
+   treatment lives in one place.
+   ========================================================= */
+.product-page-banner .product-intro-list,
+.door-options-sec .door-options-list{list-style:none;padding:0;margin:0 0 34px;}
+.product-page-banner .product-intro-list li,
+.door-options-sec .door-options-list li{display:flex;align-items:flex-start;gap:10px;font-family:'DM Sans',sans-serif;font-weight:400;font-size:18px;line-height:26px;color:#333;margin-bottom:14px;}
+.product-page-banner .product-intro-list li:last-child,
+.door-options-sec .door-options-list li:last-child{margin-bottom:0;}
+.product-page-banner .product-intro-list li i,
+.door-options-sec .door-options-list li i{flex:none;margin-top:6px;font-size:14px;color:#EE3A43;}
+
+
+/* =========================================================
+   BANNER - product copy (left column)
+   ========================================================= */
+.product-page-banner .row{align-items:flex-start;}
+.product-page-banner .left-side{padding-right:60px;}
+
+.product-page-banner .product-intro h1{font-family:'Prompt',sans-serif;font-weight:600;font-size:50px;line-height:60px;letter-spacing:0;color:#000;text-align:left;margin-bottom:26px;}
+.product-page-banner .product-intro h2{font-family:'Prompt',sans-serif;font-weight:600;font-size:30px;line-height:38px;letter-spacing:0;color:#000;margin-bottom:20px;}
+.product-page-banner .product-intro p{margin-bottom:26px;}
+
+.product-page-banner .product-intro-list a{text-decoration:underline;text-underline-offset:3px;}
+.product-page-banner .product-intro-list a:hover,
+.product-page-banner .product-intro-list a:focus-visible{color:#EE3A43;}
+
+
+/* =========================================================
+   BANNER - image gallery (right column)
+   Stage image plus a thumbnail strip. No arrows and no dots by
+   design: the strip scrolls and swipes, and JS scrolls the active
+   thumbnail into view whenever the strip overflows its column.
+   ========================================================= */
+.product-gallery{display:flex;flex-direction:column;gap:20px;}
+
+.product-gallery-stage{display:block;position:relative;overflow:hidden;background:#f9f9f9;cursor:zoom-in;}
+.product-gallery-stage img{display:block;width:100%;height:auto;aspect-ratio:810/398;object-fit:cover;transition:transform .4s ease;}
+.product-gallery-stage:hover img{transform:scale(1.03);}
+.product-gallery-stage:focus-visible{outline:2px solid #EE3A43;outline-offset:3px;}
+
+/* Shared by the page strip and the popup strip. */
+.product-gallery-thumbs{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;}
+.product-gallery-thumbs::-webkit-scrollbar{display:none;}
+.product-gallery-thumbs .product-thumb{flex:1 0 0;min-width:110px;scroll-snap-align:center;padding:0;line-height:0;background:none;border:2px solid transparent;opacity:.75;cursor:pointer;transition:border-color .25s ease,opacity .25s ease;}
+.product-gallery-thumbs .product-thumb img{display:block;width:100%;height:auto;aspect-ratio:810/398;object-fit:cover;}
+.product-gallery-thumbs .product-thumb:hover{opacity:1;}
+.product-gallery-thumbs .product-thumb.is-active{border-color:#EE3A43;opacity:1;}
+.product-gallery-thumbs .product-thumb:focus-visible{outline:2px solid #EE3A43;outline-offset:2px;}
+
+
+/* =========================================================
+   BANNER - gallery popup (Magnific Popup, inline type)
+   ========================================================= */
+.product-gallery-popup{position:relative;width:100%;max-width:840px;margin:0 auto;padding:30px;background:#fff;}
+.product-gallery-popup:focus{outline:none;}
+.product-gallery-popup .product-popup-stage{margin-bottom:18px;}
+.product-gallery-popup .product-popup-stage img{display:block;width:100%;height:auto;aspect-ratio:810/398;object-fit:cover;}
+.product-gallery-popup .product-gallery-thumbs{gap:12px;}
+.product-gallery-popup .product-thumb{min-width:90px;}
+
+.product-gallery-mfp.mfp-bg{background:#000;opacity:0;transition:opacity .25s ease;}
+.product-gallery-mfp.mfp-bg.mfp-ready{opacity:.82;}
+.product-gallery-mfp.mfp-bg.mfp-removing{opacity:0;}
+.product-gallery-mfp .mfp-content{opacity:0;transform:translateY(12px);transition:opacity .25s ease,transform .25s ease;}
+.product-gallery-mfp.mfp-ready .mfp-content{opacity:1;transform:none;}
+.product-gallery-mfp.mfp-removing .mfp-content{opacity:0;transform:translateY(12px);}
+.product-gallery-mfp .mfp-close{top:4px;right:4px;padding:0;font-size:34px;color:#000;opacity:.7;}
+.product-gallery-mfp .mfp-close:hover,
+.product-gallery-mfp .mfp-close:focus{color:#EE3A43;opacity:1;}
+.product-gallery-mfp .mfp-close:focus-visible{outline:2px solid #EE3A43;outline-offset:2px;}
+
+
+/* =========================================================
+   DOOR OPTIONS - vertical tabs
+   Markup reuses the project's .rv-tabs / .rv-tab / .rv-tab-panel
+   contract, so the shared tab handler in custom.js drives it. The
+   .gallery-sec tab skin is scoped to the homepage, so this section
+   gets its own vertical treatment without any override fight.
+   ========================================================= */
+.door-options-sec{padding-top:0;}
+
+.door-options-sec .left-side{padding-right:40px;}
+
+.door-options-tabs{display:flex;flex-direction:column;border:1px solid #e6e7e9;}
+.door-options-tabs .rv-tab{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:16px 20px;border:0;border-bottom:1px solid #e6e7e9;border-radius:0;background:#fff;color:#1a1a18;font-family:'DM Sans',sans-serif;font-weight:500;font-size:17px;line-height:24px;text-align:left;cursor:pointer;transition:background-color .2s ease,color .2s ease;}
+.door-options-tabs .rv-tab:last-child{border-bottom:0;}
+.door-options-tabs .rv-tab i{flex:none;font-size:14px;color:#9a9ea3;transition:color .2s ease,transform .2s ease;}
+.door-options-tabs .rv-tab:hover{background:#f7f7f8;}
+.door-options-tabs .rv-tab:hover i{transform:translateX(3px);}
+.door-options-tabs .rv-tab.active{background:#EE3A43;border-bottom-color:#EE3A43;color:#fff;font-weight:700;}
+.door-options-tabs .rv-tab.active i{color:#fff;}
+.door-options-tabs .rv-tab:focus-visible{outline:2px solid #EE3A43;outline-offset:-3px;}
+
+.door-options-sec .rv-tab-panel{display:none;}
+.door-options-sec .rv-tab-panel.active{display:block;animation:rvFade .3s ease;}
+.door-options-sec .rv-tab-panel:focus{outline:none;}
+.door-options-sec .rv-tab-panel h3{font-family:'Prompt',sans-serif;font-weight:600;font-size:22px;line-height:30px;color:#000;margin-bottom:26px;}
+.door-options-sec .rv-tab-panel > p{margin-bottom:24px;}
+.door-options-sec .rv-tab-panel .cmn-btn{margin-top:6px;}
+
+.door-options-note{font-family:'DM Sans',sans-serif;font-size:14px;line-height:22px;color:#666;margin-top:28px;}
+.door-options-sec .rv-tab-panel .door-options-note{margin-bottom:0;}
+
+
+/* =========================================================
+   DOOR OPTIONS - option cards
+   The panel and window artwork is inline SVG rather than bitmaps,
+   so it stays crisp at any size and ships no extra requests.
+   ========================================================= */
+.door-options-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:26px 20px;}
+.door-option-card{margin:0;}
+.door-option-card figcaption{margin-top:12px;text-align:center;font-family:'DM Sans',sans-serif;font-weight:400;font-size:15px;line-height:20px;color:#333;}
+
+.door-option-media{display:block;}
+.door-face{display:block;width:100%;height:auto;aspect-ratio:200/120;}
+.door-face-bg{fill:#f4f5f6;stroke:#dfe1e3;stroke-width:1;}
+.door-face-panel{fill:#fbfbfc;stroke:#dfe1e3;stroke-width:1;}
+.door-face-panel-inner{fill:none;stroke:#e6e8ea;stroke-width:1;}
+.door-face-line{stroke:#dfe1e3;stroke-width:1;}
+.door-face-stroke{fill:none;stroke:#dfe1e3;stroke-width:1;}
+.door-face-window{aspect-ratio:200/72;}
+
+.door-options-grid-swatch{grid-template-columns:repeat(6,minmax(0,1fr));}
+.door-option-swatch{display:block;width:100%;aspect-ratio:1/1;border:1px solid #dfe1e3;}
+/* Suggests the embossed woodgrain without needing a texture image. */
+.door-options-grid-grain .door-option-swatch{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 2px,rgba(0,0,0,.10) 2px 6px);}
+
+.door-options-grid-window{grid-template-columns:repeat(3,minmax(0,1fr));}
+
+.door-options-downloads li{margin-bottom:12px;}
+.door-options-downloads a{display:flex;align-items:flex-start;gap:10px;font-family:'DM Sans',sans-serif;font-size:18px;line-height:26px;color:#333;text-decoration:underline;text-underline-offset:3px;}
+.door-options-downloads a i{flex:none;margin-top:4px;font-size:18px;color:#EE3A43;}
+.door-options-downloads a:hover,
+.door-options-downloads a:focus-visible{color:#EE3A43;}
+
+
+@media (prefers-reduced-motion:reduce){
+  .product-gallery-stage img,
+  .product-gallery-thumbs .product-thumb,
+  .product-gallery-mfp.mfp-bg,
+  .product-gallery-mfp .mfp-content,
+  .door-options-tabs .rv-tab,
+  .door-options-tabs .rv-tab i{transition:none;}
+  .product-gallery-stage:hover img{transform:none;}
+  .door-options-tabs .rv-tab:hover i{transform:none;}
+  .product-gallery-thumbs{scroll-behavior:auto;}
+  .door-options-sec .rv-tab-panel.active{animation:none;}
+}
+
+
+/* =========================================================
+   1401px - 1800px
+   ========================================================= */
+@media (min-width:1401px) and (max-width:1800px){
+  .product-page-banner .left-side{padding-right:50px;}
+  .product-page-banner .product-intro h1{font-size:44px;line-height:54px;margin-bottom:22px;}
+  .product-page-banner .product-intro h2{font-size:28px;line-height:36px;margin-bottom:18px;}
+
+  .door-options-sec .left-side{padding-right:35px;}
+  .door-options-grid{gap:24px 18px;}
+}
+
+
+/* =========================================================
+   1200px - 1399.99px
+   ========================================================= */
+@media (min-width:1200px) and (max-width:1399.99px){
+  .product-page-banner .left-side{padding-right:40px;}
+  .product-page-banner .product-intro h1{font-size:40px;line-height:50px;margin-bottom:20px;}
+  .product-page-banner .product-intro h2{font-size:26px;line-height:34px;margin-bottom:16px;}
+  .product-page-banner .product-intro-list{margin-bottom:30px;}
+  .product-gallery-thumbs{gap:14px;}
+  .product-gallery-thumbs .product-thumb{min-width:96px;}
+
+  .door-options-sec .left-side{padding-right:30px;}
+  .door-options-tabs .rv-tab{padding:14px 18px;font-size:16px;}
+  .door-options-sec .rv-tab-panel h3{font-size:20px;line-height:28px;margin-bottom:22px;}
+  .door-options-grid{gap:22px 16px;}
+  .door-option-card figcaption{font-size:14px;}
+}
+
+
+/* =========================================================
+   992px - 1199.98px
+   ========================================================= */
+@media (min-width:992px) and (max-width:1199.98px){
+  .product-page-banner .left-side{padding-right:30px;}
+  .product-page-banner .product-intro h1{font-size:34px;line-height:44px;margin-bottom:18px;}
+  .product-page-banner .product-intro h2{font-size:24px;line-height:32px;margin-bottom:14px;}
+  .product-page-banner .product-intro p{margin-bottom:22px;}
+  .product-page-banner .product-intro-list{margin-bottom:26px;}
+  .product-page-banner .product-intro-list li{font-size:16px;line-height:24px;margin-bottom:12px;}
+  .product-gallery{gap:16px;}
+  .product-gallery-thumbs{gap:12px;}
+  .product-gallery-thumbs .product-thumb{min-width:84px;}
+
+  .door-options-sec .left-side{padding-right:24px;}
+  .door-options-tabs .rv-tab{padding:13px 16px;font-size:15px;line-height:22px;}
+  .door-options-sec .rv-tab-panel h3{font-size:20px;line-height:28px;margin-bottom:20px;}
+  .door-options-sec .door-options-list li{font-size:16px;line-height:24px;margin-bottom:12px;}
+  .door-options-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 16px;}
+  .door-options-grid-swatch{grid-template-columns:repeat(6,minmax(0,1fr));}
+  .door-option-card figcaption{margin-top:10px;font-size:14px;}
+  .door-options-downloads a{font-size:16px;line-height:24px;}
+}
+
+
+/* =========================================================
+   Up to 991.98px
+   Both sections stack here (col-md-12), so the copy drops its
+   gutter and the panels take the full container width.
+   ========================================================= */
+@media (max-width:991.98px){
+  .product-page-banner .left-side{padding-right:calc(var(--bs-gutter-x, 1.5rem) * .5);margin-bottom:40px;}
+  .product-page-banner .product-intro h1{font-size:34px;line-height:44px;margin-bottom:18px;}
+  .product-page-banner .product-intro h2{font-size:24px;line-height:32px;margin-bottom:14px;}
+  .product-page-banner .product-intro p{margin-bottom:22px;}
+  .product-page-banner .product-intro-list{margin-bottom:28px;}
+  .product-page-banner .product-intro-list li{font-size:16px;line-height:24px;margin-bottom:12px;}
+  .product-gallery{gap:16px;}
+  .product-gallery-thumbs .product-thumb{min-width:120px;}
+  .product-gallery-popup{max-width:100%;padding:24px;}
+
+  .door-options-sec .left-side{padding-right:calc(var(--bs-gutter-x, 1.5rem) * .5);margin-bottom:34px;}
+  .door-options-sec .rv-tab-panel h3{font-size:20px;line-height:28px;margin-bottom:20px;}
+  .door-options-sec .door-options-list li{font-size:16px;line-height:24px;margin-bottom:12px;}
+  .door-options-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 18px;}
+  .door-options-downloads a{font-size:16px;line-height:24px;}
+}
+
+
+/* =========================================================
+   Up to 767.98px
+   ========================================================= */
+@media (max-width:767.98px){
+  .product-page-banner .left-side{margin-bottom:32px;}
+  .product-page-banner .product-intro h1{font-size:28px;line-height:36px;margin-bottom:14px;}
+  .product-page-banner .product-intro h2{font-size:20px;line-height:28px;margin-bottom:12px;}
+  .product-page-banner .product-intro p{margin-bottom:20px;}
+  .product-page-banner .product-intro-list{margin-bottom:24px;}
+  .product-page-banner .product-intro-list li{font-size:15px;line-height:22px;margin-bottom:10px;gap:8px;}
+  .product-page-banner .product-intro-list li i{font-size:12px;margin-top:5px;}
+  .product-gallery{gap:14px;}
+  .product-gallery-thumbs{gap:10px;}
+  .product-gallery-thumbs .product-thumb{min-width:108px;}
+  .product-gallery-popup{padding:16px;}
+  .product-gallery-popup .product-popup-stage{margin-bottom:14px;}
+  .product-gallery-popup .product-thumb{min-width:84px;}
+  .product-gallery-mfp .mfp-close{font-size:28px;}
+
+  .door-options-sec .left-side{margin-bottom:28px;}
+  .door-options-tabs .rv-tab{padding:12px 16px;font-size:15px;line-height:22px;}
+  .door-options-sec .rv-tab-panel h3{font-size:18px;line-height:26px;margin-bottom:18px;}
+  .door-options-sec .door-options-list li{font-size:15px;line-height:22px;margin-bottom:10px;gap:8px;}
+  .door-options-sec .door-options-list li i{font-size:12px;margin-top:5px;}
+  .door-options-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 14px;}
+  .door-options-grid-swatch{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .door-options-grid-window{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .door-option-card figcaption{margin-top:8px;font-size:13px;line-height:18px;}
+  .door-options-note{font-size:13px;line-height:20px;margin-top:22px;}
+  .door-options-downloads a{font-size:15px;line-height:22px;}
+  .door-options-downloads a i{font-size:16px;}
+}
+
+
+/* =========================================================
+   Up to 400px
+   ========================================================= */
+@media (max-width:400px){
+  .product-page-banner .product-intro h1{font-size:26px;line-height:34px;}
+  .product-gallery-thumbs .product-thumb{min-width:96px;}
+
+  .door-options-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .door-options-grid-swatch{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .door-options-grid-window{grid-template-columns:repeat(1,minmax(0,1fr));}
+}

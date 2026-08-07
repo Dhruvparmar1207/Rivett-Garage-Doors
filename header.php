@@ -64,7 +64,9 @@
   <link rel="stylesheet" href="src/css/header-footer.css">
   
   <link rel="stylesheet" href="src/css/service-pages.css">
-  
+
+  <link rel="stylesheet" href="src/css/product-page.css">
+
 </head>
 
 
