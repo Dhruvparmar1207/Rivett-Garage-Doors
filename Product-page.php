@@ -10,7 +10,7 @@
  */
 $product_gallery = [
     [
-        'src' => 'src/images/premium-l200.webp',
+        'src' => 'src/images/slider-img-1.webp',
         'alt' => 'Landmark Premium L200 garage doors in dark woodgrain on a brick home',
     ],
     [
@@ -54,7 +54,7 @@ function rv_render_gallery_thumbs($gallery, $context)
                 data-gallery-alt="<?php echo rv_attr($image['alt']); ?>"
                 aria-current="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                 aria-label="Show image <?php echo (int) ($index + 1); ?> of <?php echo (int) $total; ?>: <?php echo rv_attr($image['alt']); ?>">
-                <img src="<?php echo rv_attr($image['src']); ?>" alt="" width="810" height="398"
+                <img src="<?php echo rv_attr($image['src']); ?>" alt="" 
                     class="img-fluid" loading="lazy" decoding="async">
             </button>
         <?php endforeach; ?>
@@ -275,7 +275,7 @@ $door_windows = [
 <section class="product-page-banner rivett-padding rivett-cmn">
     <div class="container-md">
         <div class="row">
-            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 left-side">
+            <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 left-side">
 
                 <div class="product-intro">
                     <h1>Landmark&trade; Premium L200</h1>
@@ -303,7 +303,7 @@ $door_windows = [
                 </div>
 
             </div>
-            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 right-side">
+            <div class="col-xxl-7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 right-side">
 
                 <div class="product-gallery" id="productGallery">
 
@@ -313,7 +313,7 @@ $door_windows = [
                         class="product-gallery-stage js-product-gallery-open"
                         aria-haspopup="dialog" aria-controls="productGalleryPopup">
                         <img src="<?php echo rv_attr($product_gallery_first['src']); ?>"
-                            alt="<?php echo rv_attr($product_gallery_first['alt']); ?>" width="810" height="398"
+                            alt="<?php echo rv_attr($product_gallery_first['alt']); ?>" width="934" height="529"
                             class="img-fluid js-product-gallery-image" fetchpriority="high" decoding="async">
                         <span class="visually-hidden"> &mdash; open larger view</span>
                     </a>
@@ -367,7 +367,10 @@ $door_windows = [
                             aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>"
                             tabindex="<?php echo $is_first ? '0' : '-1'; ?>">
                             <span><?php echo rv_attr($label); ?></span>
-                            <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+                            <!-- <i class="fa-solid fa-angle-right" aria-hidden="true">
+
+                            </i> -->
+                            <img src="./src/images/tabbing-sec-arrow.webp" alt="" class="img-fluid">
                         </button>
                     <?php $tab_index++; endforeach; ?>
                 </div>
