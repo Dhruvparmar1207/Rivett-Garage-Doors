@@ -14,15 +14,15 @@ $product_gallery = [
         'alt' => 'Landmark Premium L200 garage doors in dark woodgrain on a brick home',
     ],
     [
-        'src' => 'src/images/premium-contemporary-l200c.webp',
+        'src' => 'src/images/slider-img-1.webp',
         'alt' => 'Landmark Premium Contemporary L200C garage door with full-width windows',
     ],
     [
-        'src' => 'src/images/briarcrest-l200bc.webp',
+        'src' => 'src/images/slider-img-1.webp',
         'alt' => 'Landmark Briarcrest L200BC carriage-house style garage door',
     ],
     [
-        'src' => 'src/images/grandview-l200gv.webp',
+        'src' => 'src/images/slider-img-1.webp',
         'alt' => 'Landmark Grandview L200GV garage doors with large dual-pane windows',
     ],
 ];
@@ -37,15 +37,16 @@ function rv_attr($value)
 }
 
 /**
- * Thumbnail strip. Rendered twice (page + popup) from the same data;
- * $context only varies the ids/labels so both strips stay unique.
+ * Page thumbnail strip, under the stage image. The data attributes are
+ * the gallery's contract with custom.js: they carry the photo each
+ * thumbnail selects, so the stage and the popup can be driven from one
+ * index. The popup has its own carousel markup further down.
  */
-function rv_render_gallery_thumbs($gallery, $context)
+function rv_render_gallery_thumbs($gallery)
 {
     $total = count($gallery);
     ?>
-    <div class="product-gallery-thumbs product-<?php echo rv_attr($context); ?>-thumbs" role="group"
-        aria-label="Product images">
+    <div class="product-gallery-thumbs" role="group" aria-label="Product images">
         <?php foreach ($gallery as $index => $image) : ?>
             <button type="button"
                 class="product-thumb<?php echo $index === 0 ? ' is-active' : ''; ?>"
@@ -54,7 +55,7 @@ function rv_render_gallery_thumbs($gallery, $context)
                 data-gallery-alt="<?php echo rv_attr($image['alt']); ?>"
                 aria-current="<?php echo $index === 0 ? 'true' : 'false'; ?>"
                 aria-label="Show image <?php echo (int) ($index + 1); ?> of <?php echo (int) $total; ?>: <?php echo rv_attr($image['alt']); ?>">
-                <img src="<?php echo rv_attr($image['src']); ?>" alt="" 
+                <img src="<?php echo rv_attr($image['src']); ?>" alt=""
                     class="img-fluid" loading="lazy" decoding="async">
             </button>
         <?php endforeach; ?>
@@ -318,7 +319,7 @@ $door_windows = [
                         <span class="visually-hidden"> &mdash; open larger view</span>
                     </a>
 
-                    <?php rv_render_gallery_thumbs($product_gallery, 'gallery'); ?>
+                    <?php rv_render_gallery_thumbs($product_gallery); ?>
 
                 </div>
 
@@ -327,16 +328,46 @@ $door_windows = [
         </div>
     </div>
 
-    <!-- Lightbox content. Hidden until Magnific Popup pulls it in. -->
+    <!-- Lightbox content. Hidden until Magnific Popup pulls it in.
+         Two Owl carousels wired together by custom.js: .popup-main carries
+         the full-size photo and .popup-thumbs drives it. Neither carries the
+         owl-carousel class here, because Owl's stylesheet hides .owl-carousel
+         until it is initialised and both are only built once the popup is on
+         screen and has a width Owl can measure. -->
     <div class="product-gallery-popup mfp-hide" id="productGalleryPopup" role="dialog" aria-modal="true"
         aria-label="Landmark Premium L200 image gallery" tabindex="-1">
-        <div class="product-popup-stage">
-            <img src="<?php echo rv_attr($product_gallery_first['src']); ?>"
-                alt="<?php echo rv_attr($product_gallery_first['alt']); ?>" width="810" height="398"
-                class="img-fluid js-product-popup-image" decoding="async">
-        </div>
 
-        <?php rv_render_gallery_thumbs($product_gallery, 'popup'); ?>
+        <div class="popup-gallery">
+
+            <button type="button" class="popup-close" aria-label="Close gallery">
+                <img src="./src/images/popup-close-icon.webp" alt="" width="20" height="20"
+                    class="img-fluid" aria-hidden="true">
+            </button>
+
+            <div class="popup-main">
+                <?php foreach ($product_gallery as $image) : ?>
+                    <div class="popup-main-item">
+                        <img src="<?php echo rv_attr($image['src']); ?>"
+                            alt="<?php echo rv_attr($image['alt']); ?>" class="img-fluid"
+                            loading="lazy" decoding="async">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="popup-thumbs" role="group" aria-label="Product images">
+                <?php foreach ($product_gallery as $index => $image) : ?>
+                    <button type="button"
+                        class="thumb-wrap<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                        data-gallery-index="<?php echo (int) $index; ?>"
+                        aria-current="<?php echo $index === 0 ? 'true' : 'false'; ?>"
+                        aria-label="Show image <?php echo (int) ($index + 1); ?> of <?php echo (int) $product_gallery_total; ?>: <?php echo rv_attr($image['alt']); ?>">
+                        <img src="<?php echo rv_attr($image['src']); ?>" alt="" class="img-fluid"
+                            loading="lazy" decoding="async">
+                    </button>
+                <?php endforeach; ?>
+            </div>
+
+        </div>
     </div>
 
 </section>
