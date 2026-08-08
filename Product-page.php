@@ -2,6 +2,13 @@
 
 <?php
 /**
+ * This page's own script, picked up by footer.php. The gallery, its
+ * lightbox and the Door Options tabs/accordion live in product.js so
+ * that custom.js carries only what every template uses.
+ */
+$page_scripts = ['src/js/product.js'];
+
+/**
  * Banner gallery source of truth.
  *
  * The stage image, the page thumbnails and the popup thumbnails are all
@@ -10,19 +17,19 @@
  */
 $product_gallery = [
     [
-        'src' => 'src/images/slider-img-1.webp',
+        'src' => 'src/images/landmark-l-200-slider-1.webp',
         'alt' => 'Landmark Premium L200 garage doors in dark woodgrain on a brick home',
     ],
     [
-        'src' => 'src/images/slider-img-1.webp',
+        'src' => 'src/images/landmark-l-200-slider-2.webp',
         'alt' => 'Landmark Premium Contemporary L200C garage door with full-width windows',
     ],
     [
-        'src' => 'src/images/slider-img-1.webp',
+        'src' => 'src/images/landmark-l-200-slider-3.webp',
         'alt' => 'Landmark Briarcrest L200BC carriage-house style garage door',
     ],
     [
-        'src' => 'src/images/slider-img-1.webp',
+        'src' => 'src/images/landmark-l-200-slider-4.webp',
         'alt' => 'Landmark Grandview L200GV garage doors with large dual-pane windows',
     ],
 ];
@@ -38,7 +45,7 @@ function rv_attr($value)
 
 /**
  * Page thumbnail strip, under the stage image. The data attributes are
- * the gallery's contract with custom.js: they carry the photo each
+ * the gallery's contract with product.js: they carry the photo each
  * thumbnail selects, so the stage and the popup can be driven from one
  * index. The popup has its own carousel markup further down.
  */
@@ -77,77 +84,11 @@ $door_option_tabs = [
 ];
 
 /**
- * Draws a garage-door face as inline SVG — four stacked sections, each
- * split into $cols panels rendered in $style. Line art rather than photos
- * keeps the panel thumbnails crisp at any size and needs no image assets.
- * $top_cols / $top_style override the first section (used by Mixed Panel).
- *
- * Styles: raised | recessed | grooved | flush | plank.
- */
-function rv_panel_svg($cols, $style, $top_cols = null, $top_style = null)
-{
-    $width = 200;
-    $height = 120;
-    $sections = 4;
-    $section_h = $height / $sections;
-    $pad = 5;
-    $gap = 5;
-
-    $svg = '<svg class="door-face" viewBox="0 0 ' . $width . ' ' . $height . '"'
-         . ' aria-hidden="true" focusable="false">';
-    $svg .= '<rect class="door-face-bg" x="0.5" y="0.5" width="' . ($width - 1)
-          . '" height="' . ($height - 1) . '"/>';
-
-    for ($s = 0; $s < $sections; $s++) {
-        $y = $s * $section_h;
-
-        if ($s > 0) {
-            $svg .= '<line class="door-face-line" x1="0" y1="' . $y . '" x2="' . $width . '" y2="' . $y . '"/>';
-        }
-
-        $s_style = ($s === 0 && $top_style) ? $top_style : $style;
-        $s_cols  = ($s === 0 && $top_cols) ? $top_cols : $cols;
-
-        if ($s_style === 'flush') {
-            continue;
-        }
-
-        if ($s_style === 'plank') {
-            for ($p = 1; $p < 3; $p++) {
-                $py = round($y + ($section_h / 3) * $p, 2);
-                $svg .= '<line class="door-face-line" x1="0" y1="' . $py . '" x2="' . $width . '" y2="' . $py . '"/>';
-            }
-            continue;
-        }
-
-        $panel_w = ($width - ($pad * 2) - ($gap * ($s_cols - 1))) / $s_cols;
-        $panel_h = $section_h - ($pad * 2);
-
-        for ($c = 0; $c < $s_cols; $c++) {
-            $x = round($pad + $c * ($panel_w + $gap), 2);
-            $py = round($y + $pad, 2);
-            $pw = round($panel_w, 2);
-
-            $svg .= '<rect class="door-face-panel" x="' . $x . '" y="' . $py
-                  . '" width="' . $pw . '" height="' . $panel_h . '"/>';
-
-            if ($s_style === 'raised') {
-                $svg .= '<rect class="door-face-panel-inner" x="' . ($x + 3) . '" y="' . ($py + 3)
-                      . '" width="' . ($pw - 6) . '" height="' . ($panel_h - 6) . '"/>';
-            } elseif ($s_style === 'grooved') {
-                $gy = round($py + $panel_h / 2, 2);
-                $svg .= '<line class="door-face-line" x1="' . ($x + 3) . '" y1="' . $gy
-                      . '" x2="' . round($x + $pw - 3, 2) . '" y2="' . $gy . '"/>';
-            }
-        }
-    }
-
-    return $svg . '</svg>';
-}
-
-/**
- * Draws a window insert as inline SVG. Same reasoning as rv_panel_svg —
- * the muntin patterns are geometry, so they are drawn rather than shipped.
+ * Draws a window insert as inline SVG. The muntin patterns are geometry,
+ * so they are drawn rather than shipped: line art stays crisp at any size
+ * and needs no image asset. The panel styles used to be drawn the same
+ * way and now ship as photos instead (see $panel_styles); do the same
+ * here the moment window artwork exists.
  */
 function rv_window_svg($style)
 {
@@ -203,8 +144,15 @@ function rv_window_svg($style)
 }
 
 /**
- * Card grid used by every visual tab. $items each carry a 'name' plus
- * either 'svg' (pre-rendered line art) or 'hex' (a finish swatch).
+ * Card grid used by every visual tab. Each $item carries a 'name' plus
+ * exactly one piece of artwork:
+ *
+ *   'hex' — a flat finish swatch      (colours, woodtones)
+ *   'img' — a path to a photo         (panel styles)
+ *   'svg' — pre-rendered line art     (window inserts)
+ *
+ * Adding artwork for the remaining tabs is therefore a data change: swap
+ * an item's 'svg' for an 'img' and this renderer needs no edit.
  */
 function rv_render_option_cards($items, $modifier = '')
 {
@@ -214,8 +162,19 @@ function rv_render_option_cards($items, $modifier = '')
             <figure class="door-option-card">
                 <?php if (isset($item['hex'])) : ?>
                     <span class="door-option-swatch" style="background-color:<?php echo rv_attr($item['hex']); ?>"></span>
+                <?php elseif (isset($item['img'])) : ?>
+                    <span class="door-option-media">
+                        <!-- alt is empty by design, matching the aria-hidden the
+                             inline SVG carried: the figcaption right below names
+                             the option, so alt text here would only repeat it.
+                             width/height reserve the box before the file lands;
+                             the exact ratio is CSS's job. -->
+                        <img src="<?php echo rv_attr($item['img']); ?>" alt=""
+                            width="200" height="168" class="door-option-photo"
+                            loading="lazy" decoding="async">
+                    </span>
                 <?php else : ?>
-                    <span class="door-option-media"><?php echo $item['svg']; // built by rv_panel_svg / rv_window_svg ?></span>
+                    <span class="door-option-media"><?php echo $item['svg']; // built by rv_window_svg ?></span>
                 <?php endif; ?>
                 <figcaption><?php echo rv_attr($item['name']); ?></figcaption>
             </figure>
@@ -224,18 +183,74 @@ function rv_render_option_cards($items, $modifier = '')
     <?php
 }
 
+function rv_render_literature_cards($items)
+{
+    ?>
+    <div class="row">
+        <?php foreach ($items as $item) : ?>
+            <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 pro-object-box">
+                <a href="<?php echo rv_attr($item['pdf']); ?>" target="_blank" rel="noopener">
+                    <img
+                        decoding="async"
+                        class="img-fluid"
+                        src="<?php echo rv_attr($item['img']); ?>"
+                        alt="<?php echo rv_attr($item['name'] ?? 'Product Catalogue'); ?>"
+                    >
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php
+}
+
+function rv_render_option_groups($groups, $modifier = '')
+{
+    foreach ($groups as $group) :
+
+        if (empty($group['items'])) {
+            continue;
+        }
+        ?>
+
+        <div class="door-option-group">
+
+            <?php if (!empty($group['heading'])) : ?>
+                <h3 class="door-option-group-heading">
+                    <?php echo rv_attr($group['heading']); ?>
+                </h3>
+            <?php endif; ?>
+
+            <?php
+            rv_render_option_cards(
+                $group['items'],
+                $modifier
+            );
+            ?>
+
+        </div>
+
+        <?php
+    endforeach;
+}
+
+
 /* --- Tab content ------------------------------------------------------ */
 
-/* Eight panel styles, matching the "8 Panel Styles Available" claim above. */
+/* Eight panel styles, matching the "8 Panel Styles Available" claim above.
+   The artwork is 200x168, so the card ratio in product-page.css follows the
+   photos rather than the 200x120 box the old line art used.
+   Note the %20: "Recessed Ranch.webp" is the one asset whose filename uses a
+   space instead of a hyphen. Renaming it to match the other seven would let
+   this line drop the escape. */
 $panel_styles = [
-    ['name' => 'Raised Ranch',              'svg' => rv_panel_svg(3, 'raised')],
-    ['name' => 'Raised Colonial',           'svg' => rv_panel_svg(4, 'raised')],
-    ['name' => 'Flush',                     'svg' => rv_panel_svg(0, 'flush')],
-    ['name' => 'Plank',                     'svg' => rv_panel_svg(0, 'plank')],
-    ['name' => 'Mixed Panel',               'svg' => rv_panel_svg(3, 'raised', 4)],
-    ['name' => 'Recessed Grooved Colonial', 'svg' => rv_panel_svg(4, 'grooved')],
-    ['name' => 'Recessed Grooved Ranch',    'svg' => rv_panel_svg(3, 'grooved')],
-    ['name' => 'Recessed Ranch',            'svg' => rv_panel_svg(3, 'recessed')],
+    ['name' => 'Raised Ranch',              'img' => 'src/images/Raised-Ranch.webp'],
+    ['name' => 'Raised Colonial',           'img' => 'src/images/Raised-Colonial.webp'],
+    ['name' => 'Flush',                     'img' => 'src/images/Flush.webp'],
+    ['name' => 'Plank',                     'img' => 'src/images/Plank.webp'],
+    ['name' => 'Mixed Panel',               'img' => 'src/images/mixed-panel.webp'],
+    ['name' => 'Recessed Grooved Colonial', 'img' => 'src/images/Recessed-Grooved-Colonial.webp'],
+    ['name' => 'Recessed Grooved Ranch',    'img' => 'src/images/Recessed-Grooved-Ranch.webp'],
+    ['name' => 'Recessed Ranch',            'img' => 'src/images/Recessed%20Ranch.webp'],
 ];
 
 /* Twelve colours, matching the "12 Colour Options" claim above. */
@@ -255,22 +270,64 @@ $door_colours = [
 ];
 
 $door_woodtones = [
-    ['name' => 'Golden Oak', 'hex' => '#B5793A'],
-    ['name' => 'Medium Oak', 'hex' => '#8E5A2B'],
-    ['name' => 'Dark Oak',   'hex' => '#6A421F'],
-    ['name' => 'Walnut',     'hex' => '#5C3A1E'],
-    ['name' => 'Mahogany',   'hex' => '#6B2E20'],
-    ['name' => 'Driftwood',  'hex' => '#8A8177'],
+    ['name' => 'Golden Oak', 'img' => 'src/images/Honey-Cedar.webp'],
+    ['name' => 'Medium Oak', 'img' => 'src/images/Cocoa-Hickory.webp'],
+
 ];
 
+
+
+
 $door_windows = [
-    ['name' => 'Plain',     'svg' => rv_window_svg('plain')],
-    ['name' => 'Stockton',  'svg' => rv_window_svg('stockton')],
-    ['name' => 'Madison',   'svg' => rv_window_svg('madison')],
-    ['name' => 'Prairie',   'svg' => rv_window_svg('prairie')],
-    ['name' => 'Cathedral', 'svg' => rv_window_svg('cathedral')],
-    ['name' => 'Sunburst',  'svg' => rv_window_svg('sunburst')],
+
+    [
+        'heading' => 'Decorative Inserts',
+        'items' => [
+            ['name' => 'PRAIRIE',       'img' => 'src/images/PRAIRIE.webp'],
+            ['name' => 'CLEAR-RANCH',   'img' => 'src/images/CLEAR-RANCH.webp'],
+            ['name' => 'CLEAR',         'img' => 'src/images/CLEAR.webp'],
+            ['name' => 'STOCKTON',      'img' => 'src/images/STOCKTON.webp'],
+            ['name' => 'CASCADE',       'img' => 'src/images/CASCADE.webp'],
+        ],
+    ],
+
+    [
+        'heading' => 'Round Bar',
+        'items' => [
+            ['name' => 'STOCKTON 4',    'img' => 'src/images/stockton-4.webp'],
+            ['name' => 'STOCKTON 6',    'img' => 'src/images/stockton-6.webp'],
+            ['name' => 'STOCKTON 10',   'img' => 'src/images/stockton-10.webp'],
+            ['name' => 'Prairie',       'img' => 'src/images/prairie-1.Webp'],
+            ['name' => 'prairie ranch', 'img' => 'src/images/prairie-ranch-1.webp'],
+        ],
+    ],
+
+    [
+        'heading' => 'Square Bar',
+        'items' => [
+            ['name' => 'STOCKTON 4',     'img' => 'src/images/stockton-4.webp'],
+            ['name' => 'STOCKTON 6',     'img' => 'src/images/stockton-6.webp'],
+            ['name' => 'STOCKTON 10',    'img' => 'src/images/stockton-10.webp'],
+            ['name' => 'Prairie',        'img' => 'src/images/prairie-1.webp'],
+            ['name' => 'prairie ranch',  'img' => 'src/images/prairie-ranch-1.webp'],
+        ],
+    ],
+
 ];
+
+$door_literature = [
+    [
+        'name' => 'Landmark Product Catalogue',
+        'img'  => 'src/images/LandmarkProductCatalogueOct2024web.png',
+        'pdf'  => 'src/images/LandmarkProductCatalogue_April-2026.pdf',
+    ],
+    [
+        'name' => 'Landmark Product Catalogue',
+        'img'  => 'src/images/LandmarkProductCatalogueOct2024web.png',
+        'pdf'  => 'src/images/LandmarkProductCatalogue_April-2026.pdf',
+    ],
+];
+
 ?>
 
 <section class="product-page-banner rivett-padding rivett-cmn">
@@ -279,7 +336,7 @@ $door_windows = [
             <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 left-side">
 
                 <div class="product-intro">
-                    <h1>Landmark&trade; Premium L200</h1>
+                    <h1 class="desktop-heading">Landmark™ Premium L200</h1>
 
                     <h2>A Quality, Stylish Garage Door</h2>
 
@@ -305,6 +362,7 @@ $door_windows = [
 
             </div>
             <div class="col-xxl-7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 right-side">
+                <h1 class="mobile-heading">Landmark™ Premium L200</h1>
 
                 <div class="product-gallery" id="productGallery">
 
@@ -329,7 +387,7 @@ $door_windows = [
     </div>
 
     <!-- Lightbox content. Hidden until Magnific Popup pulls it in.
-         Two Owl carousels wired together by custom.js: .popup-main carries
+         Two Owl carousels wired together by product.js: .popup-main carries
          the full-size photo and .popup-thumbs drives it. Neither carries the
          owl-carousel class here, because Owl's stylesheet hides .owl-carousel
          until it is initialised and both are only built once the popup is on
@@ -439,8 +497,14 @@ $door_windows = [
                 <!-- Windows -->
                 <div class="rv-tab-panel" id="door-opt-windows" role="tabpanel"
                     aria-labelledby="door-tab-windows" tabindex="0" hidden>
-                    <h3>Windows</h3>
-                    <?php rv_render_option_cards($door_windows, 'door-options-grid-window'); ?>
+                        <?php
+                        rv_render_option_groups(
+                            $door_windows,
+                            'door-options-grid-window'
+                        );
+                        ?>
+
+
                     <p class="door-options-note">*Dual-pane insulated glass is available on every window design,
                         with clear, obscure, and tinted glazing options.</p>
                 </div>
@@ -472,16 +536,8 @@ $door_windows = [
                     <h3>Literature</h3>
                     <p>Download the product literature for the Landmark&trade; Premium L200, or ask us to walk you
                         through it in our showroom.</p>
-                    <ul class="door-options-list door-options-downloads">
-                        <li><a href="#"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
-                            <span>Landmark&trade; Premium L200 brochure</span></a></li>
-                        <li><a href="#"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
-                            <span>Panel style and colour chart</span></a></li>
-                        <li><a href="#"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
-                            <span>Technical specification sheet</span></a></li>
-                        <li><a href="#"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
-                            <span>Warranty statement</span></a></li>
-                    </ul>
+                     <?php rv_render_literature_cards($door_literature); ?>
+                  
                     <p class="door-options-note">*Need something that isn't listed here? Get in touch and we will
                         send it over.</p>
                 </div>

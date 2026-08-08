@@ -483,6 +483,7 @@ html.call-popup-open body{overflow:hidden;}
   .header ul li.mobile-drop-list .main-inner-sub-menu a{color: #333;font-size: 15px;line-height: 12px;padding-bottom: 20px !important;}
   .header ul li.mobile-drop-list .main-inner-sub-menu a.active,.header ul li.mobile-drop-list .main-inner-sub-menu a:hover{color: #EE3A43   ;}
   .header ul li span a{padding: 0 !important;}
+  .header ul.main-inner-sub-menu li.mobile-drop-list span a{padding-bottom: 0 !important;}
 
 
   .header ul li:hover a{text-decoration: none !important;}
@@ -609,3 +610,26 @@ div.sub-menu.active.active-sub{padding: 0;height: 100%;}
 @media (max-width:400px) {
   .call-popup-emergency p{font-size:12px;line-height:18px;margin-bottom:18px;}
 }
+
+
+/* =====================================================================
+   NAV RENDERED FROM common-sections/nav-menu.php
+
+   The drill-down rules above are already depth-agnostic — `li.mobile-drop-list
+   .sub-menu` matches a branch nested at any level — so a third level needs
+   nothing but an explicit stacking order and the current-page hooks the
+   renderer emits.
+   ===================================================================== */
+
+/* A panel opened from inside another has to cover it outright. It is a DOM
+   descendant, so it already paints on top; this states it rather than
+   leaning on source order. */
+.header ul li.mobile-drop-list .sub-menu .sub-menu { z-index: 101; }
+
+/* Current page, marked by rivett_nav_is_current(). */
+.header .main-nav-list a.active,
+.header-menu.mobile-header-menu .mobile-navigation-menu a.active { color: #EE3A43; }
+
+/* The branch containing the current page, marked by rivett_nav_in_trail(). */
+.header .main-nav-list > li.is-active-trail > a { color: #EE3A43; }
+.header .main-nav-list > li.is-active-trail::after { width: 100%; }

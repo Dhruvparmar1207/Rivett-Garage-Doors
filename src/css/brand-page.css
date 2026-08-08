@@ -1,0 +1,250 @@
+/* =========================================================
+   BRAND PAGE
+   Styles for the shared brand template (brand-page.php), used by
+   liftmaster.php, richards-wilcox.php, wayne-dalton.php, sargent.php,
+   daybar.php and schlage.php.
+
+   Loads last in header.php, so the scoped rules here override the
+   shared .rivett-cmn typography without editing common.css. Every
+   selector is scoped to .brand-intro-sec, .brand-partner-sec,
+   .brand-featured-sec or .brand-missing-sec and is inert elsewhere —
+   which is what lets a single band be dropped onto another template.
+   ========================================================= */
+
+
+/* =========================================================
+   SECTION 1 - INTRO
+   Brand copy on the left, dealer logo card on the right. The
+   columns are top-aligned: the card sizes to its own content
+   rather than stretching to the height of the copy.
+   ========================================================= */
+.brand-intro-sec .row{align-items:flex-start;}
+.brand-intro-sec .brand-intro-copy{padding-right:70px;}
+
+.brand-intro-sec .brand-intro-copy h1{font-family:'Prompt',sans-serif;font-weight:600;font-size:44px;line-height:54px;letter-spacing:0;text-align:left;color:#000;margin-bottom:26px;}
+.brand-intro-sec .brand-intro-copy p{margin-bottom:20px;}
+
+/* --- Partner / capability badges --- */
+.brand-badges{list-style:none;display:flex;flex-wrap:wrap;gap:16px;margin:34px 0 0;padding:0;}
+.brand-badge{display:flex;align-items:center;gap:14px;margin:0;padding:14px 20px;border:1px solid #e6e6e6;background:#fff;}
+.brand-badge-logo{flex:none;width:auto;height:36px;}
+/* Stands in for a partner logo we have not been supplied. Set in the
+   site's own type on purpose — a placeholder, never an imitation. */
+.brand-badge-mark{flex:none;display:flex;align-items:center;justify-content:center;min-width:56px;height:36px;padding:0 10px;background:#f4f5f6;border:1px solid #e6e6e6;font-family:'Prompt',sans-serif;font-weight:600;font-size:16px;line-height:1;color:#1a1a18;}
+.brand-badge-text{display:flex;flex-direction:column;gap:4px;}
+.brand-badge-title{font-family:'DM Sans',sans-serif;font-weight:400;font-size:13px;line-height:18px;color:#666;}
+.brand-badge-sub{font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;line-height:20px;color:#1a1a18;}
+
+/* --- Dealer logo card --- */
+.brand-dealer-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;border:1px solid #e6e6e6;background:#fff;text-align:center;}
+.brand-dealer-logo{display:block;width:100%;max-width:300px;height:auto;}
+/* text-indent cancels the trailing letter-space so the caption stays
+   optically centred under the wordmark. */
+.brand-intro-sec .brand-dealer-label{margin:22px 0 0;font-family:'DM Sans',sans-serif;font-weight:500;font-size:14px;line-height:20px;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:#1a1a18;}
+
+
+/* =========================================================
+   SECTION 2 - PARTNER BAND
+   Photograph and "what Rivett adds" copy, on the shared light grey.
+   ========================================================= */
+.brand-partner-sec{background:#f9f9f9;}
+.brand-partner-media{margin:0;}
+.brand-partner-media img{display:block;width:100%;height:auto;}
+.brand-partner-copy{padding-left:60px;}
+.brand-partner-sec .brand-partner-copy h2{margin-bottom:24px;}
+.brand-partner-sec .brand-partner-copy p{margin-bottom:20px;}
+.brand-partner-sec .brand-partner-cta{margin-top:34px;}
+
+
+/* =========================================================
+   SECTION 3 - FEATURED PRODUCTS
+   Two-up card grid. Cards are equal height by construction, so a
+   long description never leaves a short neighbour with a floating
+   red rule.
+   ========================================================= */
+.brand-featured-sec .row{justify-content:center;}
+.brand-featured-sec .brand-featured-grid{row-gap:50px;}
+
+.brand-card{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid #ececec;border-bottom:4px solid #EE3A43;}
+
+/* Fixed ratio on the media box, contain on the image: openers are tall
+   and door panels are wide, and both have to sit in the same grid
+   without changing the card's height. */
+.brand-card-media{display:flex;align-items:center;justify-content:center;aspect-ratio:810/398;padding:30px;background:#fff;overflow:hidden;}
+.brand-card-media img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;}
+
+/* Opt-in for photography rather than an isolated product shot: the
+   picture fills the same box edge to edge instead of sitting inside it.
+   Set per item with 'fit' => 'cover' in brand-data.php. */
+/* Scoped one level deeper than the padding steps in the breakpoint
+   blocks below, so it stays at zero at every width. */
+.brand-featured-sec .brand-card-media--cover{padding:0;}
+.brand-featured-sec .brand-card-media--cover img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;}
+
+.brand-card-media--empty{flex-direction:column;gap:10px;background:#f6f6f6;color:#a6a6a6;}
+.brand-card-media--empty i{font-size:34px;}
+.brand-card-media--empty span{font-family:'DM Sans',sans-serif;font-size:14px;line-height:20px;text-align:center;}
+
+.brand-card-body{display:flex;flex-direction:column;flex:1;padding:30px;}
+.brand-featured-sec .brand-card-body h3{font-family:'Prompt',sans-serif;font-weight:600;font-size:24px;line-height:30px;letter-spacing:0;color:#000;margin-bottom:12px;}
+.brand-featured-sec .brand-card-body p{font-size:16px;line-height:24px;margin-bottom:0;}
+.brand-card-body .link-arrow{margin-top:24px;width:max-content;}
+.brand-card-body .link-arrow i{font-size:18px;}
+.brand-card-body .link-arrow:focus-visible{outline:2px solid #EE3A43;outline-offset:3px;}
+
+
+/* =========================================================
+   UNKNOWN BRAND
+   ========================================================= */
+.brand-missing-sec .top-heading .cmn-btn{margin-top:10px;}
+
+
+/* =========================================================
+   1401px - 1800px
+   ========================================================= */
+@media (min-width:1401px) and (max-width:1800px){
+  .brand-intro-sec .brand-intro-copy{padding-right:55px;}
+  .brand-intro-sec .brand-intro-copy h1{font-size:40px;line-height:50px;margin-bottom:22px;}
+  .brand-dealer-card{padding:50px 35px;}
+  .brand-dealer-logo{max-width:280px;}
+
+  .brand-partner-copy{padding-left:50px;}
+  .brand-partner-sec .brand-partner-cta{margin-top:30px;}
+
+  .brand-featured-sec .brand-featured-grid{row-gap:44px;}
+  .brand-card-body{padding:28px;}
+  .brand-featured-sec .brand-card-body h3{font-size:22px;line-height:28px;}
+}
+
+
+/* =========================================================
+   1200px - 1399.99px
+   ========================================================= */
+@media (min-width:1200px) and (max-width:1399.99px){
+  .brand-intro-sec .brand-intro-copy{padding-right:45px;}
+  .brand-intro-sec .brand-intro-copy h1{font-size:36px;line-height:46px;margin-bottom:20px;}
+  .brand-intro-sec .brand-intro-copy p{margin-bottom:18px;}
+  .brand-badges{gap:14px;margin-top:30px;}
+  .brand-badge{padding:12px 16px;gap:12px;}
+  .brand-dealer-card{padding:45px 30px;}
+  .brand-dealer-logo{max-width:260px;}
+  .brand-intro-sec .brand-dealer-label{margin-top:18px;font-size:13px;letter-spacing:.24em;text-indent:.24em;}
+
+  .brand-partner-copy{padding-left:40px;}
+  .brand-partner-sec .brand-partner-copy h2{margin-bottom:20px;}
+  .brand-partner-sec .brand-partner-copy p{margin-bottom:18px;}
+  .brand-partner-sec .brand-partner-cta{margin-top:26px;}
+
+  .brand-featured-sec .brand-featured-grid{row-gap:40px;}
+  .brand-card-body{padding:26px;}
+  .brand-featured-sec .brand-card-body h3{font-size:21px;line-height:28px;}
+  .brand-featured-sec .brand-card-body p{font-size:15px;line-height:23px;}
+  .brand-card-body .link-arrow{margin-top:20px;font-size:17px;}
+  .brand-card-media{padding:26px;}
+}
+
+
+/* =========================================================
+   992px - 1199.98px
+   ========================================================= */
+@media (min-width:992px) and (max-width:1199.98px){
+  .brand-intro-sec .brand-intro-copy{padding-right:32px;}
+  .brand-intro-sec .brand-intro-copy h1{font-size:32px;line-height:42px;margin-bottom:18px;}
+  .brand-intro-sec .brand-intro-copy p{margin-bottom:16px;}
+  .brand-badges{gap:12px;margin-top:26px;}
+  .brand-badge{padding:12px 14px;gap:10px;}
+  .brand-badge-logo{height:30px;}
+  .brand-badge-mark{min-width:48px;height:30px;font-size:14px;}
+  .brand-badge-sub{font-size:14px;line-height:19px;}
+  .brand-dealer-card{padding:40px 25px;}
+  .brand-dealer-logo{max-width:230px;}
+  .brand-intro-sec .brand-dealer-label{margin-top:16px;font-size:12px;line-height:18px;letter-spacing:.22em;text-indent:.22em;}
+
+  .brand-partner-copy{padding-left:30px;}
+  .brand-partner-sec .brand-partner-copy h2{margin-bottom:18px;}
+  .brand-partner-sec .brand-partner-copy p{margin-bottom:16px;}
+  .brand-partner-sec .brand-partner-cta{margin-top:24px;}
+
+  .brand-featured-sec .brand-featured-grid{row-gap:35px;}
+  .brand-card-media{padding:22px;}
+  .brand-card-body{padding:22px;}
+  .brand-featured-sec .brand-card-body h3{font-size:20px;line-height:26px;}
+  .brand-featured-sec .brand-card-body p{font-size:15px;line-height:22px;}
+  .brand-card-body .link-arrow{margin-top:18px;font-size:16px;}
+  .brand-card-body .link-arrow i{font-size:16px;}
+}
+
+
+/* =========================================================
+   Up to 991.98px
+   Both bands stack here (col-md-12), so the copy drops its gutter
+   and the dealer card centres at a readable width instead of
+   spanning the full container.
+   ========================================================= */
+@media (max-width:991.98px){
+  .brand-intro-sec .brand-intro-copy{padding-right:calc(var(--bs-gutter-x, 1.5rem) * .5);margin-bottom:40px;}
+  .brand-intro-sec .brand-intro-copy h1{font-size:32px;line-height:42px;margin-bottom:18px;}
+  .brand-intro-sec .brand-intro-copy p{margin-bottom:16px;}
+  .brand-badges{gap:12px;margin-top:26px;}
+  .brand-dealer-card{max-width:520px;margin:0 auto;padding:45px 30px;}
+  .brand-dealer-logo{max-width:250px;}
+
+  .brand-partner-media-col{margin-bottom:34px;}
+  .brand-partner-copy{padding-left:calc(var(--bs-gutter-x, 1.5rem) * .5);}
+  .brand-partner-sec .brand-partner-copy h2{margin-bottom:18px;}
+  .brand-partner-sec .brand-partner-copy p{margin-bottom:16px;}
+  .brand-partner-sec .brand-partner-cta{margin-top:26px;}
+
+  .brand-featured-sec .brand-featured-grid{row-gap:30px;}
+  .brand-card-media{padding:22px;}
+  .brand-card-body{padding:22px;}
+  .brand-featured-sec .brand-card-body h3{font-size:20px;line-height:26px;}
+  .brand-featured-sec .brand-card-body p{font-size:15px;line-height:22px;}
+}
+
+
+/* =========================================================
+   Up to 767.98px
+   ========================================================= */
+@media (max-width:767.98px){
+  .brand-intro-sec .brand-intro-copy{margin-bottom:30px;}
+  .brand-intro-sec .brand-intro-copy h1{font-size:26px;line-height:34px;margin-bottom:14px;}
+  .brand-intro-sec .brand-intro-copy p{margin-bottom:14px;}
+  .brand-badges{gap:10px;margin-top:22px;}
+  .brand-badge{width:100%;padding:12px 14px;gap:12px;}
+  .brand-badge-logo{height:28px;}
+  .brand-badge-mark{min-width:46px;height:28px;font-size:14px;}
+  .brand-badge-title{font-size:12px;line-height:16px;}
+  .brand-badge-sub{font-size:14px;line-height:19px;}
+  .brand-dealer-card{max-width:100%;padding:34px 24px;}
+  .brand-dealer-logo{max-width:200px;}
+  .brand-intro-sec .brand-dealer-label{margin-top:14px;font-size:11px;line-height:16px;letter-spacing:.2em;text-indent:.2em;}
+
+  .brand-partner-media-col{margin-bottom:25px;}
+  .brand-partner-sec .brand-partner-copy h2{margin-bottom:15px;}
+  .brand-partner-sec .brand-partner-copy p{margin-bottom:14px;}
+  .brand-partner-sec .brand-partner-cta{margin-top:22px;}
+
+  .brand-featured-sec .brand-featured-grid{row-gap:25px;}
+  .brand-card{border-bottom-width:3px;}
+  .brand-card-media{padding:20px;}
+  .brand-card-media--empty i{font-size:28px;}
+  .brand-card-media--empty span{font-size:13px;line-height:18px;}
+  .brand-card-body{padding:20px;}
+  .brand-featured-sec .brand-card-body h3{font-size:18px;line-height:24px;margin-bottom:10px;}
+  .brand-featured-sec .brand-card-body p{font-size:14px;line-height:22px;}
+  .brand-card-body .link-arrow{margin-top:16px;font-size:15px;line-height:20px;}
+  .brand-card-body .link-arrow i{font-size:14px;}
+}
+
+
+/* =========================================================
+   Up to 400px
+   ========================================================= */
+@media (max-width:400px){
+  .brand-intro-sec .brand-intro-copy h1{font-size:24px;line-height:32px;}
+  .brand-dealer-card{padding:26px 18px;}
+  .brand-dealer-logo{max-width:180px;}
+  .brand-card-media{padding:16px;}
+  .brand-card-body{padding:16px;}
+}

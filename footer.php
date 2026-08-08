@@ -133,6 +133,21 @@
   <script src="src/js/jquery.magnific-popup.min.js"></script>
   <script src="src/js/custom.js"></script>
 
+  <?php
+  /**
+   * Page-specific scripts. A template sets $page_scripts before including
+   * this file and only that page pays for the request — the same
+   * convention as $page_body_class in header.php. These load after
+   * custom.js, because page scripts build on the shared handlers it
+   * registers (Product-page.php's Door Options accordion sits on top of
+   * the .rv-tabs handler, for one).
+   */
+  if (!empty($page_scripts)) :
+      foreach ((array) $page_scripts as $page_script) : ?>
+  <script src="<?php echo htmlspecialchars($page_script, ENT_QUOTES, 'UTF-8'); ?>"></script>
+  <?php endforeach;
+  endif; ?>
+
 </body>
 
 </html>

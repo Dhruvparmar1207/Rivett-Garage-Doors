@@ -4,6 +4,16 @@
 
 
 
+<?php
+/* A page may set $page_title / $page_description before including this
+   file to override the sitewide defaults below — the brand pages do.
+   Every other template is unaffected and keeps the defaults. */
+$rivett_default_title = 'Rivett Architectural Hardware | Garage Doors, Overhead Doors & Hardware Since 1977';
+$rivett_default_desc  = 'Rivett Architectural Hardware Ltd. — residential garage doors, commercial overhead doors, loading dock equipment, hollow metal doors and architectural hardware. Family-owned across Ontario since 1977.';
+
+$rivett_head_title = isset($page_title) && $page_title !== '' ? $page_title : $rivett_default_title;
+$rivett_head_desc  = isset($page_description) && $page_description !== '' ? $page_description : $rivett_default_desc;
+?>
 <head>
 
   <meta charset="UTF-8">
@@ -12,11 +22,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Rivett Architectural Hardware | Garage Doors, Overhead Doors & Hardware Since 1977</title>
+  <title><?php echo htmlspecialchars($rivett_head_title, ENT_QUOTES, 'UTF-8'); ?></title>
 
   <meta name="description"
 
-    content="Rivett Architectural Hardware Ltd. — residential garage doors, commercial overhead doors, loading dock equipment, hollow metal doors and architectural hardware. Family-owned across Ontario since 1977.">
+    content="<?php echo htmlspecialchars($rivett_head_desc, ENT_QUOTES, 'UTF-8'); ?>">
 
 
 
@@ -67,14 +77,24 @@
 
   <link rel="stylesheet" href="src/css/product-page.css">
 
+  <link rel="stylesheet" href="src/css/brand-page.css">
 </head>
 
 
 <?php
 $current_page = basename($_SERVER['PHP_SELF'], ".php");
+
+// A page may add its own body class by setting $page_body_class before
+// including this file — the brand pages tag themselves that way so one
+// stylesheet can serve all of them.
+$rivett_body_class = trim($current_page . ' ' . (isset($page_body_class) ? $page_body_class : ''));
+
+// One tree, two renderers — edit common-sections/nav-menu.php only.
+require_once __DIR__ . '\common-sections\nav-menu.php';
+require_once __DIR__ . '\common-sections\nav-render.php';
 ?>
 
-<body class="<?php echo $current_page; ?>">
+<body class="<?php echo htmlspecialchars($rivett_body_class, ENT_QUOTES, 'UTF-8'); ?>">
 
 
 
@@ -110,107 +130,12 @@ $current_page = basename($_SERVER['PHP_SELF'], ".php");
 
           <nav class="main-nav" id="mainNav" aria-label="Primary">
 
-            <!-- Multi-level hover menu. The markup is depth-agnostic: any <li>
-                 carrying .has-sub reveals its own > ul.nav-submenu, so a branch
-                 can be nested as deeply as the IA needs without extra CSS. -->
-            <ul class="main-nav-list">
-
-              <li class="has-sub">
-                <a href="Residential-Garage-Doors.php" aria-haspopup="true" aria-expanded="false">Residential Garage Doors</a>
-                <ul class="nav-submenu">
-
-                  <li class="has-sub">
-                    <a href="#" aria-haspopup="true" aria-expanded="false">By Series</a>
-                    <ul class="nav-submenu">
-                      <!-- <li class="submenu-heading"><a href="#">By Series</a></li> -->
-                      <li><a href="#">Landmark Series</a></li>
-                      <li><a href="#">Echo Ridge Series</a></li>
-                      <li><a href="#">Rockwood Series</a></li>
-                      <li><a href="#">Grandview Series</a></li>
-                    </ul>
-                  </li>
-
-                  <li class="has-sub">
-                    <a href="#" aria-haspopup="true" aria-expanded="false">By Door Type</a>
-                    <ul class="nav-submenu">
-                      <!-- <li class="submenu-heading"><a href="#">By Door Type</a></li> -->
-                      <li><a href="#">Traditional Garage Doors</a></li>
-                      <li><a href="#">Contemporary Doors</a></li>
-                      <li><a href="#">Carriage House Doors</a></li>
-                      <li><a href="#">Custom Wood Doors</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a href="#">Security Doors & Retractable Screens</a></li>
-
-                  <li class="has-sub">
-                    <a href="#" aria-haspopup="true" aria-expanded="false">Openers</a>
-                    <ul class="nav-submenu">
-                      <!-- <li class="submenu-heading"><a href="#">Openers</a></li> -->
-                      <li><a href="#">LiftMaster Openers</a></li>
-                      <li><a href="#">Guardian Openers</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a href="#">Residential Parts & Service</a></li>
-                </ul>
-              </li>
-
-              <li class="has-sub">
-                <a href="#" aria-haspopup="true" aria-expanded="false">Commercial Overhead Doors</a>
-                <ul class="nav-submenu">
-                  <li><a href="#">Overhead Doors</a></li>
-                  <li><a href="#">Rolling Steel</a></li>
-                  <li><a href="#">High-Speed Specialty Doors</a></li>
-
-                  <li class="has-sub">
-                    <a href="#" aria-haspopup="true" aria-expanded="false">Operators</a>
-                    <ul class="nav-submenu">
-                      <!-- <li class="submenu-heading"><a href="#">Operators</a></li> -->
-                      <li><a href="#">LiftMaster Operators</a></li>
-                      <li><a href="#">Manaras Operators</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a href="#">Commercial Parts & Service</a></li>
-                </ul>
-              </li>
-
-              <li class="has-sub">
-                <a href="#" aria-haspopup="true" aria-expanded="false">Loading Docks</a>
-                <ul class="nav-submenu">
-                  <li><a href="#">Dock Levelers</a></li>
-                  <li><a href="#">Dock Seal</a></li>
-                  <li><a href="#">Dock Shelters</a></li>
-                  <li><a href="#">Dock Enclosures</a></li>
-                  <li><a href="#">Bumpers</a></li>
-                  <li><a href="#">Accessories</a></li>
-                </ul>
-              </li>
-
-              <li class="has-sub">
-                <a href="#" aria-haspopup="true" aria-expanded="false">Security Shutters</a>
-                <ul class="nav-submenu">
-                  <li><a href="#">Pentagon</a></li>
-                  <li><a href="#">Ultra Lite</a></li>
-                  <li><a href="#">Roll Pro</a></li>
-                  <li><a href="#">Retractable Screens</a></li>
-                </ul>
-              </li>
-
-              <li class="has-sub">
-                <a href="#" aria-haspopup="true" aria-expanded="false">Doors & Hardware</a>
-                <ul class="nav-submenu">
-                  <li><a href="#">Hollow Metal & Steel Doors</a></li>
-                  <li><a href="#">Wood Doors</a></li>
-                  <li><a href="#">Specialty Doors</a></li>
-                  <li><a href="#">Traffic & Impact Doors</a></li>
-                  <li><a href="#">Hardware & Parts</a></li>
-                  <li><a href="#">Commercial Parts & Service</a></li>
-                </ul>
-              </li>
-
-            </ul>
+            <!-- Rendered from common-sections/nav-menu.php — edit the tree
+                 there and both this menu and the mobile drawer follow. The
+                 markup stays depth-agnostic: any <li> carrying .has-sub
+                 reveals its own > ul.nav-submenu, so a branch can nest as
+                 deeply as the IA needs without extra CSS. -->
+            <?php rivett_desktop_nav($RIVETT_NAV); ?>
 
           </nav>
 
@@ -295,34 +220,14 @@ $current_page = basename($_SERVER['PHP_SELF'], ".php");
                             </div>
                         </div>
                         <div class="mobile-navigation-menu">
-                            <ul>
-                                <li><a class="" href="">Home</a></li>
-                                <li><a href="">About</a></li>
-
-                                <li class="mobile-drop-list">
-                                    <span><a href="#">Residential Garage Doors</a></span>
-                                    <div class="sub-menu main-submenu ">
-                                        <ul class="main-inner-sub-menu">
-                                            <li class="menu-title-tag"><a href="">Residential Garage Doors</a></li>
-                                            <li><a href="">Residential</a></li>
-                                            <li><a href="">By Series</a></li>
-                                            <li><a href="">By Door Type</a></li>
-                                            <li><a href="">Security Doors and Retractable Screens</a></li>
-                                            <li><a href="">Openers</a></li>
-                                        </ul>
-
-                                    </div>
-                                </li>
-
-
-
-                                <li><a href="">Commercial Overhead Doors</a></li>
-                                <li><a href="">Loading Docks</a></li>
-                                <li><a href="">Security Shutters</a></li>
-                                <li><a href="">Doors & Hardware</a></li>
-                            </ul>
+                            <!-- Same tree as the desktop menu, rendered as the
+                                 drill-down drawer: every branch is a
+                                 li.mobile-drop-list whose div.sub-menu panel
+                                 slides in over the one before it, at any depth.
+                                 custom.js injects the Back bar. -->
+                            <?php rivett_mobile_nav($RIVETT_NAV); ?>
                             <div class="mobile-btn-nav header-btn">
-                                <a href="">Emergency overhead door service</a>
+                                <a href="<?php echo htmlspecialchars($RIVETT_NAV_CTA['url'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($RIVETT_NAV_CTA['label'], ENT_QUOTES, 'UTF-8'); ?></a>
                             </div>
 
                         </div>
