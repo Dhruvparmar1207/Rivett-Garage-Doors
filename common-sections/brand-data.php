@@ -66,7 +66,7 @@ $RIVETT_BRANDS = [
         'dealer_label' => 'Authorized Dealer',
 
         'logo' => [
-            'src'    => 'src/images/brand-liftmaster-icon.webp',
+            'src'    => 'src/images/listmaster-author-dealar-logo.webp',
             'alt'    => 'LiftMaster',
             'width'  => 292,
             'height' => 35,
@@ -86,10 +86,10 @@ $RIVETT_BRANDS = [
             'badges' => [
                 [
                     'mark'  => 'myQ',
-                    'title' => 'Openers connected to',
+                    'title' => 'Seamless connectivity',
                     'text'  => 'Works with myQ® App',
                     'logo'  => [
-                        'src' => 'src/images/brands/liftmaster/myq-logo.webp',
+                        'src' => 'src/images/myq-icon-logo.svg',
                         'alt' => 'myQ',
                     ],
                 ],
@@ -113,27 +113,66 @@ $RIVETT_BRANDS = [
 
         'featured' => [
             'heading' => 'Featured LiftMaster® Openers',
-            'intro'   => 'A few of the most popular models we install. Ask us to match one to your door.',
+            'intro'   => 'A few of the most popular models we install. Tap any opener for full specs, or ask us to match one to your door.',
             'items'   => [
                 [
                     'title' => 'LiftMaster 98022',
                     'text'  => 'Premium Series DC Battery Backup Wall Mount Wi-Fi Garage Door Opener.',
-                    'image' => ['src' => 'src/images/brands/liftmaster/liftmaster-98022.webp', 'alt' => 'LiftMaster 98022 wall mount garage door opener'],
+                    'image' => ['src' => 'src/images/liftmaster-98022-product-img.webp', 'alt' => 'LiftMaster 98022 wall mount garage door opener'],
                 ],
                 [
                     'title' => 'LiftMaster 98032',
                     'text'  => 'Premium Series Heavy Duty DC Battery Backup Wall Mount Wi-Fi Garage Door Opener.',
-                    'image' => ['src' => 'src/images/brands/liftmaster/liftmaster-98032.webp', 'alt' => 'LiftMaster 98032 heavy duty wall mount garage door opener'],
+                    'image' => ['src' => 'src/images/liftmaster-98032-product-img.webp', 'alt' => 'LiftMaster 98032 heavy duty wall mount garage door opener'],
                 ],
                 [
                     'title' => 'LiftMaster 6580L',
                     'text'  => 'LiftMaster 1 HP Belt Drive Opener with Battery Backup and myQ® Connectivity.',
-                    'image' => ['src' => 'src/images/brands/liftmaster/liftmaster-6580l.webp', 'alt' => 'LiftMaster 6580L belt drive garage door opener'],
+                    'image' => ['src' => 'src/images/liftmaster-6580L-product-img.webp', 'alt' => 'LiftMaster 6580L belt drive garage door opener'],
                 ],
                 [
                     'title' => 'LiftMaster 2220L',
                     'text'  => '3/4 HP Chain Drive Opener with Built-In Camera and myQ® Connectivity.',
-                    'image' => ['src' => 'src/images/brands/liftmaster/liftmaster-2220l.webp', 'alt' => 'LiftMaster 2220L chain drive garage door opener'],
+                    'image' => ['src' => 'src/images/liftmaster-2220L-product-img.webp', 'alt' => 'LiftMaster 2220L chain drive garage door opener'],
+                ],
+            ],
+        ],
+
+        /* The dark band above the services row. 'cta' is deliberately
+           absent: the approved design ends at the paragraph. */
+        'cta_banner' => [
+            'heading' => 'Not Sure Which Opener You Need?',
+            'phone'   => ['label' => 'Call 1 (905) 668-4455', 'href' => 'tel:19056684455'],
+            'text'    => 'and tell us what you need. We\'ll match you to the right LiftMaster® opener and schedule your free estimate.',
+        ],
+
+        /* Four-up service cards. 'icon' takes either a 'class' (icon font,
+           what the approved design uses) or a 'src' — supply artwork at a
+           path that exists and the renderer switches to it on its own. Add
+           a 'url' to any item to turn that card into a link. */
+        'services' => [
+            'heading' => 'LiftMaster® Garage Door Services We Offer',
+            'intro'   => 'From selection to expert installation, our team provides full-service support for LiftMaster® openers.',
+            'items'   => [
+                [
+                    'icon'  => ['src' => 'src/images/opener-installationicon.svg'],
+                    'title' => 'Opener Installation',
+                    'text'  => 'Wi-Fi-enabled, belt-drive, chain-drive and wall-mount openers.',
+                ],
+                [
+                    'icon'  => ['src' => 'src/images/opener-repair-icon.svg'],
+                    'title' => 'Opener Repairs',
+                    'text'  => 'Troubleshoot and fix malfunctioning remotes, sensors and motors.',
+                ],
+                [
+                    'icon'  => ['src' => 'src/images/maintenence-tune-icon.svg'],
+                    'title' => 'Maintenance & Tune-Ups',
+                    'text'  => 'Keep your opener operating smoothly and securely year-round.',
+                ],
+                [
+                    'icon'  => ['src' => 'src/images/accessories-upgrades-icon.svg'],
+                    'title' => 'Accessories & Upgrades',
+                    'text'  => 'Add keypads, cameras, smartphone control and safety enhancements.',
                 ],
             ],
         ],
@@ -222,6 +261,45 @@ $RIVETT_BRANDS = [
                 ],
             ],
         ],
+
+        /* The dark band above the services row. 'cta' is deliberately
+           absent: the approved design ends at the paragraph. */
+        'cta_banner' => [
+            'heading' => 'Not Sure Which Door Suits Your Home?',
+            'phone'   => ['label' => 'Call 1 (905) 668-4455', 'href' => 'tel:19056684455'],
+            'text'    => 'and tell us what you are working with. We will match you to the right Richards-Wilcox door and book your free measure.',
+        ],
+
+        /* Four-up service cards. 'icon' takes either a 'class' (icon font,
+           what the approved design uses) or a 'src' — supply artwork at a
+           path that exists and the renderer switches to it on its own. Add
+           a 'url' to any item to turn that card into a link. */
+        'services' => [
+            'heading' => 'Richards-Wilcox Garage Door Services We Offer',
+            'intro'   => 'From on-site measuring to installation and after-care, our own technicians handle every Richards-Wilcox door we supply.',
+            'items'   => [
+                [
+                    'icon'  => ['class' => 'fa-solid fa-ruler-combined'],
+                    'title' => 'On-Site Measuring',
+                    'text'  => 'Exact openings measured before anything is ordered or built.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-warehouse'],
+                    'title' => 'Door Installation',
+                    'text'  => 'Insulated, carriage-house and contemporary doors fitted by our crews.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-screwdriver-wrench'],
+                    'title' => 'Springs, Cables & Repairs',
+                    'text'  => 'Broken springs, frayed cables and off-track doors put right.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-circle-up'],
+                    'title' => 'Windows & Insulation',
+                    'text'  => 'Add glazing, upgrade R-value and refresh hardware on an existing door.',
+                ],
+            ],
+        ],
     ],
 
 
@@ -301,6 +379,45 @@ $RIVETT_BRANDS = [
                 ],
             ],
         ],
+
+        /* The dark band above the services row. 'cta' is deliberately
+           absent: the approved design ends at the paragraph. */
+        'cta_banner' => [
+            'heading' => 'Not Sure Which Wayne Dalton Door You Need?',
+            'phone'   => ['label' => 'Call 1 (905) 668-4455', 'href' => 'tel:19056684455'],
+            'text'    => 'and tell us what the opening has to do. We will match you to the right Wayne Dalton door and schedule your free estimate.',
+        ],
+
+        /* Four-up service cards. 'icon' takes either a 'class' (icon font,
+           what the approved design uses) or a 'src' — supply artwork at a
+           path that exists and the renderer switches to it on its own. Add
+           a 'url' to any item to turn that card into a link. */
+        'services' => [
+            'heading' => 'Wayne Dalton Door Services We Offer',
+            'intro'   => 'Residential or commercial, we supply, install and service the full Wayne Dalton line from our own shop.',
+            'items'   => [
+                [
+                    'icon'  => ['class' => 'fa-solid fa-warehouse'],
+                    'title' => 'Residential Installation',
+                    'text'  => 'Insulated steel, carriage-house and contemporary garage doors.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-truck-fast'],
+                    'title' => 'Commercial & Rolling Doors',
+                    'text'  => 'Sectional, rolling steel and high-traffic doors for busy sites.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-screwdriver-wrench'],
+                    'title' => 'Repairs & Parts',
+                    'text'  => 'Sections, springs, rollers and hardware replaced from stock.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-hand-holding-hand'],
+                    'title' => 'Planned Maintenance',
+                    'text'  => 'Scheduled servicing that keeps doors moving and downtime down.',
+                ],
+            ],
+        ],
     ],
 
 
@@ -377,6 +494,45 @@ $RIVETT_BRANDS = [
                     'title' => '351 Series Door Closers',
                     'text'  => 'Surface-mounted closers with adjustable spring power for barrier-free compliance.',
                     'image' => ['src' => 'src/images/brands/sargent/351-door-closers.webp', 'alt' => 'Sargent 351 Series surface door closer'],
+                ],
+            ],
+        ],
+
+        /* The dark band above the services row. 'cta' is deliberately
+           absent: the approved design ends at the paragraph. */
+        'cta_banner' => [
+            'heading' => 'Not Sure Which Sargent Hardware to Specify?',
+            'phone'   => ['label' => 'Call 1 (905) 668-4455', 'href' => 'tel:19056684455'],
+            'text'    => 'and tell us about the opening. Our hardware consultants will work the schedule with you and quote it.',
+        ],
+
+        /* Four-up service cards. 'icon' takes either a 'class' (icon font,
+           what the approved design uses) or a 'src' — supply artwork at a
+           path that exists and the renderer switches to it on its own. Add
+           a 'url' to any item to turn that card into a link. */
+        'services' => [
+            'heading' => 'Sargent Hardware Services We Offer',
+            'intro'   => 'Our hardware consultants specify, supply and support Sargent products on commercial and institutional projects.',
+            'items'   => [
+                [
+                    'icon'  => ['class' => 'fa-solid fa-clipboard-list'],
+                    'title' => 'Hardware Scheduling',
+                    'text'  => 'Door-by-door schedules written to Ontario Building Code and fire code.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-shield-halved'],
+                    'title' => 'Exit & Fire-Rated Devices',
+                    'text'  => 'Panic hardware and labelled assemblies specified to the opening.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-key'],
+                    'title' => 'Keying & Masterkeying',
+                    'text'  => 'Cylinders keyed, stamped and documented before they leave the counter.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-screwdriver-wrench'],
+                    'title' => 'Service & Retrofit',
+                    'text'  => 'Closers, locks and exit devices repaired or upgraded in place.',
                 ],
             ],
         ],
@@ -461,6 +617,45 @@ $RIVETT_BRANDS = [
                 ],
             ],
         ],
+
+        /* The dark band above the services row. 'cta' is deliberately
+           absent: the approved design ends at the paragraph. */
+        'cta_banner' => [
+            'heading' => 'Not Sure What Your Openings Need?',
+            'phone'   => ['label' => 'Call 1 (905) 668-4455', 'href' => 'tel:19056684455'],
+            'text'    => 'and send us your drawings. We will take the openings off, prep the doors and frames, and quote the package.',
+        ],
+
+        /* Four-up service cards. 'icon' takes either a 'class' (icon font,
+           what the approved design uses) or a 'src' — supply artwork at a
+           path that exists and the renderer switches to it on its own. Add
+           a 'url' to any item to turn that card into a link. */
+        'services' => [
+            'heading' => 'Daybar Door & Frame Services We Offer',
+            'intro'   => 'Hollow metal doors and frames supplied, prepped and delivered ready to install.',
+            'items'   => [
+                [
+                    'icon'  => ['class' => 'fa-solid fa-ruler-combined'],
+                    'title' => 'Take-Offs & Sizing',
+                    'text'  => 'Openings sized and scheduled from your drawings before fabrication.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-door-closed'],
+                    'title' => 'Doors & Frames Supply',
+                    'text'  => 'Standard and custom hollow metal doors, frames and borrowed lights.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-fire-flame-curved'],
+                    'title' => 'Fire-Rated Assemblies',
+                    'text'  => 'Labelled doors and frames certified for the rating the opening needs.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-truck-fast'],
+                    'title' => 'Prep & Delivery',
+                    'text'  => 'Machined for your hardware and delivered to site on your schedule.',
+                ],
+            ],
+        ],
     ],
 
 
@@ -537,6 +732,45 @@ $RIVETT_BRANDS = [
                     'title' => 'Primus® High-Security Cylinders',
                     'text'  => 'Patented key control for openings where key duplication has to be restricted.',
                     'image' => ['src' => 'src/images/brands/schlage/primus-cylinders.webp', 'alt' => 'Schlage Primus high-security cylinder'],
+                ],
+            ],
+        ],
+
+        /* The dark band above the services row. 'cta' is deliberately
+           absent: the approved design ends at the paragraph. */
+        'cta_banner' => [
+            'heading' => 'Not Sure Which Schlage Hardware You Need?',
+            'phone'   => ['label' => 'Call 1 (905) 668-4455', 'href' => 'tel:19056684455'],
+            'text'    => 'and tell us what the door has to do. We will specify it, key it and have it ready at the counter.',
+        ],
+
+        /* Four-up service cards. 'icon' takes either a 'class' (icon font,
+           what the approved design uses) or a 'src' — supply artwork at a
+           path that exists and the renderer switches to it on its own. Add
+           a 'url' to any item to turn that card into a link. */
+        'services' => [
+            'heading' => 'Schlage Hardware Services We Offer',
+            'intro'   => 'Locks, cylinders and access hardware supplied, keyed and serviced from our Whitby counter.',
+            'items'   => [
+                [
+                    'icon'  => ['class' => 'fa-solid fa-lock'],
+                    'title' => 'Lock Supply & Fitting',
+                    'text'  => 'Residential and commercial locksets matched to the door and frame.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-key'],
+                    'title' => 'Keying & Masterkeying',
+                    'text'  => 'Cylinders keyed alike, keyed different or built into a master system.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-clipboard-list'],
+                    'title' => 'Hardware Specification',
+                    'text'  => 'Schedules prepared for architects, GCs and building owners.',
+                ],
+                [
+                    'icon'  => ['class' => 'fa-solid fa-screwdriver-wrench'],
+                    'title' => 'Service & Rekeying',
+                    'text'  => 'Existing hardware repaired, rekeyed or upgraded without replacing the door.',
                 ],
             ],
         ],

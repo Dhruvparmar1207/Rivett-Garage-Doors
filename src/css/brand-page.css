@@ -18,26 +18,32 @@
    columns are top-aligned: the card sizes to its own content
    rather than stretching to the height of the copy.
    ========================================================= */
-.brand-intro-sec .row{align-items:flex-start;}
+.brand-intro-sec{background-color: #f8f8f8;}   
+/* .brand-intro-sec .row{align-items:flex-start;} */
 .brand-intro-sec .brand-intro-copy{padding-right:70px;}
 
-.brand-intro-sec .brand-intro-copy h1{font-family:'Prompt',sans-serif;font-weight:600;font-size:44px;line-height:54px;letter-spacing:0;text-align:left;color:#000;margin-bottom:26px;}
+
+.brand-intro-sec h1{font-family:'Prompt',sans-serif;font-weight:600;font-size:50px;line-height:67px;letter-spacing:0;text-align:left;color:#000;margin-bottom:20px;}
 .brand-intro-sec .brand-intro-copy p{margin-bottom:20px;}
+.brand-intro-sec .brand-intro-copy p:last-of-type{margin-bottom: 0;}
+
+.brand-page .mobile-heading{display: none !important;}
+.brand-intro-sec h1.mobile-heading{display: none !important;}
 
 /* --- Partner / capability badges --- */
 .brand-badges{list-style:none;display:flex;flex-wrap:wrap;gap:16px;margin:34px 0 0;padding:0;}
-.brand-badge{display:flex;align-items:center;gap:14px;margin:0;padding:14px 20px;border:1px solid #e6e6e6;background:#fff;}
-.brand-badge-logo{flex:none;width:auto;height:36px;}
+.brand-badge{display:flex;align-items:center;gap:18px;margin:0;padding:25px;border:1px solid #e6e6e6;background:#fff;}
+.brand-badge-logo{flex:none;width:auto;height:auto;}
 /* Stands in for a partner logo we have not been supplied. Set in the
    site's own type on purpose — a placeholder, never an imitation. */
 .brand-badge-mark{flex:none;display:flex;align-items:center;justify-content:center;min-width:56px;height:36px;padding:0 10px;background:#f4f5f6;border:1px solid #e6e6e6;font-family:'Prompt',sans-serif;font-weight:600;font-size:16px;line-height:1;color:#1a1a18;}
-.brand-badge-text{display:flex;flex-direction:column;gap:4px;}
-.brand-badge-title{font-family:'DM Sans',sans-serif;font-weight:400;font-size:13px;line-height:18px;color:#666;}
-.brand-badge-sub{font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;line-height:20px;color:#1a1a18;}
+.brand-badge-text{display:flex;flex-direction:column;gap:0;}
+.brand-badge-title{font-family: 'DM Sans',sans-serif; font-weight: 400; font-size: 16px; line-height:20px;color: 333;}
+.brand-badge-sub{font-family:'DM Sans',sans-serif;font-weight:500;font-size:18px;line-height:26px;color:#000;}
 
 /* --- Dealer logo card --- */
-.brand-dealer-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;border:1px solid #e6e6e6;background:#fff;text-align:center;}
-.brand-dealer-logo{display:block;width:100%;max-width:300px;height:auto;}
+.brand-dealer-card{display:flex;flex-direction:column;align-items:center;justify-content:center;height: 100%;padding:0 60px;border:1px solid #e6e6e6;background:#fff;text-align:center;}
+.brand-dealer-logo{display:block;width:auto;height:auto;}
 /* text-indent cancels the trailing letter-space so the caption stays
    optically centred under the wordmark. */
 .brand-intro-sec .brand-dealer-label{margin:22px 0 0;font-family:'DM Sans',sans-serif;font-weight:500;font-size:14px;line-height:20px;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:#1a1a18;}
@@ -47,7 +53,7 @@
    SECTION 2 - PARTNER BAND
    Photograph and "what Rivett adds" copy, on the shared light grey.
    ========================================================= */
-.brand-partner-sec{background:#f9f9f9;}
+
 .brand-partner-media{margin:0;}
 .brand-partner-media img{display:block;width:100%;height:auto;}
 .brand-partner-copy{padding-left:60px;}
@@ -62,15 +68,16 @@
    long description never leaves a short neighbour with a floating
    red rule.
    ========================================================= */
+.brand-featured-sec{background-color: #F8F8F8;}
 .brand-featured-sec .row{justify-content:center;}
 .brand-featured-sec .brand-featured-grid{row-gap:50px;}
 
-.brand-card{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid #ececec;border-bottom:4px solid #EE3A43;}
+.brand-card{display:flex;flex-direction:column;height:100%;background:#fff;border:0;border-bottom:4px solid #EE3A43;}
 
 /* Fixed ratio on the media box, contain on the image: openers are tall
    and door panels are wide, and both have to sit in the same grid
    without changing the card's height. */
-.brand-card-media{display:flex;align-items:center;justify-content:center;aspect-ratio:810/398;padding:30px;background:#fff;overflow:hidden;}
+.brand-card-media{display:flex;align-items:center;justify-content:center;padding:40px;background:#fff;overflow:hidden;height: 100%;}
 .brand-card-media img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;}
 
 /* Opt-in for photography rather than an isolated product shot: the
@@ -86,12 +93,61 @@
 .brand-card-media--empty span{font-family:'DM Sans',sans-serif;font-size:14px;line-height:20px;text-align:center;}
 
 .brand-card-body{display:flex;flex-direction:column;flex:1;padding:30px;}
-.brand-featured-sec .brand-card-body h3{font-family:'Prompt',sans-serif;font-weight:600;font-size:24px;line-height:30px;letter-spacing:0;color:#000;margin-bottom:12px;}
-.brand-featured-sec .brand-card-body p{font-size:16px;line-height:24px;margin-bottom:0;}
+.brand-featured-sec .brand-card-body h3{font-family:'Prompt',sans-serif;font-weight:600;font-size:28px;line-height:26px;letter-spacing:0;color:#000;margin-bottom:20px;}
+.brand-featured-sec .brand-card-body ul li,
+.brand-featured-sec .brand-card-body p{font-size:18px;line-height:24px;margin-bottom:15px;}
+
+
+.brand-featured-sec .brand-card-body ul li:last-of-type,
+.brand-featured-sec .brand-card-body p:last-of-type{margin-bottom: 0;}
+
+
+/* .brand-featured-sec .brand-card-body ul li{} */
 .brand-card-body .link-arrow{margin-top:24px;width:max-content;}
 .brand-card-body .link-arrow i{font-size:18px;}
 .brand-card-body .link-arrow:focus-visible{outline:2px solid #EE3A43;outline-offset:3px;}
 
+
+/* =========================================================
+   SECTIONS 4 & 5 - CTA BANNER + SERVICES ROW
+
+   Both sections keep the site-wide .cta-start-banner and
+   .why-choose-sec classes, so the dark band, its inner white frame,
+   the negative margin that pulls this card row up underneath it and
+   the light background all come from the existing shared rules. None
+   of that is restated or overridden below — the banner needs no brand
+   CSS at all, and .brand-cta-banner exists purely as a hook in case it
+   ever does.
+
+   What is new is only the card row, under class names of its own
+   rather than the homepage's .why-choose-grid / .choose-item, so a
+   four-up card layout is reached by adding rules instead of fighting
+   the two-up icon list those classes describe.
+
+   Everything is scoped to .brand-page (set as the body class in
+   brand-page.php), so none of it can reach another template.
+
+   Deliberately absent: any heading or paragraph rule. The h2, h3 and p
+   inside these cards are left entirely to the shared .rivett-cmn
+   typography, which is what the reference design shows.
+   ========================================================= */
+.brand-page .brand-services-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;}
+
+/* Grid stretch already matches every card in the row to the tallest,
+   so the boxes stay level however long a description runs. */
+.brand-page .brand-service-card{display:flex;flex-direction:column;padding:30px;border:1px solid #e6e6e6;background:#fff;text-align:center;}
+
+/* Only a card that was given a 'url' renders as an anchor. */
+.brand-page a.brand-service-card{text-decoration:none;transition:border-color .25s ease;}
+.brand-page a.brand-service-card:hover{border-color:#EE3A43;}
+.brand-page a.brand-service-card:focus-visible{outline:2px solid #EE3A43;outline-offset:3px;}
+
+
+/* Fixed height so an icon-font glyph and a supplied image occupy the
+   same box, and the cards line up either way. */
+.brand-page .brand-service-icon{display:flex;align-items:center;justify-content:center;margin-bottom:30px;color:#EE3A43;font-size:34px;line-height:1;}
+.brand-page .brand-service-icon img{display:block;width:auto;height:100%;object-fit:contain;}
+.brand-page .brand-service-card h3{margin-bottom: 15px;}
 
 /* =========================================================
    UNKNOWN BRAND
@@ -104,9 +160,16 @@
    ========================================================= */
 @media (min-width:1401px) and (max-width:1800px){
   .brand-intro-sec .brand-intro-copy{padding-right:55px;}
-  .brand-intro-sec .brand-intro-copy h1{font-size:40px;line-height:50px;margin-bottom:22px;}
+  .brand-intro-sec h1{font-size:40px;line-height:50px;margin-bottom:22px;}
   .brand-dealer-card{padding:50px 35px;}
   .brand-dealer-logo{max-width:280px;}
+
+   .brand-badge-logo{height:30px;}
+     .brand-badge-mark{min-width:48px;height:30px;font-size:12px;}
+  .brand-badge-sub{font-size:14px;line-height:19px;}
+
+  .brand-card-media{min-height: 400px;}
+  .brand-card-media img{max-height: 260px;}
 
   .brand-partner-copy{padding-left:50px;}
   .brand-partner-sec .brand-partner-cta{margin-top:30px;}
@@ -114,6 +177,9 @@
   .brand-featured-sec .brand-featured-grid{row-gap:44px;}
   .brand-card-body{padding:28px;}
   .brand-featured-sec .brand-card-body h3{font-size:22px;line-height:28px;}
+
+  .brand-page .brand-services-grid{gap:24px;}
+  .brand-page .brand-service-card{padding:36px 22px;}
 }
 
 
@@ -122,13 +188,20 @@
    ========================================================= */
 @media (min-width:1200px) and (max-width:1399.99px){
   .brand-intro-sec .brand-intro-copy{padding-right:45px;}
-  .brand-intro-sec .brand-intro-copy h1{font-size:36px;line-height:46px;margin-bottom:20px;}
+  .brand-intro-sec h1{font-size:36px;line-height:46px;margin-bottom:20px;}
   .brand-intro-sec .brand-intro-copy p{margin-bottom:18px;}
   .brand-badges{gap:14px;margin-top:30px;}
   .brand-badge{padding:12px 16px;gap:12px;}
   .brand-dealer-card{padding:45px 30px;}
   .brand-dealer-logo{max-width:260px;}
   .brand-intro-sec .brand-dealer-label{margin-top:18px;font-size:13px;letter-spacing:.24em;text-indent:.24em;}
+
+  .brand-badge-logo{height:30px;}
+  .brand-badge-mark{min-width:48px;height:30px;font-size:12px;}
+  .brand-badge-sub{font-size:14px;line-height:19px;}
+
+    .brand-card-media{min-height: 350px;}
+  .brand-card-media img{max-height: 260px;}
 
   .brand-partner-copy{padding-left:40px;}
   .brand-partner-sec .brand-partner-copy h2{margin-bottom:20px;}
@@ -138,9 +211,13 @@
   .brand-featured-sec .brand-featured-grid{row-gap:40px;}
   .brand-card-body{padding:26px;}
   .brand-featured-sec .brand-card-body h3{font-size:21px;line-height:28px;}
-  .brand-featured-sec .brand-card-body p{font-size:15px;line-height:23px;}
+  .brand-featured-sec .brand-card-body ul li,
+.brand-featured-sec .brand-card-body p{font-size:15px;line-height:23px;}
   .brand-card-body .link-arrow{margin-top:20px;font-size:17px;}
   .brand-card-media{padding:26px;}
+
+  .brand-page .brand-services-grid{gap:20px;}
+  .brand-page .brand-service-card{padding:32px 20px;}
 }
 
 
@@ -149,7 +226,7 @@
    ========================================================= */
 @media (min-width:992px) and (max-width:1199.98px){
   .brand-intro-sec .brand-intro-copy{padding-right:32px;}
-  .brand-intro-sec .brand-intro-copy h1{font-size:32px;line-height:42px;margin-bottom:18px;}
+  .brand-intro-sec h1{font-size:32px;line-height:42px;margin-bottom:18px;}
   .brand-intro-sec .brand-intro-copy p{margin-bottom:16px;}
   .brand-badges{gap:12px;margin-top:26px;}
   .brand-badge{padding:12px 14px;gap:10px;}
@@ -169,9 +246,16 @@
   .brand-card-media{padding:22px;}
   .brand-card-body{padding:22px;}
   .brand-featured-sec .brand-card-body h3{font-size:20px;line-height:26px;}
-  .brand-featured-sec .brand-card-body p{font-size:15px;line-height:22px;}
+  .brand-featured-sec .brand-card-body ul li,
+.brand-featured-sec .brand-card-body p{font-size:15px;line-height:22px;}
   .brand-card-body .link-arrow{margin-top:18px;font-size:16px;}
   .brand-card-body .link-arrow i{font-size:16px;}
+
+  /* Still four across — the row is what the design reads as — but the
+     box and the glyph both come in so the titles keep to two lines. */
+  .brand-page .brand-services-grid{gap:18px;}
+  .brand-page .brand-service-card{padding:28px 16px;}
+  .brand-page .brand-service-icon{height:42px;margin-bottom:18px;font-size:30px;}
 }
 
 
@@ -182,12 +266,25 @@
    spanning the full container.
    ========================================================= */
 @media (max-width:991.98px){
-  .brand-intro-sec .brand-intro-copy{padding-right:calc(var(--bs-gutter-x, 1.5rem) * .5);margin-bottom:40px;}
-  .brand-intro-sec .brand-intro-copy h1{font-size:32px;line-height:42px;margin-bottom:18px;}
-  .brand-intro-sec .brand-intro-copy p{margin-bottom:16px;}
+.brand-intro-sec h1.desktop-heading{display: none;}
+.brand-intro-sec h1.mobile-heading{display: block !important;}
+.brand-page .desktop-heading{display: none !important;}
+.brand-page .mobile-heading{display: block !important;}
+
+  .brand-intro-sec .brand-intro-copy{padding-right:calc(var(--bs-gutter-x, 1.5rem) * .5);margin-bottom:0;order: 2;margin-top: 20px;}
+  .brand-intro-sec h1{font-size:32px;line-height:42px;margin-bottom:18px;}
+  .brand-intro-sec .brand-intro-copy p{margin-bottom:16px;;}
   .brand-badges{gap:12px;margin-top:26px;}
-  .brand-dealer-card{max-width:520px;margin:0 auto;padding:45px 30px;}
-  .brand-dealer-logo{max-width:250px;}
+  .brand-dealer-card{max-width:100%;margin:0 auto;padding:45px 100px;height: 300px;}
+  .brand-dealer-logo{max-width:100%;width: auto;height: auto;}
+
+  .brand-badge-logo{height:35px;}
+  .brand-badge-mark{min-width:46px;height:28px;font-size:14px;}
+  .brand-badge-title{font-size:12px;line-height:16px;}
+  .brand-badge-sub{font-size:14px;line-height:19px;}
+
+  .brand-card-media{min-height: 300px;}
+  .brand-card-media img{max-height: 250px;}
 
   .brand-partner-media-col{margin-bottom:34px;}
   .brand-partner-copy{padding-left:calc(var(--bs-gutter-x, 1.5rem) * .5);}
@@ -195,11 +292,21 @@
   .brand-partner-sec .brand-partner-copy p{margin-bottom:16px;}
   .brand-partner-sec .brand-partner-cta{margin-top:26px;}
 
+
+
   .brand-featured-sec .brand-featured-grid{row-gap:30px;}
-  .brand-card-media{padding:22px;}
-  .brand-card-body{padding:22px;}
+  .brand-card-media{padding:30px;}
+  .brand-card-body{padding:30px;}
   .brand-featured-sec .brand-card-body h3{font-size:20px;line-height:26px;}
-  .brand-featured-sec .brand-card-body p{font-size:15px;line-height:22px;}
+  .brand-featured-sec .brand-card-body ul li,
+.brand-featured-sec .brand-card-body p{font-size:15px;line-height:22px;}
+
+  /* Four across is too narrow to read once the container stacks, so the
+     row folds to a 2x2 — the cards keep their proportions rather than
+     turning into four slivers. */
+  .brand-page .brand-services-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  .brand-page .brand-service-card{padding:30px 22px;}
+  .brand-page .brand-service-icon{height:44px;margin-bottom:18px;font-size:32px;}
 }
 
 
@@ -207,17 +314,24 @@
    Up to 767.98px
    ========================================================= */
 @media (max-width:767.98px){
-  .brand-intro-sec .brand-intro-copy{margin-bottom:30px;}
-  .brand-intro-sec .brand-intro-copy h1{font-size:26px;line-height:34px;margin-bottom:14px;}
+
+.brand-intro-sec h1.desktop-heading{display: none;}
+.brand-intro-sec h1.mobile-heading{display: block !important;}
+.brand-page .desktop-heading{display: none !important;}
+.brand-page .mobile-heading{display: block !important;}
+
+
+  .brand-intro-sec .brand-intro-copy{margin-top:20px;order: 2;}
+  .brand-intro-sec h1{font-size:26px;line-height:34px;margin-bottom:20px;}
   .brand-intro-sec .brand-intro-copy p{margin-bottom:14px;}
   .brand-badges{gap:10px;margin-top:22px;}
-  .brand-badge{width:100%;padding:12px 14px;gap:12px;}
+  .brand-badge{width:80%;padding:12px 14px;gap:12px;}
   .brand-badge-logo{height:28px;}
   .brand-badge-mark{min-width:46px;height:28px;font-size:14px;}
   .brand-badge-title{font-size:12px;line-height:16px;}
   .brand-badge-sub{font-size:14px;line-height:19px;}
-  .brand-dealer-card{max-width:100%;padding:34px 24px;}
-  .brand-dealer-logo{max-width:200px;}
+  .brand-dealer-card{max-width:100%;padding:0 40px;height: 200px; }
+  .brand-dealer-logo{max-width:100%;width: auto;height: auto;}
   .brand-intro-sec .brand-dealer-label{margin-top:14px;font-size:11px;line-height:16px;letter-spacing:.2em;text-indent:.2em;}
 
   .brand-partner-media-col{margin-bottom:25px;}
@@ -227,14 +341,21 @@
 
   .brand-featured-sec .brand-featured-grid{row-gap:25px;}
   .brand-card{border-bottom-width:3px;}
-  .brand-card-media{padding:20px;}
+  .brand-card-media{padding:20px;min-height:300px;}
+  .brand-card-media img{max-height: 250px;}
   .brand-card-media--empty i{font-size:28px;}
   .brand-card-media--empty span{font-size:13px;line-height:18px;}
   .brand-card-body{padding:20px;}
   .brand-featured-sec .brand-card-body h3{font-size:18px;line-height:24px;margin-bottom:10px;}
-  .brand-featured-sec .brand-card-body p{font-size:14px;line-height:22px;}
+  .brand-featured-sec .brand-card-body ul li,
+.brand-featured-sec .brand-card-body p{font-size:14px;line-height:22px;}
   .brand-card-body .link-arrow{margin-top:16px;font-size:15px;line-height:20px;}
   .brand-card-body .link-arrow i{font-size:14px;}
+
+
+  .brand-page .brand-services-grid{grid-template-columns: 1fr;}
+  .brand-cta-banner.cta-start-banner .start-banner h2{max-width: 100%;}
+
 }
 
 
@@ -242,9 +363,7 @@
    Up to 400px
    ========================================================= */
 @media (max-width:400px){
-  .brand-intro-sec .brand-intro-copy h1{font-size:24px;line-height:32px;}
-  .brand-dealer-card{padding:26px 18px;}
-  .brand-dealer-logo{max-width:180px;}
-  .brand-card-media{padding:16px;}
+  .brand-dealer-card{height: 160px;}
+  
   .brand-card-body{padding:16px;}
 }

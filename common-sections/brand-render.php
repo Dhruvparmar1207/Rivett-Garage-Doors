@@ -2,12 +2,19 @@
 /* =====================================================================
    BRAND PAGE RENDERERS
 
-   Three sections, one per band of the approved design, each driven
-   entirely by an entry of $RIVETT_BRANDS (common-sections/brand-data.php):
+   One function per band of the approved design, each driven entirely by
+   an entry of $RIVETT_BRANDS (common-sections/brand-data.php):
 
-     rivett_brand_intro()     heading + copy + badges, dealer logo card
-     rivett_brand_partner()   image band with copy and a CTA
-     rivett_brand_featured()  the product card grid
+     rivett_brand_intro()       heading + copy + badges, dealer logo card
+     rivett_brand_partner()     image band with copy and a CTA
+     rivett_brand_featured()    the product card grid
+     rivett_brand_cta_banner()  the dark "not sure where to start" band
+     rivett_brand_services()    the four-up services card row
+
+   The last two are designed to sit together — the banner's negative
+   margin is what pulls the services row up underneath it — but each
+   returns early on a brand that has no data for it, so neither depends
+   on the other being rendered.
 
    They are plain functions rather than includes so brand-page.php stays
    readable and so any other template can drop a single band in on its
@@ -82,7 +89,7 @@ if (!function_exists('rivett_brand_e')) {
         <div class="row">
 
           <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 brand-intro-copy">
-            <h1 id="brand-intro-title"><?php echo rivett_brand_e($intro['heading']); ?></h1>
+            <h1 id="brand-intro-title " class="desktop-heading"><?php echo rivett_brand_e($intro['heading']); ?></h1>
 
             <?php foreach (rivett_brand_val($intro, 'paragraphs', []) as $paragraph): ?>
               <p><?php echo rivett_brand_e($paragraph); ?></p>
@@ -121,6 +128,7 @@ if (!function_exists('rivett_brand_e')) {
           </div>
 
           <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 brand-intro-aside">
+            <h1 id="brand-intro-title " class="mobile-heading"><?php echo rivett_brand_e($intro['heading']); ?></h1>
             <?php if (rivett_brand_val($logo, 'src') !== ''): ?>
               <div class="brand-dealer-card">
                 <img src="<?php echo rivett_brand_e($logo['src']); ?>"
@@ -128,7 +136,7 @@ if (!function_exists('rivett_brand_e')) {
                      width="<?php echo rivett_brand_e(rivett_brand_val($logo, 'width', 292)); ?>"
                      height="<?php echo rivett_brand_e(rivett_brand_val($logo, 'height', 35)); ?>"
                      class="brand-dealer-logo img-fluid" decoding="async">
-                <p class="brand-dealer-label"><?php echo rivett_brand_e(rivett_brand_val($brand, 'dealer_label', 'Authorized Dealer')); ?></p>
+                <!-- <p class="brand-dealer-label"><?php //echo rivett_brand_e(rivett_brand_val($brand, 'dealer_label', 'Authorized Dealer')); ?></p> -->
               </div>
             <?php endif; ?>
           </div>
@@ -161,6 +169,7 @@ if (!function_exists('rivett_brand_e')) {
 
           <?php if (rivett_brand_val($image, 'src') !== ''): ?>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 brand-partner-media-col">
+               <h2 id="brand-partner-title" class="mobile-heading"><?php echo rivett_brand_e($partner['heading']); ?></h2>
               <figure class="brand-partner-media">
                 <img src="<?php echo rivett_brand_e($image['src']); ?>"
                      alt="<?php echo rivett_brand_e(rivett_brand_val($image, 'alt')); ?>"
@@ -172,7 +181,7 @@ if (!function_exists('rivett_brand_e')) {
           <?php endif; ?>
 
           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 brand-partner-copy">
-            <h2 id="brand-partner-title"><?php echo rivett_brand_e($partner['heading']); ?></h2>
+            <h2 id="brand-partner-title" class="desktop-heading"><?php echo rivett_brand_e($partner['heading']); ?></h2>
 
             <?php foreach (rivett_brand_val($partner, 'paragraphs', []) as $paragraph): ?>
               <p><?php echo rivett_brand_e($paragraph); ?></p>
@@ -275,4 +284,137 @@ if (!function_exists('rivett_brand_e')) {
     </section>
         <?php
     }
+
+    /* ---------------------------------------------------------------
+       SECTION 4 — "NOT SURE" BANNER
+       The dark band that the services section below rides up under.
+       The markup is the site-wide .cta-start-banner / .start-banner
+       structure verbatim, so everything already written for it — the
+       inner white frame, the negative margin that produces the overlap,
+       and every breakpoint — applies without a line of new CSS.
+       .brand-cta-banner is added purely as a hook, so this template can
+       be targeted on its own without touching the shared rules.
+
+       The button is optional: the approved brand design ends at the
+       paragraph, but supplying 'cta' in the data brings it back.
+       --------------------------------------------------------------- */
+    function rivett_brand_cta_banner(array $brand)
+    {
+        $banner  = isset($brand['cta_banner']) ? $brand['cta_banner'] : [];
+        $heading = rivett_brand_val($banner, 'heading');
+        if ($heading === '') {
+            return;
+        }
+
+        $phone = isset($banner['phone']) ? $banner['phone'] : [];
+        $cta   = isset($banner['cta']) ? $banner['cta'] : [];
+        ?>
+    <!-- ============================= BRAND CTA BANNER ============================= -->
+    <section class="rivett-cmn cta-start-banner brand-cta-banner" aria-labelledby="brand-cta-title">
+      <div class="container-md">
+        <div class="row justify-content-center">
+          <div class="col-xxl-10 col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12 start-banner">
+
+            <h2 id="brand-cta-title"><?php echo rivett_brand_e($heading); ?></h2>
+
+            <p class="rivett-p text-white-rv">
+              <?php if (rivett_brand_val($phone, 'label') !== ''): ?>
+                <a href="<?php echo rivett_brand_e(rivett_brand_val($phone, 'href', 'contact-us.php')); ?>"
+                   class="text-accent-rv"><span class="red"><?php echo rivett_brand_e($phone['label']); ?></span></a>
+              <?php endif; ?>
+              <?php echo rivett_brand_e(rivett_brand_val($banner, 'text')); ?>
+            </p>
+
+            <?php if (rivett_brand_val($cta, 'label') !== ''): ?>
+              <a href="<?php echo rivett_brand_e(rivett_brand_val($cta, 'url', 'contact-us.php')); ?>"
+                 class="cmn-btn"><?php echo rivett_brand_e($cta['label']); ?></a>
+            <?php endif; ?>
+
+          </div>
+        </div>
+      </div>
+    </section>
+        <?php
+
+    }
+    /* ---------------------------------------------------------------
+       SECTION 5 — SERVICES WE OFFER
+       The card row the banner above overlaps into.
+
+       .why-choose-sec stays on the section so the shared background and
+       the top padding that clears the overlapping banner keep working —
+       that pairing is what produces the design, and it is not restated
+       anywhere here. The cards inside carry their own class names rather
+       than reusing the homepage's .why-choose-grid / .choose-item, so
+       this layout is purely additive: no existing rule has to be
+       overridden to get a four-up card row out of a two-up icon list.
+       --------------------------------------------------------------- */
+    function rivett_brand_services(array $brand)
+    {
+        $services = isset($brand['services']) ? $brand['services'] : [];
+        $items    = rivett_brand_val($services, 'items', []);
+        if (!$items) {
+            return;
+        }
+        ?>
+    <!-- ============================= BRAND SERVICES ============================= -->
+    <section class="rivett-padding section-bg-light rivett-cmn why-choose-sec brand-services-sec"
+             aria-labelledby="brand-services-title">
+      <div class="container-md">
+
+        <div class="row">
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 top-heading">
+            <h2 id="brand-services-title"><?php echo rivett_brand_e(rivett_brand_val($services, 'heading', 'Services We Offer')); ?></h2>
+            <?php if (rivett_brand_val($services, 'intro') !== ''): ?>
+              <p class="rivett-p section-intro"><?php echo rivett_brand_e($services['intro']); ?></p>
+            <?php endif; ?>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="brand-services-grid">
+              <?php foreach ($items as $item): ?>
+                <?php
+                $icon    = isset($item['icon']) ? $item['icon'] : [];
+                $iconSrc = rivett_brand_val($icon, 'src');
+                $url     = rivett_brand_val($item, 'url');
+
+                // The reference design shows the cards flat, so a card is
+                // only a link when its entry asks for one. Same class
+                // either way — the box does not change, only the element.
+                $tag = $url !== '' ? 'a' : 'article';
+                ?>
+                <<?php echo $tag; ?> class="brand-service-card"<?php
+                    echo $url !== '' ? ' href="' . rivett_brand_e($url) . '"' : ''; ?>>
+
+                  <span class="brand-service-icon" aria-hidden="true">
+                    <?php if (rivett_brand_has_asset($iconSrc)): ?>
+                      <img src="<?php echo rivett_brand_e($iconSrc); ?>" alt=""
+                           width="60" height="60" loading="lazy" decoding="async">
+                    <?php else: ?>
+                      <?php /* No artwork supplied for this item, so the icon
+                                font stands in — it is what the approved design
+                                uses, and the card keeps its height either way. */ ?>
+                      <i class="<?php echo rivett_brand_e(rivett_brand_val($icon, 'class', 'fa-solid fa-circle-check')); ?>"></i>
+                    <?php endif; ?>
+                  </span>
+
+                  <h3><?php echo rivett_brand_e($item['title']); ?></h3>
+
+                  <?php if (rivett_brand_val($item, 'text') !== ''): ?>
+                    <p><?php echo rivett_brand_e($item['text']); ?></p>
+                  <?php endif; ?>
+
+                </<?php echo $tag; ?>>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+        <?php
+    }
+
 }

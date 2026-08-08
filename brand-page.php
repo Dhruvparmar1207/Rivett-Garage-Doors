@@ -6,7 +6,7 @@
    thin page files next to it (liftmaster.php, richards-wilcox.php, …)
    each set a slug and hand over:
 
-       <?php
+      <?php
        $rivett_brand_slug = 'liftmaster';
        require __DIR__ . '/brand-page.php';
 
@@ -71,9 +71,15 @@ rivett_brand_intro($brand);
 rivett_brand_partner($brand);
 rivett_brand_featured($brand);
 
-/* Shared closers, in the same order the service templates use them, so
-   every brand page ends the way the rest of the site does. */
 include __DIR__ . '/common-sections/testimonial-section.php';
+
+/* The banner and the services row are a pair: the banner's negative
+   margin pulls the card grid up under it, so they render together and in
+   this order. Each still no-ops on its own when a brand has no data. */
+rivett_brand_cta_banner($brand);
+rivett_brand_services($brand);
+
+
 include __DIR__ . '/common-sections/location-mapping-sec.php';
 
 include __DIR__ . '/footer.php';
