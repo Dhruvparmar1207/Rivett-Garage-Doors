@@ -45,7 +45,7 @@
                             <div class="banner-text">
                                 <p class="banner-eyebrow"><span>By Series</span></p>
 
-                                <h1 id="hero-title" class="banner-heading">Four Series. One Perfect Fit.</h2>
+                                <h2 class="banner-heading">Four Series. One Perfect Fit.</h2>
 
                                 <p>Landmark, Echo Ridge, Rockwood, and Grandview — insulated steel and custom wood
                                     doors in a full range of colours, panel profiles, and window options.</p>
@@ -70,7 +70,7 @@
                             <div class="banner-text">
                                 <p class="banner-eyebrow"><span>Openers</span></p>
 
-                                <h1 id="hero-title" class="banner-heading">Openers That Just Work.</h2>
+                                <h2 class="banner-heading">Openers That Just Work.</h2>
 
                                 <p>LiftMaster and Guardian openers supplied, installed, and backed by our own
                                     technicians — quiet belt drives, smartphone control, and battery backup.</p>
@@ -95,7 +95,7 @@
                             <div class="banner-text">
                                 <p class="banner-eyebrow"><span>Parts &amp; Service</span></p>
 
-                                <h1 id="hero-title" class="banner-heading">Broken Spring? We're On It.</h2>
+                                <h2 class="banner-heading">Broken Spring? We're On It.</h2>
 
                                 <p>Factory-trained technicians and genuine replacement parts, with residential service
                                     calls across Durham Region, the GTA, Kingston, and Eastern Ontario.</p>

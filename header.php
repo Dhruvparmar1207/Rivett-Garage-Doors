@@ -16,7 +16,7 @@ $rivett_head_desc  = isset($page_description) && $page_description !== '' ? $pag
 ?>
 <head>
 
-<base href="/rivett/">
+ <base href="/rivett/">
 
   <meta charset="UTF-8">
 

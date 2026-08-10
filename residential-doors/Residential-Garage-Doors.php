@@ -2,116 +2,114 @@
 
 include(__DIR__ . '/../header.php');
 
+
+
+
+/* =====================================================================
+   HERO SLIDER — CONTENT SOURCE
+
+   One entry per slide, in display order. Add or remove an entry and the
+   carousel, the "1 of 4" slide labels and the loading hints all follow.
+
+   Keys
+     eyebrow    small caps line above the heading.
+     heading    slide headline. 
+     cta_label  button text.
+     cta_url    button link.
+     image      background image path.
+     alt        image alt text. Leave '' for a purely decorative slide.
+   ===================================================================== */
+
+$hero_label = 'residental garage doors';
+
+$hero_slides = [
+[
+    'eyebrow'   => 'Residential Garage Doors',
+    'heading'   => 'The Right Door For Every Home.',
+    'text'      => 'From classic carriage house styles to sleek contemporary panels — Rivett supplies, installs, and services residential garage doors across Durham Region, Kingston, and Ontario.',
+    'cta_label' => 'Get a Free Estimate',
+    'cta_url'   => 'contact-us.php',
+    'image'     => './src/images/Residental-banner-img.webp',
+    'alt'       => 'Brick home with a Rivett residential garage door installed',
+],
+
+[
+    'eyebrow'   => 'By Series',
+    'heading'   => 'Four Series. One Perfect Fit.',
+    'text'      => 'Landmark, Echo Ridge, Rockwood, and Grandview — insulated steel and custom wood doors in a full range of colours, panel profiles, and window options.',
+    'cta_label' => 'Book a Showroom Visit',
+    'cta_url'   => 'contact-us.php',
+    'image'     => './src/images/Residental-banner-img.webp',
+    'alt'       => '',
+],
+
+[
+    'eyebrow'   => 'Openers',
+    'heading'   => 'Openers That Just Work.',
+    'text'      => 'LiftMaster and Guardian openers supplied, installed, and backed by our own technicians — quiet belt drives, smartphone control, and battery backup.',
+    'cta_label' => 'Get Opener Pricing',
+    'cta_url'   => 'contact-us.php',
+    'image'     => './src/images/Residental-banner-img.webp',
+    'alt'       => '',
+],
+
+[
+    'eyebrow'   => 'Parts &amp; Service',
+    'heading'   => "Broken Spring? We're On It.",
+    'text'      => 'Factory-trained technicians and genuine replacement parts, with residential service calls across Durham Region, the GTA, Kingston, and Eastern Ontario.',
+    'cta_label' => 'Book a Service Call',
+    'cta_url'   => 'contact-us.php',
+    'image'     => './src/images/Residental-banner-img.webp',
+    'alt'       => '',
+],
+
+]
+
+
  ?>
+
+
+
+
 
 <!-- ============================= HERO ============================= -->
 
 <section class="hero banner-sec sevice-page-banner residental-page-banner" aria-labelledby="hero-title">
       <div id="bannerSlider" class="owl-carousel banner-Slider" role="region"
-            aria-roledescription="carousel" aria-label="Residential garage doors">
+            aria-roledescription="carousel" aria-label="<?php echo rivett_nav_e($hero_label); ?>">
 
-            <!-- Slide 1 — only this slide carries the page <h1>; the rest use <h2>
-                 styled to match, so the page keeps a single top-level heading. -->
+            <?php
+            $hero_total = count($hero_slides);
+            foreach ($hero_slides as $hero_index => $slide):
+                $is_first_slide = ($hero_index === 0);
+            ?>
+            <!-- Slide <?php echo $hero_index + 1; ?> -->
             <div class="banner-item">
-                <article aria-roledescription="slide" aria-label="1 of 4">
+                <article aria-roledescription="slide" aria-label="<?php echo $hero_index + 1; ?> of <?php echo $hero_total; ?>">
                     <div class="cover-img">
-                        <img src="./src/images/Residental-banner-img.webp" width="1514" height="900"
-                            alt="Brick home with a Rivett residential garage door installed" class="img-fluid"
-                            fetchpriority="high" decoding="async" />
+                        <img src="<?php echo rivett_nav_e($slide['image']); ?>" width="1514" height="900"
+                            alt="<?php echo rivett_nav_e($slide['alt'] ?? ''); ?>" class="img-fluid"
+                            <?php echo $is_first_slide ? 'fetchpriority="high"' : 'loading="lazy"'; ?> decoding="async" />
                         <span class="banner-overlay" aria-hidden="true"></span>
                     </div>
                     <div class="content-sec">
                         <div class="container-md">
                             <div class="banner-text">
-                                <p class="banner-eyebrow"><span>Residential Garage Doors</span></p>
+                                <p class="banner-eyebrow"><span><?php echo rivett_nav_e($slide['eyebrow']); ?></span></p>
 
-                                <h1 id="hero-title" class="banner-heading">The Right Door For Every Home.</h1>
+                                
+                                <h1 id="hero-title" class="banner-heading"><?php echo rivett_nav_e($slide['heading']); ?></h1>
+                                
+                               
+                                <p><?php echo rivett_nav_e($slide['text']); ?></p>
 
-                                <p>From classic carriage house styles to sleek contemporary panels — Rivett supplies,
-                                    installs, and services residential garage doors across Durham Region, Kingston, and
-                                    Ontario.</p>
-
-                                <a href="contact-us.php" class="cmn-btn banner-cta">Get a Free Estimate</a>
+                                <a href="<?php echo rivett_nav_e($slide['cta_url']); ?>" class="cmn-btn banner-cta"><?php echo rivett_nav_e($slide['cta_label']); ?></a>
                             </div>
                         </div>
                     </div>
                 </article>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="banner-item">
-                <article aria-roledescription="slide" aria-label="2 of 4">
-                    <div class="cover-img">
-                        <img src="./src/images/Residental-banner-img.webp" width="1514" height="900" alt=""
-                            class="img-fluid" loading="lazy" decoding="async" />
-                        <span class="banner-overlay" aria-hidden="true"></span>
-                    </div>
-                    <div class="content-sec">
-                        <div class="container-md">
-                            <div class="banner-text">
-                                <p class="banner-eyebrow"><span>By Series</span></p>
-
-                                <h1 id="hero-title" class="banner-heading">Four Series. One Perfect Fit.</h2>
-
-                                <p>Landmark, Echo Ridge, Rockwood, and Grandview — insulated steel and custom wood
-                                    doors in a full range of colours, panel profiles, and window options.</p>
-
-                                <a href="contact-us.php" class="cmn-btn banner-cta">Book a Showroom Visit</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="banner-item">
-                <article aria-roledescription="slide" aria-label="3 of 4">
-                    <div class="cover-img">
-                        <img src="./src/images/Residental-banner-img.webp" width="1514" height="900" alt=""
-                            class="img-fluid" loading="lazy" decoding="async" />
-                        <span class="banner-overlay" aria-hidden="true"></span>
-                    </div>
-                    <div class="content-sec">
-                        <div class="container-md">
-                            <div class="banner-text">
-                                <p class="banner-eyebrow"><span>Openers</span></p>
-
-                                <h1 id="hero-title" class="banner-heading">Openers That Just Work.</h2>
-
-                                <p>LiftMaster and Guardian openers supplied, installed, and backed by our own
-                                    technicians — quiet belt drives, smartphone control, and battery backup.</p>
-
-                                <a href="contact-us.php" class="cmn-btn banner-cta">Get Opener Pricing</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="banner-item">
-                <article aria-roledescription="slide" aria-label="4 of 4">
-                    <div class="cover-img">
-                        <img src="./src/images/Residental-banner-img.webp" width="1514" height="900" alt=""
-                            class="img-fluid" loading="lazy" decoding="async" />
-                        <span class="banner-overlay" aria-hidden="true"></span>
-                    </div>
-                    <div class="content-sec">
-                        <div class="container-md">
-                            <div class="banner-text">
-                                <p class="banner-eyebrow"><span>Parts &amp; Service</span></p>
-
-                                <h1 id="hero-title" class="banner-heading">Broken Spring? We're On It.</h2>
-
-                                <p>Factory-trained technicians and genuine replacement parts, with residential service
-                                    calls across Durham Region, the GTA, Kingston, and Eastern Ontario.</p>
-
-                                <a href="contact-us.php" class="cmn-btn banner-cta">Book a Service Call</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+            <?php endforeach; ?>
 
       </div>
 
@@ -156,7 +154,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>2” Neufoam™ Polyurethane Insulated Garage Door (R18).</li>
                             <li><i class="fa-solid fa-angle-right"></i>12 Colour Options and 8 Panel Styles Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/traditional/premium-l200.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -177,7 +175,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>12 Colour Options and 7 Panel Styles Available.</li>
 
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/traditional/grandview-l200gv.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -196,7 +194,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>2-Sided Steel With 2″ Polystyrene Insulation (R10).</li>
                             <li><i class="fa-solid fa-angle-right"></i>7 Panel Styles and 11 Colour Options Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/traditional/milestone-series.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -218,7 +216,7 @@ include(__DIR__ . '/../header.php');
 
 
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/traditional/canton.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -257,7 +255,7 @@ include(__DIR__ . '/../header.php');
 
 
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/contemporary-modern/classic-contemporary.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -277,7 +275,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>Features Customizable Window Placement For a Modern Look.</li>
                             <li><i class="fa-solid fa-angle-right"></i>12 Colour Options and 8 Panel Styles Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/contemporary-modern/premium-contemporary.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -298,7 +296,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>Customizable Colours and Designs Available.</li>
 
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/custom-wood-door/contemporary-rockwood.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -337,7 +335,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>Four-Section Door With Carriage House Fibrex® Overlay Boards.</li>
                             <li><i class="fa-solid fa-angle-right"></i>9 Colour Options, 2 Overlay Colour Options and 5 Panel Styles Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/carriage-house/echo-ridge.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -357,7 +355,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>Recessed Panel Design With Inlays to Provide a Carriage House Look.</li>
                              <li><i class="fa-solid fa-angle-right"></i>9 Colour Options and 5 Panel Styles Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/carriage-house/briarcrest.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -378,7 +376,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>6 Panel Styles Available.</li>
 
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/carriage-house/echo-ridge-xl.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -398,7 +396,7 @@ include(__DIR__ . '/../header.php');
                             <li><i class="fa-solid fa-angle-right"></i>Features 1” Cedar Board Applied to 2” Landmark Panel.</li>
                             <li><i class="fa-solid fa-angle-right"></i>Customizable Colours and Designs Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/custom-wood-door/rockwood.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 

@@ -54,17 +54,84 @@ $RIVETT_NAV = [
                 'children' => [
                     [
                         'label'    => 'Traditional Garage Doors',
-                        'url'      => '#',
+                        'url'      => 'residential-doors/by-door-type/traditional.php',
                         'children' => [
                             [
                                 'label' => 'Classic (L138)',
                                 'url'   => 'residential-doors/by-door-type/traditional/classic-l138.php',
                             ],
+                            [
+                                'label' => 'Premium (L200)',
+                                'url'   => 'residential-doors/by-door-type/traditional/premium-l200.php',
+                            ],
+                            [
+                                'label' => 'Grandview (L200GV)',
+                                'url'   => 'residential-doors/by-door-type/traditional/grandview-l200gv.php',
+                            ],
+                            [
+                                'label' => 'Milestone Series',
+                                'url'   => 'residential-doors/by-door-type/traditional/milestone-series.php',
+                            ],
+                            [
+                                'label' => 'Canton',
+                                'url'   => 'residential-doors/by-door-type/traditional/canton.php',
+                            ],
                         ],
                     ],
-                    ['label' => 'Contemporary Doors',       'url' => '#'],
-                    ['label' => 'Carriage House Doors',     'url' => '#'],
-                    ['label' => 'Custom Wood Doors',        'url' => '#'],
+                    [
+                        'label'    => 'Contemporary Doors',
+                        'url'      => 'residential-doors/by-door-type/contemporary.php',
+                        'children' => [
+                            [
+                                'label' => 'Classic Contemporary (L138C)',
+                                'url'   => 'residential-doors/by-door-type/contemporary-modern/classic-contemporary.php',
+                            ],
+                            [
+                                'label' => 'Premium Contemporary (L200C)',
+                                'url'   => 'residential-doors/by-door-type/contemporary-modern/premium-contemporary.php',
+                            ],
+                            [
+                                'label' => 'Contemporary Rockwood (L200RW)',
+                                'url'   => 'residential-doors/by-door-type/custom-wood-door/contemporary-rockwood.php',
+                            ],
+                        ],
+                    ],
+                    [
+                        'label'    => 'Carriage House Doors',
+                        'url'      => 'residential-doors/by-door-type/carriage-house.php',
+                        'children' => [
+                            [
+                                'label' => 'Echo Ridge (L138ER)',
+                                'url'   => 'residential-doors/by-door-type/carriage-house/echo-ridge.php',
+                            ],
+                            [
+                                'label' => 'Briarcrest (L200BC)',
+                                'url'   => 'residential-doors/by-door-type/carriage-house/briarcrest.php',
+                            ],
+                            [
+                                'label' => 'Echo Ridge XL (L200ERX)',
+                                'url'   => 'residential-doors/by-door-type/carriage-house/echo-ridge-xl.php',
+                            ],
+                            [
+                                'label' => 'Rockwood (L200RW)',
+                                'url'   => 'residential-doors/by-door-type/custom-wood-door/rockwood.php',
+                            ],
+                        ],
+                    ],
+                    [
+                        'label'    => 'Custom Wood Doors',
+                        'url'      => '#',
+                        'children' => [
+                            [
+                                'label' => 'Rockwood (L200RW)',
+                                'url'   => 'residential-doors/by-door-type/custom-wood-door/rockwood.php',
+                            ],
+                            [
+                                'label' => 'Contemporary Rockwood (L200RW)',
+                                'url'   => 'residential-doors/by-door-type/custom-wood-door/contemporary-rockwood.php',
+                            ],
+                        ],
+                    ],
                 ],
             ],
             ['label' => 'Security Doors & Retractable Screens', 'url' => '#'],

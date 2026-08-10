@@ -393,56 +393,7 @@ $door_literature = [
 </section>
 
 
-<!-- ============================= HOW IT IS BUILT ============================= -->
-<!-- Same card language as the residential listing page, without the photo:
-     these are construction details rather than door models. -->
-<section class="rivett-padding rivett-cmn all-garage-doors-card-sec bg-grey-light">
-    <div class="container-md">
-        <div class="row">
-            <div class="col-xxl-8 col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12 top-heading">
-                <h2>How the Classic L138 Is Built</h2>
-            </div>
-        </div>
-        <div class="row card-list-row-grid">
 
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 main-card-sec">
-                <div class="garage-card">
-                    <div class="garage-card-content">
-                        <h3>Neufoam&trade;</h3>
-                        <p>In order to achieve the highest thermal values and stability, Landmark sections are
-                            evenly filled with environmentally friendly CFC/HCFC-free Neufoam&trade;. The higher
-                            density polyurethane insulation, applied in a computer controlled continuous process,
-                            provides uniform insulation, superior adhesion and excellent strength to the door
-                            panels.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 main-card-sec">
-                <div class="garage-card">
-                    <div class="garage-card-content">
-                        <h3>WeatherLock&trade; System</h3>
-                        <p>Featuring an exclusive WeatherLock&trade; Section Joint, Dual Fin Triple Contact Weather
-                            Seal and Arctic Grade Bulb Shaped Bottom Seal with a Dual Contact aluminum retainer.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 main-card-sec">
-                <div class="garage-card">
-                    <div class="garage-card-content">
-                        <h3>Standard Hardware &amp; Standard Hardware Plus</h3>
-                        <p>These are very beautiful doors, and we also care about saving you the hassle and
-                            maintenance for many years to come. We have built our reputation on delivering
-                            exceptional quality, and the hardware on every door we install is manufactured to the
-                            highest standards in the industry.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 
 <?php include __DIR__ . '/../../../common-sections/location-mapping-sec.php'; ?>
