@@ -1,4 +1,8 @@
-<?php include 'header.php'; ?>
+<?php
+
+include(__DIR__ . '/../header.php');
+
+ ?>
 
 <!-- ============================= HERO ============================= -->
 
@@ -135,7 +139,7 @@
                             <li><i class="fa-solid fa-angle-right"></i>1 3/8″ Neufoam™ Polyurethane Insulated Garage Door (R12).</li>
                             <li><i class="fa-solid fa-angle-right"></i>12 Colour Options and 7 Panel Styles Available.</li>
                         </ul>
-                        <a href="" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="residential-doors/by-door-type/traditional/classic-l138.php" class="link-arrow">View More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -409,8 +413,11 @@
 </section>
 
 
-<?php include 'common-sections/testimonial-section.php'; ?>
+<?php include(__DIR__ . '/../common-sections/testimonial-section.php'); ?>
 
-<?php include 'common-sections/location-mapping-sec.php'; ?>
+<?php include(__DIR__ . '/../common-sections/location-mapping-sec.php'); ?>
 
-<?php include 'footer.php'; ?>
+<?php 
+
+include(__DIR__ . '/../footer.php');
+?>

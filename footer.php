@@ -7,7 +7,7 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12 quick-links">
           <h4 class="footer-h">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#gallery">Gallery</a></li>

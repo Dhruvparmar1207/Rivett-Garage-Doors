@@ -28,6 +28,11 @@
 // Neither carousel is declared in the markup, because Owl's stylesheet
 // hides .owl-carousel until it is initialised and a hidden popup has no
 // width for Owl to measure; both are built on first open instead.
+//
+// The page strip is the same carousel on the same settings, so the two
+// thumbnail rows behave identically — same item counts, same margins,
+// same arrows. It is on screen from the start, so it is the one that can
+// be measured and built immediately.
 
 // ===================================================================//
 
@@ -39,7 +44,8 @@ $(function () {
   var $popup = $("#productGalleryPopup");
   var $openLink = $gallery.find(".js-product-gallery-open");
   var $stageImg = $gallery.find(".js-product-gallery-image");
-  var $thumbs = $gallery.find(".product-thumb");
+  var $thumbStrip = $gallery.find(".product-gallery-thumbs");
+  var $thumbs = $thumbStrip.find(".product-thumb");
   var $popupMain = $popup.find(".popup-main");
   var $popupThumbs = $popup.find(".popup-thumbs");
   var $popupThumbBtns = $popupThumbs.find(".thumb-wrap");
@@ -50,12 +56,16 @@ $(function () {
   var speed = reduceMotion ? 0 : 400;
   var current = 0;
 
-  // The same circular arrow the testimonial carousel uses; the CSS flips
-  // it for "next" rather than shipping a second image.
-  // var NAV_TEXT = [
-  //   '<img src="./src/images/testimonial-arrow.webp" alt="" width="50" height="50" class="img-fluid">',
-  //   '<img src="./src/images/testimonial-arrow.webp" alt="" width="50" height="50" class="img-fluid">'
-  // ];
+  // Arrows for both thumbnail strips. Font Awesome chevrons rather than an
+  // image asset: the icon font is already loaded for the page's lists, it
+  // scales with font-size and takes its colour from CSS, and the two
+  // directions are separate glyphs so neither arrow has to be a rotated
+  // copy of the other. Marked aria-hidden because labelNav() names the
+  // button itself.
+  var NAV_TEXT = [
+    '<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>',
+    '<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>'
+  ];
 
   // loop stays false on both: a looping Owl clones its items, and the
   // clones would both duplicate every data-gallery-index and shift the
@@ -66,7 +76,6 @@ $(function () {
     dots: false,
     loop: false,
     smartSpeed: speed,
-    //navText: NAV_TEXT
   };
 
   var THUMBS_CAROUSEL = {
@@ -76,7 +85,7 @@ $(function () {
     dots: false,
     loop: false,
     smartSpeed: speed,
-    // navText: NAV_TEXT,
+    navText: NAV_TEXT,
     responsive: {
       0:   { items: 3, margin: 10 },
       576: { items: 4, margin: 12 },
@@ -93,37 +102,23 @@ $(function () {
     $carousel.find(".owl-nav .owl-next").attr("aria-label", "Next " + noun);
   }
 
-  // Centre a page thumbnail in its strip, but only when the strip
-  // actually overflows — otherwise this would scroll the page on some
-  // browsers.
-  function revealThumb(thumb) {
-    var strip = thumb.parentNode;
-    if (!strip || strip.scrollWidth <= strip.clientWidth) return;
+  // Bring the selected thumbnail into view. Owl owns the scrolling in
+  // both strips, so the carousel is asked to move rather than the element
+  // scrolled, and only when the thumbnail is genuinely outside the
+  // viewport — otherwise every selection would shunt the strip sideways.
+  function revealThumb($strip, $btns, index) {
+    if (!$strip.hasClass("owl-loaded")) return;
 
-    var left = thumb.offsetLeft - (strip.clientWidth - thumb.offsetWidth) / 2;
-
-    if (typeof strip.scrollTo === "function") {
-      strip.scrollTo({ left: left, behavior: reduceMotion ? "auto" : "smooth" });
-    } else {
-      strip.scrollLeft = left;
-    }
-  }
-
-  // Same idea for the popup strip, except Owl owns the scrolling there,
-  // so the carousel is asked to move rather than the element scrolled.
-  function revealPopupThumb(index) {
-    if (!$popupThumbs.hasClass("owl-loaded")) return;
-
-    var item = $popupThumbBtns.filter('[data-gallery-index="' + index + '"]')
+    var item = $btns.filter('[data-gallery-index="' + index + '"]')
       .closest(".owl-item")[0];
-    var viewport = $popupThumbs.find(".owl-stage-outer")[0];
+    var viewport = $strip.find(".owl-stage-outer")[0];
     if (!item || !viewport) return;
 
     var itemBox = item.getBoundingClientRect();
     var viewBox = viewport.getBoundingClientRect();
 
     if (itemBox.left < viewBox.left - 1 || itemBox.right > viewBox.right + 1) {
-      $popupThumbs.trigger("to.owl.carousel", [index, speed]);
+      $strip.trigger("to.owl.carousel", [index, speed]);
     }
   }
 
@@ -143,16 +138,34 @@ $(function () {
     // no-JS visitors, middle-clicks and "open image in new tab".
     $openLink.attr("href", src);
 
-    $thumbs.removeClass("is-active").attr("aria-current", "false");
-    $match.addClass("is-active").attr("aria-current", "true").each(function () {
-      revealThumb(this);
+    // A page thumbnail changes job when it becomes the selected one — it
+    // stops selecting and starts opening the popup — so its accessible
+    // name and its popup semantics move with the selection. Both label
+    // strings are rendered by the PHP, so nothing is assembled here.
+    $thumbs.removeClass("is-active")
+      .attr("aria-current", "false")
+      .removeAttr("aria-haspopup")
+      .removeAttr("aria-controls")
+      .each(function () {
+        var label = this.getAttribute("data-select-label");
+        if (label) this.setAttribute("aria-label", label);
+      });
+
+    $match.addClass("is-active").attr({
+      "aria-current": "true",
+      "aria-haspopup": "dialog",
+      "aria-controls": "productGalleryPopup"
+    }).each(function () {
+      var label = this.getAttribute("data-open-label");
+      if (label) this.setAttribute("aria-label", label);
     });
 
     $popupThumbBtns.removeClass("is-active").attr("aria-current", "false")
       .filter('[data-gallery-index="' + index + '"]')
       .addClass("is-active").attr("aria-current", "true");
 
-    revealPopupThumb(index);
+    revealThumb($thumbStrip, $thumbs, index);
+    revealThumb($popupThumbs, $popupThumbBtns, index);
   }
 
   // Every selection made outside the main carousel goes through here, so
@@ -174,16 +187,53 @@ $(function () {
     labelNav($popupMain, "photo");
     labelNav($popupThumbs, "thumbnails");
 
+    // Owl fires changed.owl.carousel for three different properties, and
+    // only "position" means the visitor moved to another photo. It also
+    // fires for "settings" — every refresh runs setup(), which announces
+    // its settings that way — and e.item.index there is wherever the
+    // carousel happens to be sitting, not a selection anyone made. Acting
+    // on that would overwrite the page's selection with the popup's stale
+    // position on the very refresh that runs before the popup is moved to
+    // it. The namespace check rejects any same-named jQuery event that did
+    // not come from Owl at all.
     $popupMain.on("changed.owl.carousel", function (e) {
+      if (!e.namespace || e.property.name !== "position") return;
       select(e.item.index);
     });
+  }
+
+  // The page strip is laid out and measurable on load, so it is built
+  // here rather than being deferred like the popup pair. The class is
+  // added from JS for the same reason it is in the popup: without Owl the
+  // markup must not inherit .owl-carousel's display:none and vanish.
+  // Owl re-parents the buttons into .owl-item wrappers, which the click
+  // handlers below survive because they are bound to the buttons.
+  if ($.fn.owlCarousel && $thumbStrip.length) {
+    $thumbStrip.addClass("owl-carousel owl-theme").owlCarousel(THUMBS_CAROUSEL);
+    labelNav($thumbStrip, "thumbnails");
   }
 
   // The popup is closed whenever a page thumbnail is clickable, so the
   // main carousel is left alone and caught up on the next open instead of
   // being moved while it is hidden and has no width to work with.
+  //
+  // A thumbnail that is already selected has nothing left to select, so
+  // that is the click which opens the popup on it. The first click on any
+  // other thumbnail still only moves the stage, so the strip can be
+  // browsed without the lightbox taking over the screen.
   $thumbs.on("click", function () {
-    select(parseInt(this.getAttribute("data-gallery-index"), 10));
+    var index = parseInt(this.getAttribute("data-gallery-index"), 10);
+
+    if (index === current) {
+      // Going through the stage link rather than opening Magnific
+      // directly keeps one configured instance of the popup, callbacks
+      // included — and without the plugin the link still resolves to the
+      // full photo, exactly as clicking the stage would.
+      $openLink.trigger("click");
+      return;
+    }
+
+    select(index);
   });
 
   $popupThumbBtns.on("click", function () {
@@ -331,7 +381,7 @@ $(function () {
   }
 
   function slideSpeed() {
-    return mqReduced.matches ? 0 : 280;
+    return mqReduced.matches ? 0 : 800;
   }
 
   /* ---------- scroll anchoring ----------

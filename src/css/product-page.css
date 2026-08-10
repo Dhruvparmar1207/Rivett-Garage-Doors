@@ -29,14 +29,14 @@
    BANNER - product copy (left column)
    ========================================================= */
 .product-page-banner .row{align-items:center;}
-.product-page-banner .right-side{padding-left:30px;}
+.product-page-banner .right-side{padding-left:50px;}
 
   .product-page-banner  h1.desktop-heading{display: block;}
   .product-page-banner  h1.mobile-heading{display: none;}
 
 
 .product-page-banner  h1{font-family:'Prompt',sans-serif;font-weight:600;font-size:50px;line-height:60px;letter-spacing:0;color:#000;text-align:left;margin-bottom:26px;}
-.product-page-banner .product-intro h2{font-family:'Prompt',sans-serif;font-weight:600;font-size:30px;line-height:38px;letter-spacing:0;color:#000;margin-bottom:20px;}
+.product-page-banner .product-intro h2{font-family:'Prompt',sans-serif;font-weight:500;font-size:30px;line-height:38px;letter-spacing:0;color:#000;margin-bottom:20px;}
 .product-page-banner .product-intro p{margin-bottom:26px;}
 
 .product-page-banner .product-intro-list a{text-decoration:underline;text-underline-offset:3px;}
@@ -46,9 +46,9 @@
 
 /* =========================================================
    BANNER - image gallery (right column)
-   Stage image plus a thumbnail strip. No arrows and no dots by
-   design: the strip scrolls and swipes, and JS scrolls the active
-   thumbnail into view whenever the strip overflows its column.
+   Stage image plus a thumbnail strip. The strip is the same Owl
+   carousel as the popup one below — arrows, no dots — and JS brings
+   the active thumbnail into view whenever it sits outside the strip.
    ========================================================= */
 .product-gallery{display:flex;flex-direction:column;gap:20px;}
 
@@ -57,14 +57,43 @@
 /* .product-gallery-stage:hover img{transform:scale(1.03);} */
 .product-gallery-stage:focus-visible{outline:0;outline-offset:unset;}
 
-/* Shared by the page strip and the popup strip. */
-.product-gallery-thumbs{display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;}
-.product-gallery-thumbs::-webkit-scrollbar{display:none;}
-.product-gallery-thumbs .product-thumb{flex:1 0 0;min-width:110px;scroll-snap-align:center;padding:0;line-height:0;background:none;border:2px solid transparent;cursor:pointer;transition:border-color .25s ease,opacity .25s ease;}
-.product-gallery-thumbs .product-thumb img{display:block;width: 100%; height: 145px;object-fit:cover;}
-.product-gallery-thumbs .product-thumb:hover{opacity:1;}
-.product-gallery-thumbs .product-thumb.is-active{border-color:#EE3A43;opacity:1;}
+/* The page strip is the popup strip: same Owl carousel on the same
+   settings, so the two rows read as one component. product.js adds the
+   owl-carousel classes on load, so what is styled here is the running
+   carousel; position:relative is its own so the arrows resolve against
+   the strip rather than against .product-gallery. */
+.product-gallery-thumbs{position:relative;}
+/* If Owl never runs, the strip still has to read as a row of thumbnails
+   rather than as stacked full-width photos. */
+.product-gallery-thumbs:not(.owl-loaded){display:flex;gap:15px;}
+.product-gallery-thumbs .product-thumb{display:block;width:100%;padding:0;line-height:0;background:none;border:2px solid transparent;cursor:pointer;transition:border-color .25s ease;}
+.product-gallery-thumbs .product-thumb img{display:block;width:100%;height:145px;object-fit:cover;}
+/* The selected thumbnail stops selecting and starts opening the popup, so
+   it takes the stage's zoom cursor to say so. */
+.product-gallery-thumbs .product-thumb.is-active{border-color:#EE3A43;cursor:zoom-in;}
+.product-gallery-thumbs .product-thumb:focus{outline:none;}
 .product-gallery-thumbs .product-thumb:focus-visible{outline:2px solid #EE3A43;outline-offset:2px;}
+
+/* Arrows. Font Awesome chevrons, set as navText in product.js, so the
+   button is a sized disc and the glyph inside is sized by font-size —
+   there is no image to scale and no rotated copy for the other direction.
+   The disc is what makes a chevron readable over a photograph, so the
+   hover state changes its colour rather than removing it. */
+.product-gallery .owl-nav{margin:0;}
+.product-gallery .owl-nav button.owl-prev,
+.product-gallery .owl-nav button.owl-next{position:absolute;top:50%;z-index:3;display:flex;align-items:center;justify-content:center;width:34px;height:34px;margin:0;padding:0;border-radius:50%;background:#000;color:#fff;transform:translateY(-50%);transition:background-color .25s ease,opacity .25s ease;}
+.product-gallery .owl-nav button.owl-prev:hover,
+.product-gallery .owl-nav button.owl-next:hover{background:#EE3A43;color:#fff;opacity:1;}
+.product-gallery .owl-nav button i{font-size:14px;line-height:1;}
+.product-gallery .owl-nav button.owl-prev:focus{outline:none;}
+.product-gallery .owl-nav button.owl-next:focus{outline:none;}
+.product-gallery .owl-nav button.owl-prev:focus-visible,
+.product-gallery .owl-nav button.owl-next:focus-visible{outline:2px solid #EE3A43;outline-offset:3px;}
+.product-gallery .owl-nav button.owl-prev.disabled,
+.product-gallery .owl-nav button.owl-next.disabled{opacity:0;pointer-events:none;}
+
+.product-gallery-thumbs .owl-nav button.owl-prev{left:-14px;}
+.product-gallery-thumbs .owl-nav button.owl-next{right:-14px;}
 
 
 /* =========================================================
@@ -106,7 +135,7 @@
    directions; "next" is the same asset turned around. */
 .popup-gallery .owl-nav{margin:0;}
 .popup-gallery .owl-nav button.owl-prev,
-.popup-gallery .owl-nav button.owl-next{position:absolute;top:50%;z-index:3;margin:0;background:none;transform:translateY(-50%);transition:opacity .25s ease;}
+.popup-gallery .owl-nav button.owl-next{position:absolute;top:50%;z-index:3;margin:0;background:#000;transform:translateY(-50%);transition:opacity .25s ease;}
 .popup-gallery .owl-nav button.owl-prev:hover,
 .popup-gallery .owl-nav button.owl-next:hover{background:none;opacity:.75;}
 .popup-gallery .owl-nav button.owl-next img{transform:rotate(180deg);}
@@ -123,9 +152,19 @@
 .popup-main .owl-nav button.owl-next{right:20px;}
 .popup-main .owl-nav button img{width:50px;height:50px;}
 
-.popup-thumbs .owl-nav button.owl-prev{left:8px;}
-.popup-thumbs .owl-nav button.owl-next{right:8px;}
-.popup-thumbs .owl-nav button img{width:34px;height:34px;}
+/* The popup strip takes the page strip's arrows: same Font Awesome
+   chevrons from product.js, same 34px disc. A bare chevron is unreadable
+   over a photograph, so the disc overrides the shared background:none
+   above and hover recolours it rather than removing it. Scoped to
+   .popup-thumbs, so .popup-main keeps the treatment written for its
+   image arrows. */
+.popup-thumbs .owl-nav button.owl-prev,
+.popup-thumbs .owl-nav button.owl-next{display:flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border-radius:50%;background:#000;color:#fff;transition:background-color .25s ease,opacity .25s ease;}
+.popup-thumbs .owl-nav button.owl-prev:hover,
+.popup-thumbs .owl-nav button.owl-next:hover{background:#EE3A43;color:#fff;opacity:1;}
+.popup-thumbs .owl-nav button i{font-size:14px;line-height:1;}
+.popup-thumbs .owl-nav button.owl-prev{left:-14px;}
+.popup-thumbs .owl-nav button.owl-next{right:-14px;}
 
 .product-gallery-mfp.mfp-bg{background:#000;opacity:0;transition:opacity .25s ease;}
 .product-gallery-mfp.mfp-bg.mfp-ready{opacity:.82;}
@@ -167,7 +206,7 @@
 .door-options-sec .rv-tab-panel{display:none;}
 .door-options-sec .rv-tab-panel.active{display:block;animation:rvFade .3s ease;}
 .door-options-sec .rv-tab-panel:focus{outline:none;}
-.door-options-sec .rv-tab-panel h3{font-family:'Prompt',sans-serif;font-weight:600;font-size:32px;line-height:30px;color:#000;margin-bottom:40px;}
+.door-options-sec .rv-tab-panel h3{font-family:'Prompt',sans-serif;font-weight:500;font-size:32px;line-height:30px;color:#000;margin-bottom:40px;}
 .door-options-sec .rv-tab-panel h3:not(:first-of-type){margin-top: 50px;}
 .door-options-sec .rv-tab-panel > p{margin-bottom:24px;}
 .door-options-sec .rv-tab-panel .cmn-btn{margin-top:6px;}
@@ -265,6 +304,8 @@
   .popup-close,
   .popup-close img,
   .popup-thumbs .thumb-wrap,
+  .product-gallery .owl-nav button.owl-prev,
+  .product-gallery .owl-nav button.owl-next,
   .popup-gallery .owl-nav button.owl-prev,
   .popup-gallery .owl-nav button.owl-next,
   .door-options-sec .rv-tab,
@@ -272,7 +313,6 @@
   .door-options-sec.is-accordion .rv-tab img{transition:none;}
   .product-gallery-stage:hover img{transform:none;}
   .door-options-sec .rv-tab:hover i{transform:none;}
-  .product-gallery-thumbs{scroll-behavior:auto;}
   .door-options-sec .rv-tab-panel.active{animation:none;}
 }
 
@@ -300,8 +340,6 @@
   .product-page-banner  h1{font-size:40px;line-height:50px;margin-bottom:20px;}
   .product-page-banner .product-intro h2{font-size:26px;line-height:34px;margin-bottom:16px;}
   .product-page-banner .product-intro-list{margin-bottom:30px;}
-  .product-gallery-thumbs{gap:14px;}
-  .product-gallery-thumbs .product-thumb{min-width:96px;}
   /* The column narrows faster than the thumbnails do, so the fixed
      desktop height is stepped down to keep them landscape rather than
      letting them turn into tall, heavily cropped portraits. */
@@ -326,8 +364,6 @@
   .product-page-banner .product-intro-list{margin-bottom:26px;}
   .product-page-banner .product-intro-list li{font-size:16px;line-height:24px;margin-bottom:12px;}
   .product-gallery{gap:16px;}
-  .product-gallery-thumbs{gap:12px;}
-  .product-gallery-thumbs .product-thumb{min-width:84px;}
   .product-gallery-thumbs .product-thumb img{height:95px;}
 
   .door-options-sec .left-side{padding-right:24px;}
@@ -358,7 +394,6 @@
      above it. */
   .product-page-banner .right-side{padding-left:calc(var(--bs-gutter-x, 1.5rem) * .5);}
   .product-gallery{gap:16px;}
-  .product-gallery-thumbs .product-thumb{min-width:120px;}
   .product-gallery-thumbs .product-thumb img{height:125px;}
 
   /* The white card lives on .popup-gallery, so that is what has to drop
@@ -395,7 +430,7 @@
    .product-page-banner  h1.desktop-heading{display: none;}
   .product-page-banner  h1.mobile-heading{display: block;}
 
-  .product-page-banner .left-side{margin-top:30px;order: 2;}
+  .product-page-banner .left-side{margin-top:30px;order: 2;margin-bottom: 0;}
   .product-page-banner  h1{font-size:28px;line-height:36px;margin-bottom:14px;}
   .product-page-banner .product-intro h2{font-size:20px;line-height:28px;margin-bottom:12px;}
   .product-page-banner .product-intro p{margin-bottom:20px;}
@@ -403,9 +438,11 @@
   .product-page-banner .product-intro-list li{font-size:15px;line-height:22px;margin-bottom:10px;gap:8px;}
   .product-page-banner .product-intro-list li i{font-size:12px;margin-top:5px;}
   .product-gallery{gap:14px;}
-  .product-gallery-thumbs{gap:10px;}
-  .product-gallery-thumbs .product-thumb{min-width:108px;}
   .product-gallery-thumbs .product-thumb img{height:85px;}
+  /* Three thumbnails at this width leaves an arrow covering most of a
+     tap target, and the strip already swipes — same call as the popup
+     strip below. */
+  .product-gallery-thumbs .owl-nav{display:none;}
 
   .popup-main{margin-bottom:12px;}
   .popup-main .owl-nav button.owl-prev{left:10px;}
@@ -418,8 +455,11 @@
 
   .door-options-sec .left-side{margin-bottom:28px;}
   .door-options-sec .rv-tab{padding:12px 16px;font-size:15px;line-height:22px;}
-  .door-options-sec.is-accordion .rv-tab{padding:14px 16px;font-size:16px;line-height:24px;}
-  .door-options-sec.is-accordion .rv-tab-panel{padding:18px 16px 24px;}
+  .door-options-sec.is-accordion .rv-tab{padding:14px 16px;font-size:16px;line-height: 24px; border: 0; background: #f7f7f8; margin: 20px 0 0;}
+  .door-options-sec.is-accordion .rv-tab:first-child { border-top: 0; margin-top: 0; }
+  .door-options-sec.is-accordion .rv-tab.active{    background: #EE3A43;}
+  .door-options-sec.is-accordion .rv-tab-panel{padding:18px 16px 24px;border-bottom: 0; background: #f7f7f8;}
+  
   .door-options-sec .rv-tab-panel h3{font-size:18px;line-height:26px;margin-bottom:18px;}
   .door-options-sec .door-options-list li{font-size:15px;line-height:22px;margin-bottom:10px;gap:8px;}
   .door-options-sec .door-options-list li i{font-size:12px;margin-top:5px;}
@@ -454,7 +494,6 @@
  
 
 
-  .product-gallery-thumbs .product-thumb{max-width:100%;}
   .product-gallery-thumbs .product-thumb img{height:65px;}
 
   /* Pulled in tight so the pair of arrows does not swallow the middle of

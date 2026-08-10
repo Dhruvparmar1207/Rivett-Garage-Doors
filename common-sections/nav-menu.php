@@ -35,7 +35,7 @@ $RIVETT_NAV = [
 
     [
         'label'    => 'Residential Garage Doors',
-        'url'      => 'Residential-Garage-Doors.php',
+        'url'      => 'residential-doors/Residential-Garage-Doors.php',
         'children' => [
             [
                 'label'    => 'By Series',
@@ -52,7 +52,16 @@ $RIVETT_NAV = [
                 'label'    => 'By Door Type',
                 'url'      => '#',
                 'children' => [
-                    ['label' => 'Traditional Garage Doors', 'url' => '#'],
+                    [
+                        'label'    => 'Traditional Garage Doors',
+                        'url'      => '#',
+                        'children' => [
+                            [
+                                'label' => 'Classic (L138)',
+                                'url'   => 'residential-doors/by-door-type/traditional/classic-l138.php',
+                            ],
+                        ],
+                    ],
                     ['label' => 'Contemporary Doors',       'url' => '#'],
                     ['label' => 'Carriage House Doors',     'url' => '#'],
                     ['label' => 'Custom Wood Doors',        'url' => '#'],
