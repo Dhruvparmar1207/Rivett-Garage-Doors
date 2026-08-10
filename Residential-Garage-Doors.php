@@ -1,6 +1,6 @@
 <?php
 
-include(__DIR__ . '/../header.php');
+include  'header.php';
 
 
 
@@ -411,11 +411,12 @@ $hero_slides = [
 </section>
 
 
-<?php include(__DIR__ . '/../common-sections/testimonial-section.php'); ?>
+<?php include 'common-sections/testimonial-section.php'; ?>
 
-<?php include(__DIR__ . '/../common-sections/location-mapping-sec.php'); ?>
+<?php include 'common-sections/location-mapping-sec.php'; ?>
 
 <?php 
 
-include(__DIR__ . '/../footer.php');
+include 'footer.php';
+
 ?>

@@ -3,7 +3,7 @@
  * Carriage House Garage Doors — the "By Door Type" category page.
  *
  * Built on the residential listing template
- * (residential-doors/Residential-Garage-Doors.php): the same data-driven
+ * (Residential-Garage-Doors.php): the same data-driven
  * hero slider, the same .all-garage-doors-card-sec model grid, the same
  * closing sections. Only the copy and the model cards change.
  *

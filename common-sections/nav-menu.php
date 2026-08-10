@@ -35,7 +35,7 @@ $RIVETT_NAV = [
 
     [
         'label'    => 'Residential Garage Doors',
-        'url'      => 'residential-doors/Residential-Garage-Doors.php',
+        'url'      => 'Residential-Garage-Doors.php',
         'children' => [
             [
                 'label'    => 'By Series',
@@ -151,8 +151,16 @@ $RIVETT_NAV = [
         'label'    => 'Commercial Overhead Doors',
         'url'      => 'commercial-overhead-doors.php',
         'children' => [
-            ['label' => 'Overhead Doors',             'url' => '#'],
-            ['label' => 'Rolling Steel',              'url' => '#'],
+            [
+                'label'    => 'Overhead Doors',
+                'url'      => 'commercial-overhead-doors.php',
+                'children' => [
+                    ['label' => 'Thermatite Series', 'url' => 'commercial-doors/thermatite.php'],
+                    ['label' => 'Alumatite Series',  'url' => 'commercial-doors/alumatite.php'],
+                    ['label' => 'Polytite Series',   'url' => 'commercial-doors/polytite.php'],
+                ],
+            ],
+            ['label' => 'Rolling Steel',              'url' => 'commercial-doors/rolling-steel.php'],
             ['label' => 'High-Speed Specialty Doors', 'url' => '#'],
             [
                 'label'    => 'Operators',

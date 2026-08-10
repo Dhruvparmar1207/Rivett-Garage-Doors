@@ -28,8 +28,8 @@
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-12 col-12 como-doors-links">
           <h4 class="footer-h">Commercial Overhead Doors</h4>
           <ul class="footer-links">
-            <li><a href="#">Overhead Doors</a></li>
-            <li><a href="#">Rolling Steel</a></li>
+            <li><a href="commercial-overhead-doors.php">Overhead Doors</a></li>
+            <li><a href="commercial-doors/rolling-steel.php">Rolling Steel</a></li>
             <li><a href="#">High-Speed Specialty Doors</a></li>
             <li><a href="#">Operators</a></li>
             <li><a href="#">Commercial Parts &amp; Service</a></li>
